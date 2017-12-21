@@ -1,0 +1,7 @@
+## Group: [96, 19]
+## Difference Sets: 0
+## Time:  3:09:48.716
+
+return [
+];
+
