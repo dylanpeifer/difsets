@@ -1,0 +1,11 @@
+Version 2.0.0: 30 Jun 2017
+* complete rewrite as a GAP package
+* rewrite of main functions for efficiency and maintainability
+* "distributions" now referred to as difference sums
+* successful computation for groups of order 64 and order 96, with the
+  exception of [64, 267] and [96, 231]
+
+Version 1.0.0: 25 Aug 2013
+* initial release as a collection of functions
+* successful computation for groups of order 16 and order 36
+
