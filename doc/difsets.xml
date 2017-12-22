@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Documentation for the DifSets package.
+-->
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd">
+
+<Book Name="DifSets">
+
+<TitlePage>
+  <Title>The <Package>DifSets</Package> Package</Title>
+  <Version>Version 2.0.0</Version>
+  <Author>
+    Dylan Peifer <Br/>
+    <Email>djp282@cornell.edu</Email>
+    <Homepage>http://www.math.cornell.edu/~djp282</Homepage>
+    <Address>
+      Department of Mathematics <Br/>
+      105 Malott Hall <Br/>
+      Cornell University <Br/>
+      Ithaca, NY 14853-4201 USA
+    </Address>
+  </Author>
+  <Date>30 June 2017</Date>
+  <Abstract>
+    The <Package>DifSets</Package> Package implements an algorithm for enumerating all difference sets up to equivalence in an arbitrary finite group.
+    The algorithm functions by finding difference sums, which are potential images of difference sets in quotient groups of the original group, and searching their preimages.
+    In this way, the search space can be dramatically decreased, and searches of groups of relatively large order (such as order 64 or order 96) can be completed.
+  </Abstract>
+  <Copyright>
+    Copyright &copyright; 2017 Dylan Peifer <P/>
+
+    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. <P/>
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. <P/>
+
+    You should have received a copy of the GNU General Public License along with this program.  If not, see <URL>http://www.gnu.org/licenses/</URL>.
+  </Copyright>
+</TitlePage>
+
+<TableOfContents/>
+
+<Body>
+  <Chapter> <Heading>Definitions</Heading>
+    <Section> <Heading>Difference Sets</Heading>
+      A <M>\langle v, k, \lambda \rangle</M>-difference set is a nonempty proper subset <M>D</M> of a finite group <M>G</M> such that <M>|G| = v</M>, <M>|D| = k</M>, and each nonidentity element of <M>G</M> can be written as <M>d_id_j^{-1}</M> for <M>d_i, d_j \in D</M> in exactly <M>\lambda</M> different ways.
+      The standard example is the <M>\langle 7, 3, 1\rangle</M>-difference set  <M>\{1, 2, 4\}</M> of the group <M>\mathbb{Z}/7\mathbb{Z}</M> under addition.
+      Additionally, it can easily be shown that every one element subset of a group is a difference set, and the complement of any difference set is also a difference set. <P/>
+
+      We will often abuse notation and let <M>D</M> denote both the set <M>D</M> and the element <Display>D = \sum_{d \in D} d</Display> of the group ring <M>\mathbb{Z}[G]</M>.
+      Then define <Display>gD = \sum_{d \in D} gd,</Display><Display>D^\phi = \sum_{d \in D} \phi(d),</Display><Display>D^{(-1)} = \sum_{d \in D} d^{-1},</Display> where <M>g \in G</M> and <M>\phi</M> is a homomorphism with domain <M>G</M>.
+      Using this notation, a difference set in <M>G</M> is an element of the group ring <M>\mathbb{Z}[G]</M> with coefficients from <M>\{0, 1\}</M> such that <M>DD^{(-1)} = (k-\lambda) + \lambda G</M>, where by convention the isolated coefficients <M>(k-\lambda)</M> are assumed to be coefficients of the identity. <P/>
+
+      Two difference sets <M>D_1, D_2</M> are equivalent if both are in the same group <M>G</M> and <M>D_1 = gD_2^\phi</M> for some <M>g \in G</M> and <M>\phi \in \mathrm{Aut}(G)</M>.
+      In other words, <M>D_1</M> is equivalent to <M>D_2</M> if <M>D_1</M> can be mapped to <M>D_2</M> by translation and automorphism in the group <M>G</M>.
+      We say <M>D_1, D_2</M> are translationally equivalent if they are equivalent solely by translation, meaning <M>D_1 = gD_2</M> for some <M>g \in G</M>. <P/>
+
+      In the package, difference sets are stored as lists of integers that represent the index of the elements in the difference set as found in the list of all elements in the group returned by the &GAP; function <C>Elements(G)</C>.
+      For example, the difference set <C>[1, 3, 6, 9, 11, 13]</C> in <C>SmallGroup(16, 5)</C> really consists of the first, third, sixth, ninth, eleventh, and thirteenth elements of the list returned by <C>Elements(SmallGroup(16, 5))</C>.
+      When given as arguments, difference sets in the package are never assumed to be sorted, but many functions will return difference sets in sorted order since sorting is used internally.
+    </Section>
+
+    <Section> <Heading>Difference Sums</Heading>
+      A <M>\langle v, k, \lambda \rangle</M>-difference sum in a group <M>G</M> modulo its normal subgroup <M>N</M> is an element <M>S</M> of the group ring <M>\mathbb{Z}[G/N]</M> such that <M>SS^{(-1)} = (k - \lambda) + \lambda |N|G/N</M> and the coefficients of <M>S</M> have values in <M>\{0, 1, \dots, |N|\}</M>.
+      Note that the original <M>G</M> and <M>N</M> are included in the definition, so it makes no sense to talk about a difference sum in some arbitrary group <M>H</M>.
+      The size of a difference sum is the sum of its coefficients, and by defining the complement of <M>S</M> to be <M>|N|G/N - S</M> we can see that, similar to difference sets, size one sums and complements of difference sums are always difference sums. <P/>
+
+      Two difference sums <M>S_1, S_2</M> are equivalent if both are in the same group <M>G</M> mod its normal subgroup <M>N</M> and <M>S_1 = gS_2^\phi</M> for some <M>g \in G/N</M> and <M>\phi</M> an automorphism of <M>G/N</M> induced by an automorphism of <M>G</M>.
+      Note that not all automorphisms of <M>G/N</M> are induced by automorphisms of <M>G</M>, so our definition here is more restrictive than perhaps expected.
+      As with difference sets, the sums <M>S_1, S_2</M> are translationally equivalent if <M>S_1 = gS_2</M> for some <M>g \in G/N</M>. <P/>
+
+      In the package, difference sums are stored as lists of integers that represent the values of the coefficients of the group ring elements, with position in the list given by the position of the coset in the list of elements returned by the &GAP; function <C>Elements(G/N)</C>.
+      For example, the difference sum <C>[2, 4]</C> in <C>SmallGroup(16, 5)</C> mod its normal subgroup <C>NormalSubgroups(SmallGroup(16, 5))[2]</C> has coefficient 2 on the identity coset, and coefficient 4 on the nonidentity coset. <P/>
+
+      Difference sums can be thought of as a generalization of difference sets.
+      More importantly, however, difference sums can be thought of as images of difference sets in quotients of the original group.
+      In particular, if <M>\theta : G \to G/N</M> is the natural projection, then for any difference set <M>D</M> in <M>\mathbb{Z}[G]</M> we have a difference sum <M>D^\theta</M> in <M>G</M> modulo its normal subgroup <M>N</M>.
+      Additionally, difference sums induce other difference sums in any further quotient.
+      The fundamental idea of the algorithm in this package is that we can reverse this process.
+      Starting with <M>G</M> mod <M>G</M>, where the only difference sum of size <M>k</M> is <C>[k]</C>, we can successively refine this difference sum up a series of quotients of <M>G</M> until reaching <M>G</M> itself.
+      In each step we enumerate all preimages of the difference sums and remove preimages that are not difference sums themselves.
+      In the final step we refine to difference sets.
+      Furthermore, since equivalent difference sums will have equivalent collections of difference sets as preimages, in each step we remove all but one representative of each equivalence class from our collection.
+      This method dramatically decreases the search space for an exhaustive enumeration of all difference sets up to equivalence in <M>G</M>. 
+    </Section>
+  </Chapter>
+
+  <Chapter> <Heading>Package Contents</Heading>
+      The <Package>DifSets</Package> Package consists of a collection of functions implementing the main algorithm, and some additional functions for experimentation and testing.
+      Several functions not appearing in this documentation are used internally for certain subtasks.
+      See the code itself for details.
+
+    <Section> <Heading>The Main Functions</Heading>
+      The purpose of this package is to provide a function that efficiently enumerates all difference sets up to equivalence in a given group.
+      Similarly, we can also enumerate all difference sums up to equivalence.
+      The following are these functions.
+      Their components are described in further sections.
+      <#Include Label="DifferenceSets">
+      <#Include Label="DifferenceSums">
+    </Section>
+
+    <Section> <Heading>Sizes</Heading>
+      The first step of the algorithm is to determine what possible sizes of difference sets and sums the group can contain.
+      Each size is then handled individually since different size sets or sums will never be equivalent. 
+      <#Include Label="PossibleDifferenceSetSizes">
+      <#Include Label="DifferenceSetsOfSizeK">
+      <#Include Label="DifferenceSumsOfSizeK">
+    </Section>
+
+    <Section> <Heading>Refining</Heading>
+      Refining refers to the process of enumerating the preimages of a difference sum and filtering out preimages that are not themselves difference sets or sums.
+      For each size <M>k</M> we know that the only difference sum of size <M>k</M> in <M>G</M> mod <M>G</M> is <C>[k]</C>.
+      Starting with this difference sum, we successivly refine through a series of quotients of <M>G</M> to eventually reach the desired sums or sets.
+      In the algorithm, we use <Ref Func="SomeRefinedDifferenceSets"/> and <Ref Func="SomeRefinedDifferenceSums"/> rather than <Ref Func="AllRefinedDifferenceSets"/> and <Ref Func="AllRefinedDifferenceSums"/> since the former are faster and we only need at least one representative of each equivalence class since additional equivalent sums or sets will just be removed anyway.
+      <#Include Label="RefiningSeries">
+      <#Include Label="AllRefinedDifferenceSets">
+      <#Include Label="SomeRefinedDifferenceSets">
+      <#Include Label="AllRefinedDifferenceSums">
+      <#Include Label="SomeRefinedDifferenceSums">
+    </Section>
+
+    <Section> <Heading>Equivalence</Heading>
+      Since we are searching for all difference sets or sums up to equivalence, at each stage we remove excess equivalent sums or sets from our collection.
+      This is done with <Ref Func="EquivalentFreeListOfDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSums"/>.
+      The additional functions <Ref Func="TranslateFreeListOfDifferenceSets"/> and <Ref Func="TranslateFreeListOfDifferenceSums"/> can be used to eliminate some equivalent sums or sets when the size of the automorphism group is too large to iterate through. 
+      They are not, however, used in the main algorithm.
+      <#Include Label="EquivalentFreeListOfDifferenceSets">
+      <#Include Label="TranslateFreeListOfDifferenceSets">
+      <#Include Label="EquivalentFreeListOfDifferenceSums">
+      <#Include Label="TranslateFreeListOfDifferenceSums">
+    </Section>
+ 
+    <Section> <Heading>Testing</Heading>
+      These additional functions are provided to check work and perform other experimentation.
+      They are inefficient when used repeatedly.
+      For example, when testing a large number of difference sets in a single group, it is better to precompute the needed group operations and store them in a table for lookup, but <Ref Func="IsDifferenceSet"/> simply does the multiplication directly since it is only testing one set.
+      <#Include Label="IsDifferenceSet">
+      <#Include Label="IsDifferenceSum">
+      <#Include Label="IsEquivalentDifferenceSet">
+      <#Include Label="IsEquivalentDifferenceSum">
+    </Section>
+  </Chapter>
+
+  <Chapter> <Heading>Results</Heading>
+    The <Package>DifSets</Package> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96.
+    With the exception of groups <C>[64, 267]</C> and <C>[96, 231]</C>, which have exceptionally large automorphism groups, this goal was achieved.
+    Full results, which include timings, number of sets, and the sets themselves can be found in the <C>data</C> subdirectory of the package, which is organized by group order and contains a single <C>.txt</C> file for each computed group.
+    All computations were performed using &GAP; 4.8.5 on an i7-4770 with 16GB of RAM.
+    Here we give a basic overview of results and comments on timings.
+    Throughout this chapter we will refer to the group returned by the &GAP; function <C>SmallGroup(v, n)</C> as <C>[v, n]</C>.
+
+    <Section> <Heading>Order 16 and 36</Heading>
+      Difference sets in groups of order 16 and 36 form the first nontrivial examples of the Hadamard parameters, and exhaustive enumerations are already well known.
+      Still, computation of these sets gives a useful benchmark and check of accuracy. <P/>
+
+      Two important timings are those for <C>[16, 14]</C> and <C>[36, 9]</C>.
+      The group <C>[16, 14]</C> is elementary abelian, and has a much larger automorphism group than other groups of order 16.
+      Since the algorithm needs to loop through the automorphism group for equivalence testing, large automorphism groups can substantially slow down computation, an effect we can already see compared to other groups of order 16.
+      The group <C>[36, 9]</C> takes several orders of magnitude longer than other groups of order 36.
+      This is because <C>[36, 9]</C> does not have small normal subgroups (in particular, its smallest nontrivial normal subgroup has order 9), and refining across a large gap in sizes, expecially near the end of the algorithm, requires checking significantly more preimages. <P/>
+
+      <Table Align="ccc">
+        <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
+        <HorLine/>
+        <Row> <Item><C>[16, 1]</C></Item> <Item>0</Item> <Item>0.056</Item> </Row>
+        <Row> <Item><C>[16, 2]</C></Item> <Item>3</Item> <Item>0.112</Item> </Row>
+        <Row> <Item><C>[16, 3]</C></Item> <Item>4</Item> <Item>0.095</Item> </Row>
+        <Row> <Item><C>[16, 4]</C></Item> <Item>3</Item> <Item>0.096</Item> </Row>
+        <Row> <Item><C>[16, 5]</C></Item> <Item>2</Item> <Item>0.114</Item> </Row>
+        <Row> <Item><C>[16, 6]</C></Item> <Item>2</Item> <Item>0.084</Item> </Row>
+        <Row> <Item><C>[16, 7]</C></Item> <Item>0</Item> <Item>0.091</Item> </Row>
+        <Row> <Item><C>[16, 8]</C></Item> <Item>2</Item> <Item>0.086</Item> </Row>
+        <Row> <Item><C>[16, 9]</C></Item> <Item>2</Item> <Item>0.092</Item> </Row>
+        <Row> <Item><C>[16, 10]</C></Item> <Item>2</Item> <Item>0.191</Item> </Row>
+        <Row> <Item><C>[16, 11]</C></Item> <Item>2</Item> <Item>0.125</Item> </Row>
+        <Row> <Item><C>[16, 12]</C></Item> <Item>2</Item> <Item>0.202</Item> </Row>
+        <Row> <Item><C>[16, 13]</C></Item> <Item>2</Item> <Item>0.107</Item> </Row>
+        <Row> <Item><C>[16, 14]</C></Item> <Item>1</Item> <Item>0.828</Item> </Row>
+      </Table>
+
+      <Table Align="ccc">
+        <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
+        <HorLine/>
+        <Row> <Item><C>[36, 1]</C></Item> <Item>0</Item> <Item>0.369</Item> </Row>
+        <Row> <Item><C>[36, 2]</C></Item> <Item>0</Item> <Item>0.209</Item> </Row>
+        <Row> <Item><C>[36, 3]</C></Item> <Item>0</Item> <Item>0.409</Item> </Row>
+        <Row> <Item><C>[36, 4]</C></Item> <Item>0</Item> <Item>0.372</Item> </Row>
+        <Row> <Item><C>[36, 5]</C></Item> <Item>0</Item> <Item>0.231</Item> </Row>
+        <Row> <Item><C>[36, 6]</C></Item> <Item>6</Item> <Item>0.374</Item> </Row>
+        <Row> <Item><C>[36, 7]</C></Item> <Item>1</Item> <Item>0.897</Item> </Row>
+        <Row> <Item><C>[36, 8]</C></Item> <Item>4</Item> <Item>0.346</Item> </Row>
+        <Row> <Item><C>[36, 9]</C></Item> <Item>5</Item> <Item>296.382</Item> </Row>
+        <Row> <Item><C>[36, 10]</C></Item> <Item>6</Item> <Item>0.831</Item> </Row>
+        <Row> <Item><C>[36, 11]</C></Item> <Item>3</Item> <Item>0.479</Item> </Row>
+        <Row> <Item><C>[36, 12]</C></Item> <Item>6</Item> <Item>0.369</Item> </Row>
+        <Row> <Item><C>[36, 13]</C></Item> <Item>1</Item> <Item>0.940</Item> </Row>
+        <Row> <Item><C>[36, 14]</C></Item> <Item>3</Item> <Item>0.483</Item> </Row>
+      </Table>
+    </Section>
+
+    <Section> <Heading>Order 64 and 96</Heading>
+      Difference sets in groups of order 64 also satisfy the Hadamard parameters, while difference sets in groups of order 96 satisfy the McFarland parameters.
+      Since there are many groups of both orders, here we just give some examples and summaries.
+      In particular, the tables below list the fastest, slowest, and median five groups of each order, sorted by time.
+      Note that the algorithm was not able to complete a search of <C>[64, 267]</C> or <C>[96, 231]</C> because their exceptionally large automorphism groups made equivalence testing in the final stage infeasible.
+      By replacing the final call to <Ref Func="EquivalentFreeListOfDifferenceSets"/> with <Ref Func="TranslateFreeListOfDifferenceSets"/> the algorithm can produce a somewhat reduced collection of sets containing at least one representative of each equivalence class for these two groups, but as this is not a full reduction these computations are not included in the results or summaries below. <P/>
+
+      Groups of order 64 are <M>p</M>-groups, and thus always have enough normal subgroups to form long refining series.
+      This means the refining steps are relatively efficient for all groups in this order.
+      The main difference between groups is the size of the automorphism group, and, in particular, four of the five groups taking the largest amount of time are precisely the four groups with the largest automorphism groups in this order.
+      The additional group in the top five, <C>[64, 235]</C>, has a relatively large number of difference sets, but is otherwise unremarkable.
+      In general, smaller numbers of difference sets correspond to faster times, and in fact the eight groups with no difference sets were computed the fastest, beating the next fastest groups by an order of magnitude.
+      Overall, the mean computation time for a group of order 64 was 2577 seconds, with a median time of 1246 seconds.
+      This means that the total time to compute all difference sets in groups of order 64 (except <C>[64, 267]</C>) was roughly 8 days. <P/>
+
+      In groups of order 96 we do not always have large numbers of normal subgroups, and, as with <C>[36, 9]</C>, this can substantially slow down computation.
+      In fact, the five groups taking the longest computation time are five of the six groups with fewest normal subgroups in this order.
+      We are helped, however, by the fact that the only valid choice of <M>k</M> is 20, which is relatively small and thus does not lead to large numbers of preimages even across large gaps in the refining series.
+      Many groups in this order have no difference sets, but even for these groups computation can be slow.
+      While the fastest groups contain no difference sets, many groups with no difference sets actually take much longer than other groups that do contain difference sets.
+      Overall, the mean computation time for a group of order 96 was 22838 seconds, with a median time of 10637 seconds.
+      This means that the total time to compute all difference sets in groups of order 96 (except <C>[96, 231]</C>) was roughly 61 days. <P/>
+
+      <Table Align="ccc">
+        <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
+        <HorLine/>
+        <Row> <Item><C>[64, 52]</C></Item> <Item>0</Item> <Item>3</Item> </Row>
+        <Row> <Item><C>[64, 54]</C></Item> <Item>0</Item> <Item>3</Item> </Row>
+        <Row> <Item><C>[64, 47]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
+        <Row> <Item><C>[64, 1]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
+        <Row> <Item><C>[64, 50]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
+        <Row> <Item><C>[64, 31]</C></Item> <Item>448</Item> <Item>1180</Item> </Row>
+        <Row> <Item><C>[64, 160]</C></Item> <Item>3192</Item> <Item>1227</Item> </Row>
+        <Row> <Item><C>[64, 178]</C></Item> <Item>952</Item> <Item>1245</Item> </Row>
+        <Row> <Item><C>[64, 71]</C></Item> <Item>1678</Item> <Item>1248</Item> </Row>
+        <Row> <Item><C>[64, 221]</C></Item> <Item>1656</Item> <Item>1253</Item> </Row>
+        <Row> <Item><C>[64, 192]</C></Item> <Item>222</Item> <Item>9268</Item> </Row>
+        <Row> <Item><C>[64, 261]</C></Item> <Item>49</Item> <Item>9813</Item> </Row>
+        <Row> <Item><C>[64, 235]</C></Item> <Item>4317</Item> <Item>21849</Item> </Row>
+        <Row> <Item><C>[64, 262]</C></Item> <Item>148</Item> <Item>84479</Item> </Row>
+        <Row> <Item><C>[64, 260]</C></Item> <Item>30</Item> <Item>93103</Item> </Row>
+      </Table>
+
+      <Table Align="ccc">
+        <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
+        <HorLine/>
+        <Row> <Item><C>[96, 2]</C></Item> <Item>0</Item> <Item>8</Item> </Row>
+        <Row> <Item><C>[96, 59]</C></Item> <Item>0</Item> <Item>8</Item> </Row>
+        <Row> <Item><C>[96, 66]</C></Item> <Item>0</Item> <Item>27</Item> </Row>
+        <Row> <Item><C>[96, 189]</C></Item> <Item>0</Item> <Item>27</Item> </Row>
+        <Row> <Item><C>[96, 46]</C></Item> <Item>0</Item> <Item>41</Item> </Row>
+        <Row> <Item><C>[96, 98]</C></Item> <Item>24</Item> <Item>10171</Item> </Row>
+        <Row> <Item><C>[96, 143]</C></Item> <Item>12</Item> <Item>10320</Item> </Row>
+        <Row> <Item><C>[96, 89]</C></Item> <Item>0</Item> <Item>10612</Item> </Row>
+        <Row> <Item><C>[96, 102]</C></Item> <Item>0</Item> <Item>10661</Item> </Row>
+        <Row> <Item><C>[96, 104]</C></Item> <Item>0</Item> <Item>10665</Item> </Row>
+        <Row> <Item><C>[96, 64]</C></Item> <Item>14</Item> <Item>274062</Item> </Row>
+        <Row> <Item><C>[96, 227]</C></Item> <Item>42</Item> <Item>280214</Item> </Row>
+        <Row> <Item><C>[96, 72]</C></Item> <Item>2</Item> <Item>460214</Item> </Row>
+        <Row> <Item><C>[96, 70]</C></Item> <Item>28</Item> <Item>516669</Item> </Row>
+        <Row> <Item><C>[96, 71]</C></Item> <Item>8</Item> <Item>799294</Item> </Row>
+      </Table>
+    </Section>
+
+    <Section> <Heading>Comments</Heading>
+      Overall, the algorithm spends almost all of its time performing four operations: refining sums to sums in several stages using <Ref Func="SomeRefinedDifferenceSums"/>, refining sums to sets in the final stage using <Ref Func="SomeRefinedDifferenceSets"/>, removing equivalent difference sums in several stages using <Ref Func="EquivalentFreeListOfDifferenceSums"/>, and removing equivalent difference sets in the final stage using <Ref Func="EquivalentFreeListOfDifferenceSets"/>.
+      On typical groups of order 16 and order 36 (i.e., not <C>[16, 14]</C> or <C>[36, 9]</C>), each of these four operations takes roughly the same time. 
+      On groups of order 64, some testing indicates that one or two orders of magnitude more time are spent in the final stage, when the algorithm uses <Ref Func="SomeRefinedDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSets"/>.
+      This discrepency is likely to remain or increase for larger order groups, as the number of preimages to check increases exponentially with the number of cosets.
+      For the tested groups of order 64, roughly 60% of the time in the final stage was spent refining, with the remaining 40% spent removing equivalent sets. <P/>
+ 
+      Large automorphism groups make removing equivalents time-consuming (since we must loop through the automorphism group) and large jumps in the size of the normal subgroups used, especially near the end of the algorithm, make refining difficult (since there are many more options for preimages that must be checked).
+      So, in general, the algorithm seems to work well when the group has a small automorphism group and many (small) normal subgroups.
+      In addition, the algorithm does better when the values of <M>k</M> that need to be checked are small, as this limits both the number of preimages to check as well as the amount of time required for checking sets and equivalences.
+      It is also generally faster when the final result is a smaller number of difference sets. <P/>
+
+      The next natural cases for exhaustive search are groups of order 100 and order 144, which give the next Hadamard parameters.
+      Unfortunately, preliminary testing indicates that this algorithm is not likely to be able to compute all difference sets for these groups.
+      For example, a typical difference sum in <C>[100, 9]</C> is <C>[5, 4, 3, 3, 0, 3, 2, 3, 2, 2, 2, 2, 2, 1, 2, 1, 1, 2, 2, 3]</C>, which has roughly <M>6 \times 10^{16}</M> preimage sets to check.
+      In the search for difference sets in <C>[36, 9]</C> the single difference sum <C>[6, 3, 3, 3]</C>, with around <M>3 \times 10^7</M> preimages, takes around 300 seconds to search.
+      Thus even if we could check sets in <C>[100, 9]</C> as fast as in <C>[36, 9]</C>, the search would take roughly 20000 years.
+      Some testing suggests that coding pieces of the algorithm in C could give one or two orders of magnitude of speedup, but even further speedup is required to make the search feasible, so some other improvements, either in theory or implementation, are needed as well.
+    </Section>
+  </Chapter>
+</Body>
+
+</Book>

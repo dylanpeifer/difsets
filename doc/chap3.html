@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (DifSets) - Chapter 3: Results</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  </div>
+
+<p><a id="X7A92ECF9816C7E28" name="X7A92ECF9816C7E28"></a></p>
+<div class="ChapSects"><a href="chap3.html#X7A92ECF9816C7E28">3 <span class="Heading">Results</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X85CC7A44864637B3">3.1 <span class="Heading">Order 16 and 36</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7806C267831D6985">3.2 <span class="Heading">Order 64 and 96</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X780C79EB85C32138">3.3 <span class="Heading">Comments</span></a>
+</span>
+</div>
+</div>
+
+<h3>3 <span class="Heading">Results</span></h3>
+
+<p>The <strong class="pkg">DifSets</strong> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96. With the exception of groups <code class="code">[64, 267]</code> and <code class="code">[96, 231]</code>, which have exceptionally large automorphism groups, this goal was achieved. Full results, which include timings, number of sets, and the sets themselves can be found in the <code class="code">data</code> subdirectory of the package, which is organized by group order and contains a single <code class="code">.txt</code> file for each computed group. All computations were performed using <strong class="pkg">GAP</strong> 4.8.5 on an i7-4770 with 16GB of RAM. Here we give a basic overview of results and comments on timings. Throughout this chapter we will refer to the group returned by the <strong class="pkg">GAP</strong> function <code class="code">SmallGroup(v, n)</code> as <code class="code">[v, n]</code>.</p>
+
+<p><a id="X85CC7A44864637B3" name="X85CC7A44864637B3"></a></p>
+
+<h4>3.1 <span class="Heading">Order 16 and 36</span></h4>
+
+<p>Difference sets in groups of order 16 and 36 form the first nontrivial examples of the Hadamard parameters, and exhaustive enumerations are already well known. Still, computation of these sets gives a useful benchmark and check of accuracy.</p>
+
+<p>Two important timings are those for <code class="code">[16, 14]</code> and <code class="code">[36, 9]</code>. The group <code class="code">[16, 14]</code> is elementary abelian, and has a much larger automorphism group than other groups of order 16. Since the algorithm needs to loop through the automorphism group for equivalence testing, large automorphism groups can substantially slow down computation, an effect we can already see compared to other groups of order 16. The group <code class="code">[36, 9]</code> takes several orders of magnitude longer than other groups of order 36. This is because <code class="code">[36, 9]</code> does not have small normal subgroups (in particular, its smallest nontrivial normal subgroup has order 9), and refining across a large gap in sizes, expecially near the end of the algorithm, requires checking significantly more preimages.</p>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdcenter">Group</td>
+<td class="tdcenter">Difference Sets</td>
+<td class="tdcenter">Time (seconds)</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 1]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.056</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 2]</code></td>
+<td class="tdcenter">3</td>
+<td class="tdcenter">0.112</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 3]</code></td>
+<td class="tdcenter">4</td>
+<td class="tdcenter">0.095</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 4]</code></td>
+<td class="tdcenter">3</td>
+<td class="tdcenter">0.096</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 5]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.114</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 6]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.084</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 7]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.091</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 8]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.086</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 9]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.092</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 10]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.191</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 11]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.125</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 12]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.202</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 13]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">0.107</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[16, 14]</code></td>
+<td class="tdcenter">1</td>
+<td class="tdcenter">0.828</td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdcenter">Group</td>
+<td class="tdcenter">Difference Sets</td>
+<td class="tdcenter">Time (seconds)</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 1]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.369</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 2]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.209</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 3]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.409</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 4]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.372</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 5]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">0.231</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 6]</code></td>
+<td class="tdcenter">6</td>
+<td class="tdcenter">0.374</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 7]</code></td>
+<td class="tdcenter">1</td>
+<td class="tdcenter">0.897</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 8]</code></td>
+<td class="tdcenter">4</td>
+<td class="tdcenter">0.346</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 9]</code></td>
+<td class="tdcenter">5</td>
+<td class="tdcenter">296.382</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 10]</code></td>
+<td class="tdcenter">6</td>
+<td class="tdcenter">0.831</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 11]</code></td>
+<td class="tdcenter">3</td>
+<td class="tdcenter">0.479</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 12]</code></td>
+<td class="tdcenter">6</td>
+<td class="tdcenter">0.369</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 13]</code></td>
+<td class="tdcenter">1</td>
+<td class="tdcenter">0.940</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[36, 14]</code></td>
+<td class="tdcenter">3</td>
+<td class="tdcenter">0.483</td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+<p><a id="X7806C267831D6985" name="X7806C267831D6985"></a></p>
+
+<h4>3.2 <span class="Heading">Order 64 and 96</span></h4>
+
+<p>Difference sets in groups of order 64 also satisfy the Hadamard parameters, while difference sets in groups of order 96 satisfy the McFarland parameters. Since there are many groups of both orders, here we just give some examples and summaries. In particular, the tables below list the fastest, slowest, and median five groups of each order, sorted by time. Note that the algorithm was not able to complete a search of <code class="code">[64, 267]</code> or <code class="code">[96, 231]</code> because their exceptionally large automorphism groups made equivalence testing in the final stage infeasible. By replacing the final call to <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>) with <code class="func">TranslateFreeListOfDifferenceSets</code> (<a href="chap2.html#X8380F5D37E2D411B"><span class="RefLink">2.4-2</span></a>) the algorithm can produce a somewhat reduced collection of sets containing at least one representative of each equivalence class for these two groups, but as this is not a full reduction these computations are not included in the results or summaries below.</p>
+
+<p>Groups of order 64 are <span class="SimpleMath">p</span>-groups, and thus always have enough normal subgroups to form long refining series. This means the refining steps are relatively efficient for all groups in this order. The main difference between groups is the size of the automorphism group, and, in particular, four of the five groups taking the largest amount of time are precisely the four groups with the largest automorphism groups in this order. The additional group in the top five, <code class="code">[64, 235]</code>, has a relatively large number of difference sets, but is otherwise unremarkable. In general, smaller numbers of difference sets correspond to faster times, and in fact the eight groups with no difference sets were computed the fastest, beating the next fastest groups by an order of magnitude. Overall, the mean computation time for a group of order 64 was 2577 seconds, with a median time of 1246 seconds. This means that the total time to compute all difference sets in groups of order 64 (except <code class="code">[64, 267]</code>) was roughly 8 days.</p>
+
+<p>In groups of order 96 we do not always have large numbers of normal subgroups, and, as with <code class="code">[36, 9]</code>, this can substantially slow down computation. In fact, the five groups taking the longest computation time are five of the six groups with fewest normal subgroups in this order. We are helped, however, by the fact that the only valid choice of <span class="SimpleMath">k</span> is 20, which is relatively small and thus does not lead to large numbers of preimages even across large gaps in the refining series. Many groups in this order have no difference sets, but even for these groups computation can be slow. While the fastest groups contain no difference sets, many groups with no difference sets actually take much longer than other groups that do contain difference sets. Overall, the mean computation time for a group of order 96 was 22838 seconds, with a median time of 10637 seconds. This means that the total time to compute all difference sets in groups of order 96 (except <code class="code">[96, 231]</code>) was roughly 61 days.</p>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdcenter">Group</td>
+<td class="tdcenter">Difference Sets</td>
+<td class="tdcenter">Time (seconds)</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 52]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">3</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 54]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">3</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 47]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">4</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 1]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">4</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 50]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">4</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 31]</code></td>
+<td class="tdcenter">448</td>
+<td class="tdcenter">1180</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 160]</code></td>
+<td class="tdcenter">3192</td>
+<td class="tdcenter">1227</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 178]</code></td>
+<td class="tdcenter">952</td>
+<td class="tdcenter">1245</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 71]</code></td>
+<td class="tdcenter">1678</td>
+<td class="tdcenter">1248</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 221]</code></td>
+<td class="tdcenter">1656</td>
+<td class="tdcenter">1253</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 192]</code></td>
+<td class="tdcenter">222</td>
+<td class="tdcenter">9268</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 261]</code></td>
+<td class="tdcenter">49</td>
+<td class="tdcenter">9813</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 235]</code></td>
+<td class="tdcenter">4317</td>
+<td class="tdcenter">21849</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 262]</code></td>
+<td class="tdcenter">148</td>
+<td class="tdcenter">84479</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[64, 260]</code></td>
+<td class="tdcenter">30</td>
+<td class="tdcenter">93103</td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdcenter">Group</td>
+<td class="tdcenter">Difference Sets</td>
+<td class="tdcenter">Time (seconds)</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 2]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">8</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 59]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">8</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 66]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">27</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 189]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">27</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 46]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">41</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 98]</code></td>
+<td class="tdcenter">24</td>
+<td class="tdcenter">10171</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 143]</code></td>
+<td class="tdcenter">12</td>
+<td class="tdcenter">10320</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 89]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">10612</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 102]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">10661</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 104]</code></td>
+<td class="tdcenter">0</td>
+<td class="tdcenter">10665</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 64]</code></td>
+<td class="tdcenter">14</td>
+<td class="tdcenter">274062</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 227]</code></td>
+<td class="tdcenter">42</td>
+<td class="tdcenter">280214</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 72]</code></td>
+<td class="tdcenter">2</td>
+<td class="tdcenter">460214</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 70]</code></td>
+<td class="tdcenter">28</td>
+<td class="tdcenter">516669</td>
+</tr>
+<tr>
+<td class="tdcenter"><code class="code">[96, 71]</code></td>
+<td class="tdcenter">8</td>
+<td class="tdcenter">799294</td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+<p><a id="X780C79EB85C32138" name="X780C79EB85C32138"></a></p>
+
+<h4>3.3 <span class="Heading">Comments</span></h4>
+
+<p>Overall, the algorithm spends almost all of its time performing four operations: refining sums to sums in several stages using <code class="func">SomeRefinedDifferenceSums</code> (<a href="chap2.html#X866272667D6032BA"><span class="RefLink">2.3-5</span></a>), refining sums to sets in the final stage using <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-3</span></a>), removing equivalent difference sums in several stages using <code class="func">EquivalentFreeListOfDifferenceSums</code> (<a href="chap2.html#X8639AB227B0CF9F3"><span class="RefLink">2.4-3</span></a>), and removing equivalent difference sets in the final stage using <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>). On typical groups of order 16 and order 36 (i.e., not <code class="code">[16, 14]</code> or <code class="code">[36, 9]</code>), each of these four operations takes roughly the same time. On groups of order 64, some testing indicates that one or two orders of magnitude more time are spent in the final stage, when the algorithm uses <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-3</span></a>) and <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>). This discrepency is likely to remain or increase for larger order groups, as the number of preimages to check increases exponentially with the number of cosets. For the tested groups of order 64, roughly 60% of the time in the final stage was spent refining, with the remaining 40% spent removing equivalent sets.</p>
+
+<p>Large automorphism groups make removing equivalents time-consuming (since we must loop through the automorphism group) and large jumps in the size of the normal subgroups used, especially near the end of the algorithm, make refining difficult (since there are many more options for preimages that must be checked). So, in general, the algorithm seems to work well when the group has a small automorphism group and many (small) normal subgroups. In addition, the algorithm does better when the values of <span class="SimpleMath">k</span> that need to be checked are small, as this limits both the number of preimages to check as well as the amount of time required for checking sets and equivalences. It is also generally faster when the final result is a smaller number of difference sets.</p>
+
+<p>The next natural cases for exhaustive search are groups of order 100 and order 144, which give the next Hadamard parameters. Unfortunately, preliminary testing indicates that this algorithm is not likely to be able to compute all difference sets for these groups. For example, a typical difference sum in <code class="code">[100, 9]</code> is <code class="code">[5, 4, 3, 3, 0, 3, 2, 3, 2, 2, 2, 2, 2, 1, 2, 1, 1, 2, 2, 3]</code>, which has roughly <span class="SimpleMath">6 × 10^16</span> preimage sets to check. In the search for difference sets in <code class="code">[36, 9]</code> the single difference sum <code class="code">[6, 3, 3, 3]</code>, with around <span class="SimpleMath">3 × 10^7</span> preimages, takes around 300 seconds to search. Thus even if we could check sets in <code class="code">[100, 9]</code> as fast as in <code class="code">[36, 9]</code>, the search would take roughly 20000 years. Some testing suggests that coding pieces of the algorithm in C could give one or two orders of magnitude of speedup, but even further speedup is required to make the search feasible, so some other improvements, either in theory or implementation, are needed as well.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>
