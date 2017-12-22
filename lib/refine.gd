@@ -48,6 +48,17 @@ DeclareGlobalFunction( "AllRefinedDifferenceSets" );
 
 #############################################################################
 ##
+#F  NrAllRefinedSets( <G>, <N>, <difsums> )
+##
+##  <#GAPDoc Label="NrAllRefinedSets">
+##  <ManSection>
+##  <Func Name="NrAllRefinedSets" Arg="G, N, difsums"/>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "NrAllRefinedSets" );
+
+#############################################################################
+##
 #F  SomeRefinedDifferenceSets( <G>, <N>, <difsums> )
 ##
 ##  <#GAPDoc Label="SomeRefinedDifferenceSets">
@@ -80,6 +91,17 @@ DeclareGlobalFunction( "AllRefinedDifferenceSets" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SomeRefinedDifferenceSets" );
+
+#############################################################################
+##
+#F  NrSomeRefinedSets( <G>, <N>, <difsums> )
+##
+##  <#GAPDoc Label="NrSomeRefinedSets">
+##  <ManSection>
+##  <Func Name="NrSomeRefinedSets" Arg="G, N, difsums"/>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "NrSomeRefinedSets" );
 
 #############################################################################
 ##
@@ -123,6 +145,17 @@ DeclareGlobalFunction( "AllRefinedDifferenceSums" );
 
 #############################################################################
 ##
+#F  NrAllRefinedSums( <G>, <N1>, <N2>, <difsums> )
+##
+##  <#GAPDoc Label="NrAllRefinedSums">
+##  <ManSection>
+##  <Func Name="NrAllRefinedSums" Arg="G, N1, N2, difsums"/>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "NrAllRefinedSums" );
+
+#############################################################################
+##
 #F  SomeRefinedDifferenceSums( <G>, <N1>, <N2>, <difsums> )
 ##
 ##  <#GAPDoc Label="SomeRefinedDifferenceSums">
@@ -153,6 +186,17 @@ DeclareGlobalFunction( "AllRefinedDifferenceSums" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "SomeRefinedDifferenceSums" );
+
+#############################################################################
+##
+#F  NrSomeRefinedSums( <G>, <N1>, <N2>, <difsums> )
+##
+##  <#GAPDoc Label="NrSomeRefinedSums">
+##  <ManSection>
+##  <Func Name="NrSomeRefinedSums" Arg="G, N1, N2, difsums"/>
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "NrSomeRefinedSums" );
 
 #############################################################################
 ##

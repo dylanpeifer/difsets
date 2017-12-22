@@ -45,6 +45,14 @@ end );
 
 #############################################################################
 ##
+#F  NrAllRefinedSets( <G>, <N>, <difsums> )
+##
+InstallGlobalFunction( NrAllRefinedSets, function (G, N, difsums)
+    return Sum(difsums, S->Product(S, x->Binomial(Size(N), x)));
+end );
+
+#############################################################################
+##
 #F  SomeRefinedDifferenceSets( <G>, <N>, <difsums> )
 ##
 InstallGlobalFunction( SomeRefinedDifferenceSets, function (G, N, difsums)
@@ -80,6 +88,25 @@ InstallGlobalFunction( SomeRefinedDifferenceSets, function (G, N, difsums)
     od;
 
     return difsets;
+end );
+
+#############################################################################
+##
+#F  NrSomeRefinedSets( <G>, <N>, <difsums> )
+##
+InstallGlobalFunction( NrSomeRefinedSets, function (G, N, difsums)
+    local f;
+
+    f := function(S)
+        if S[1] > 0 then
+            return Binomial(Size(N)-1, S[1]-1)
+                   * Product(S{[2..Length(S)]}, x->Binomial(Size(N), x));
+        else
+            return Product(S, x->Binomial(Size(N), x));
+        fi;
+    end;
+
+    return Sum(difsums, S->f(S));
 end );
 
 #############################################################################
@@ -166,6 +193,38 @@ end );
 
 #############################################################################
 ##
+#F  NrAllRefinedSums( <G>, <N1>, <N2>, <difsums> )
+##
+InstallGlobalFunction( NrAllRefinedSums, function (G, N1, N2, difsums)
+    local v, k, lambda, total, S, opts, opt, perms;
+
+    if Length(difsums) = 0 then return 0; fi;
+
+    v := Size(G);
+    k := Sum(difsums[1]);
+    lambda := k*(k-1)/(v-1);
+
+    total := 0;
+    for S in difsums do
+        opts := DifferenceSumPreImagesOptions(Size(N1/N2), Size(N2), S);
+
+        for opt in IteratorOfCartesianProduct(opts) do
+            if not Sum(Flat(opt), x->x^2) = lambda*Size(N2)+k-lambda then
+                continue;
+            fi;
+
+            perms := DifferenceSumPreImagesPermutations(opt);
+            total := total + Product(perms, x->Length(x));
+
+        od;
+
+    od;
+
+    return total;
+end );
+
+#############################################################################
+##
 #F  SomeRefinedDifferenceSums( <G>, <N1>, <N2>, <difsums> )
 ##
 InstallGlobalFunction( SomeRefinedDifferenceSums, function (G, N1, N2, difsums)
@@ -218,6 +277,38 @@ InstallGlobalFunction( SomeRefinedDifferenceSums, function (G, N1, N2, difsums)
     od;
 
     return newdifsums;
+end );
+
+#############################################################################
+##
+#F  NrSomeRefinedSums( <G>, <N1>, <N2>, <difsums> )
+##
+InstallGlobalFunction( NrSomeRefinedSums, function (G, N1, N2, difsums)
+    local v, k, lambda, total, S, opts, opt, perms;
+
+    if Length(difsums) = 0 then return 0; fi;
+
+    v := Size(G);
+    k := Sum(difsums[1]);
+    lambda := k*(k-1)/(v-1);
+
+    total := 0;
+    for S in difsums do
+        opts := DifferenceSumPreImagesOptions(Size(N1/N2), Size(N2), S);
+
+        for opt in IteratorOfCartesianProduct(opts) do
+            if not Sum(Flat(opt), x->x^2) = lambda*Size(N2)+k-lambda then
+                continue;
+            fi;
+
+            perms := DifferenceSumPreImagesPermutationsForced(opt);
+            total := total + Product(perms, x->Length(x));
+
+        od;
+
+    od;
+
+    return total;
 end );
 
 #############################################################################
