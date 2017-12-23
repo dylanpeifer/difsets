@@ -95,8 +95,8 @@
 
 \hypersetup{pdftitle=The \textsf{DifSets} Package}
 \markright{\scriptsize \mbox{}\hfill The \textsf{DifSets} Package \hfill\mbox{}}
-{\Huge Version 2.0.0\mbox{}}\\[1cm]
-{30 June 2017\mbox{}}\\[1cm]
+{\Huge Version 2.1.0\mbox{}}\\[1cm]
+{23 December 2017\mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Dylan Peifer \\
     \mbox{}}}\\
@@ -285,7 +285,8 @@ individually since different size sets or sums will never be equivalent.
 
  Returns a list of the possible sizes of difference sets in group \mbox{\texttt{\mdseries\slshape G}}. Only the smaller of any pair of complementary sizes is returned, and the
 trivial size 1 is never included. Current implementation simply returns all
-values of k such that k(k-1)/(v-1) is an integer, where v is the order of \mbox{\texttt{\mdseries\slshape G}}. 
+values of k such that lambda = k(k-1)/(v-1) is an integer, where v is the
+order of \mbox{\texttt{\mdseries\slshape G}}, and the resulting parameters v, k, lambda pass the Bruck-Ryser-Chowla test. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(31, 1);;|
   !gapprompt@gap>| !gapinput@PossibleDifferenceSetSizes(G);|
@@ -398,8 +399,28 @@ contained in the list \mbox{\texttt{\mdseries\slshape difsums}} of difference su
 
  
 
-\subsection{\textcolor{Chapter }{SomeRefinedDifferenceSets}}
+\subsection{\textcolor{Chapter }{NrAllRefinedSets}}
 \logpage{[ 2, 3, 3 ]}\nobreak
+\hyperdef{L}{X8527B7D687C04A1C}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{NrAllRefinedSets({\mdseries\slshape G, N, difsums})\index{NrAllRefinedSets@\texttt{NrAllRefinedSets}}
+\label{NrAllRefinedSets}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the number of preimages that will need to be checked during a call to \texttt{AllRefinedDifferenceSets} (\ref{AllRefinedDifferenceSets}) with the same arguments. This can give a rough estimate of how long the call
+will take to complete. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
+  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
+  472
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{SomeRefinedDifferenceSets}}
+\logpage{[ 2, 3, 4 ]}\nobreak
 \hyperdef{L}{X7E1012C07FB328B4}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{SomeRefinedDifferenceSets({\mdseries\slshape G, N, difsums})\index{SomeRefinedDifferenceSets@\texttt{SomeRefinedDifferenceSets}}
 \label{SomeRefinedDifferenceSets}
@@ -414,7 +435,7 @@ of an identity element when possible.
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
   !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
-  !gapprompt@gap>| !gapinput@RefineDifferenceSumsToSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
+  !gapprompt@gap>| !gapinput@SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
   [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
     [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
     [ 1, 3, 6, 13, 4, 15 ], [ 1, 3, 6, 13, 9, 11 ], [ 1, 5, 2, 6, 4, 15 ], 
@@ -428,8 +449,28 @@ of an identity element when possible.
 
  
 
+\subsection{\textcolor{Chapter }{NrSomeRefinedSets}}
+\logpage{[ 2, 3, 5 ]}\nobreak
+\hyperdef{L}{X7ADBC8A6825A1FE4}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{NrSomeRefinedSets({\mdseries\slshape G, N, difsums})\index{NrSomeRefinedSets@\texttt{NrSomeRefinedSets}}
+\label{NrSomeRefinedSets}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the number of preimages that will need to be checked during a call to \texttt{SomeRefinedDifferenceSets} (\ref{SomeRefinedDifferenceSets}) with the same arguments. This can give a rough estimate of how long the call
+will take to complete. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
+  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
+  300
+\end{Verbatim}
+ }
+
+ 
+
 \subsection{\textcolor{Chapter }{AllRefinedDifferenceSums}}
-\logpage{[ 2, 3, 4 ]}\nobreak
+\logpage{[ 2, 3, 6 ]}\nobreak
 \hyperdef{L}{X80BF8487824FA6B1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{AllRefinedDifferenceSums({\mdseries\slshape G, N1, N2, difsums})\index{AllRefinedDifferenceSums@\texttt{AllRefinedDifferenceSums}}
 \label{AllRefinedDifferenceSums}
@@ -450,8 +491,29 @@ of an identity element when possible.
 
  
 
+\subsection{\textcolor{Chapter }{NrAllRefinedSums}}
+\logpage{[ 2, 3, 7 ]}\nobreak
+\hyperdef{L}{X7D55D770828A6158}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{NrAllRefinedSums({\mdseries\slshape G, N1, N2, difsums})\index{NrAllRefinedSums@\texttt{NrAllRefinedSums}}
+\label{NrAllRefinedSums}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the number of preimages that will need to be checked during a call to \texttt{AllRefinedDifferenceSums} (\ref{AllRefinedDifferenceSums}) with the same arguments. This can give a rough estimate of how long the call
+will take to complete. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
+  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
+  22
+\end{Verbatim}
+ }
+
+ 
+
 \subsection{\textcolor{Chapter }{SomeRefinedDifferenceSums}}
-\logpage{[ 2, 3, 5 ]}\nobreak
+\logpage{[ 2, 3, 8 ]}\nobreak
 \hyperdef{L}{X866272667D6032BA}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{SomeRefinedDifferenceSums({\mdseries\slshape G, N1, N2, difsums})\index{SomeRefinedDifferenceSums@\texttt{SomeRefinedDifferenceSums}}
 \label{SomeRefinedDifferenceSums}
@@ -470,6 +532,27 @@ nonzero identity coefficient when possible.
   [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
     [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
     [ 2, 1, 1, 0, 0, 1, 1, 0 ] ]
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{NrSomeRefinedSums}}
+\logpage{[ 2, 3, 9 ]}\nobreak
+\hyperdef{L}{X82A9A80085A9F514}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{NrSomeRefinedSums({\mdseries\slshape G, N1, N2, difsums})\index{NrSomeRefinedSums@\texttt{NrSomeRefinedSums}}
+\label{NrSomeRefinedSums}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the number of preimages that will need to be checked during a call to \texttt{SomeRefinedDifferenceSums} (\ref{SomeRefinedDifferenceSums}) with the same arguments. This can give a rough estimate of how long the call
+will take to complete. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
+  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
+  21
 \end{Verbatim}
  }
 
@@ -653,6 +736,60 @@ but \texttt{IsDifferenceSet} (\ref{IsDifferenceSet}) simply does the multiplicat
 
  }
 
+ 
+\section{\textcolor{Chapter }{Loading Results}}\logpage{[ 2, 6, 0 ]}
+\hyperdef{L}{X83340C888396D9BF}{}
+{
+  The \texttt{data} directory of the \textsf{DifSets} Package contains precomputed results for 1004 of the 1032 groups of order less
+than 100. The following two functions are the easiest way to access these
+precomputed lists of difference sets up to equivalence. 
+
+\subsection{\textcolor{Chapter }{CanLoadDifferenceSets}}
+\logpage{[ 2, 6, 1 ]}\nobreak
+\hyperdef{L}{X7B41B3107A96949D}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{CanLoadDifferenceSets({\mdseries\slshape v, n})\index{CanLoadDifferenceSets@\texttt{CanLoadDifferenceSets}}
+\label{CanLoadDifferenceSets}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns true if a precomputed list of all difference sets up to equivalence
+can be loaded from the package library for the group \texttt{SmallGroup(\mbox{\texttt{\mdseries\slshape v}}, \mbox{\texttt{\mdseries\slshape n}})}, and false otherwise. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@CanLoadDifferenceSets(36, 9);|
+  true
+  !gapprompt@gap>| !gapinput@CanLoadDifferenceSets(64, 267);|
+  false
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{LoadDifferenceSets}}
+\logpage{[ 2, 6, 2 ]}\nobreak
+\hyperdef{L}{X848925877C3C891F}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{LoadDifferenceSets({\mdseries\slshape v, n})\index{LoadDifferenceSets@\texttt{LoadDifferenceSets}}
+\label{LoadDifferenceSets}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the precomputed list of all difference sets up to equivalence for the
+group \texttt{SmallGroup(\mbox{\texttt{\mdseries\slshape v}}, \mbox{\texttt{\mdseries\slshape n}})} stored in the package library. An error is thrown if no precomputed list is
+available. Note that the listed difference sets are specific to \texttt{SmallGroup(\mbox{\texttt{\mdseries\slshape v}}, \mbox{\texttt{\mdseries\slshape n}})}, as \textsf{GAP} may label entries of other isomorphic versions of the same group differently. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@LoadDifferenceSets(15, 1);|
+  [ [ 1, 2, 4, 7, 8, 11, 15 ] ]
+  !gapprompt@gap>| !gapinput@G := SmallGroup(15, 1);; H := AbelianGroup([15]);;|
+  !gapprompt@gap>| !gapinput@IdGroup(G) = IdGroup(H);|
+  true
+  !gapprompt@gap>| !gapinput@IsDifferenceSet(G, [1, 2, 4, 7, 8, 11, 15]);|
+  true
+  !gapprompt@gap>| !gapinput@IsDifferenceSet(H, [1, 2, 4, 7, 8, 11, 15]);|
+  false
+\end{Verbatim}
+ }
+
+ }
+
  }
 
  
@@ -660,12 +797,15 @@ but \texttt{IsDifferenceSet} (\ref{IsDifferenceSet}) simply does the multiplicat
 \hyperdef{L}{X7A92ECF9816C7E28}{}
 {
   The \textsf{DifSets} Package was designed with the goal of finding all difference sets up to
-equivalence in groups of order 64 and 96. With the exception of groups \texttt{[64, 267]} and \texttt{[96, 231]}, which have exceptionally large automorphism groups, this goal was achieved.
-Full results, which include timings, number of sets, and the sets themselves
-can be found in the \texttt{data} subdirectory of the package, which is organized by group order and contains a
-single \texttt{.txt} file for each computed group. All computations were performed using \textsf{GAP} 4.8.5 on an i7-4770 with 16GB of RAM. Here we give a basic overview of results
-and comments on timings. Throughout this chapter we will refer to the group
-returned by the \textsf{GAP} function \texttt{SmallGroup(v, n)} as \texttt{[v, n]}. 
+equivalence in groups of order 64 and 96. With the exception of group \texttt{[64, 267]}, which has an exceptionally large automorphism group, this goal was achieved.
+In addition, the algorithm has successfully computed results for 1004 of the
+1032 groups of order less than 100. Full results, which include timings,
+number of sets, and the sets themselves can be found in the \texttt{data} subdirectory of the package, which is organized by group order and contains a
+single \texttt{.txt} file for each computed group. A list of all timings can also be found in the
+file \texttt{groups.csv} in the \texttt{data} directory. Most computations were performed using \textsf{GAP} 4.8.5 on an i7-4770 with 16GB of RAM (with the exception of group \texttt{[96, 231]}, which required 48GB of RAM), while some shorter computations were performed
+using \textsf{GAP} 4.8.4 on an i7-3615QM with 8GB of RAM. Here we give a basic overview of
+results and comments on timings. Throughout this chapter we will refer to the
+group returned by the \textsf{GAP} function \texttt{SmallGroup(v, n)} as \texttt{[v, n]}. 
 \section{\textcolor{Chapter }{Order 16 and 36}}\logpage{[ 3, 1, 0 ]}
 \hyperdef{L}{X85CC7A44864637B3}{}
 {
@@ -795,11 +935,11 @@ while difference sets in groups of order 96 satisfy the McFarland parameters.
 Since there are many groups of both orders, here we just give some examples
 and summaries. In particular, the tables below list the fastest, slowest, and
 median five groups of each order, sorted by time. Note that the algorithm was
-not able to complete a search of \texttt{[64, 267]} or \texttt{[96, 231]} because their exceptionally large automorphism groups made equivalence testing
-in the final stage infeasible. By replacing the final call to \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) with \texttt{TranslateFreeListOfDifferenceSets} (\ref{TranslateFreeListOfDifferenceSets}) the algorithm can produce a somewhat reduced collection of sets containing at
-least one representative of each equivalence class for these two groups, but
-as this is not a full reduction these computations are not included in the
-results or summaries below. 
+not able to complete a search of \texttt{[64, 267]} because the exceptionally large automorphism group made equivalence testing in
+the final stage infeasible. By replacing the final call to \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) with \texttt{TranslateFreeListOfDifferenceSets} (\ref{TranslateFreeListOfDifferenceSets}) the algorithm can produce a somewhat reduced collection of sets containing at
+least one representative of each equivalence class for this group, but as this
+is not a full reduction this computation is not included in the results or
+summaries below. 
 
  Groups of order 64 are $p$-groups, and thus always have enough normal subgroups to form long refining
 series. This means the refining steps are relatively efficient for all groups
@@ -824,7 +964,7 @@ order have no difference sets, but even for these groups computation can be
 slow. While the fastest groups contain no difference sets, many groups with no
 difference sets actually take much longer than other groups that do contain
 difference sets. Overall, the mean computation time for a group of order 96
-was 22838 seconds, with a median time of 10637 seconds. This means that the
+was 22887 seconds, with a median time of 10661 seconds. This means that the
 total time to compute all difference sets in groups of order 96 (except \texttt{[96, 231]}) was roughly 61 days. 
 
  \begin{center}
@@ -958,6 +1098,17 @@ algorithm does better when the values of $k$ that need to be checked are small, 
 to check as well as the amount of time required for checking sets and
 equivalences. It is also generally faster when the final result is a smaller
 number of difference sets. 
+
+ There are twenty-eight groups of order less than 100 in which the algorithm
+was not able to complete a search. Fourteen of these groups are prime order
+cyclic. As simple groups, these groups have no normal subgroups and thus no
+possibility for refining, which means the algorithm must search every possible
+subset of size $k$ to find all difference sets of size $k$. Even for groups of relatively small order, such as order 31, this is
+infeasible, and with current implementation will overflow memory before even
+starting the search (one of these groups, \texttt{[37, 1]} is actually feasible to search without this implementation issue, but the
+others have too many sets to check). The remaining groups have either too few
+normal subgroups, large jumps in the refining series, large possible values of $k$, or a combination of these problems. The group \texttt{[64, 267]} is unique in simply having too large of an automorphism group to perform the
+removal of equivalent sets in the final stage. 
 
  The next natural cases for exhaustive search are groups of order 100 and order
 144, which give the next Hadamard parameters. Unfortunately, preliminary

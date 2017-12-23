@@ -42,8 +42,9 @@ DeclareGlobalFunction( "RefiningSeries" );
 ##  Returns a list of the possible sizes of difference sets in group
 ##  <A>G</A>. Only the smaller of any pair of complementary sizes is
 ##  returned, and the trivial size 1 is never included. Current
-##  implementation simply returns all values of k such that k(k-1)/(v-1) is
-##  an integer, where v is the order of <A>G</A>.
+##  implementation simply returns all values of k such that lambda = 
+##  k(k-1)/(v-1) is an integer, where v is the order of <A>G</A>, and the
+##  resulting parameters v, k, lambda pass the Bruck-Ryser-Chowla test.
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(31, 1);;

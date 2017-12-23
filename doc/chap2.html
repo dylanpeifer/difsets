@@ -39,9 +39,13 @@
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X85A8B29085DC0CEB">2.3-1 RefiningSeries</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X78CDE421817B50EE">2.3-2 AllRefinedDifferenceSets</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E1012C07FB328B4">2.3-3 SomeRefinedDifferenceSets</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80BF8487824FA6B1">2.3-4 AllRefinedDifferenceSums</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X866272667D6032BA">2.3-5 SomeRefinedDifferenceSums</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8527B7D687C04A1C">2.3-3 NrAllRefinedSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7E1012C07FB328B4">2.3-4 SomeRefinedDifferenceSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7ADBC8A6825A1FE4">2.3-5 NrSomeRefinedSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80BF8487824FA6B1">2.3-6 AllRefinedDifferenceSums</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D55D770828A6158">2.3-7 NrAllRefinedSums</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X866272667D6032BA">2.3-8 SomeRefinedDifferenceSums</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X82A9A80085A9F514">2.3-9 NrSomeRefinedSums</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7DD5BE4E84C95B38">2.4 <span class="Heading">Equivalence</span></a>
 </span>
@@ -58,6 +62,12 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X87AF37B47808830E">2.5-2 IsDifferenceSum</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7AE5A8607ADD2F1C">2.5-3 IsEquivalentDifferenceSet</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X780F33C98032EAA2">2.5-4 IsEquivalentDifferenceSum</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X83340C888396D9BF">2.6 <span class="Heading">Loading Results</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B41B3107A96949D">2.6-1 CanLoadDifferenceSets</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X848925877C3C891F">2.6-2 LoadDifferenceSets</a></span>
 </div></div>
 </div>
 
@@ -111,7 +121,7 @@
 <h5>2.2-1 PossibleDifferenceSetSizes</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PossibleDifferenceSetSizes</code>( <var class="Arg">G</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<p>Returns a list of the possible sizes of difference sets in group <var class="Arg">G</var>. Only the smaller of any pair of complementary sizes is returned, and the trivial size 1 is never included. Current implementation simply returns all values of k such that k(k-1)/(v-1) is an integer, where v is the order of <var class="Arg">G</var>.</p>
+<p>Returns a list of the possible sizes of difference sets in group <var class="Arg">G</var>. Only the smaller of any pair of complementary sizes is returned, and the trivial size 1 is never included. Current implementation simply returns all values of k such that lambda = k(k-1)/(v-1) is an integer, where v is the order of <var class="Arg">G</var>, and the resulting parameters v, k, lambda pass the Bruck-Ryser-Chowla test.</p>
 
 
 <div class="example"><pre>
@@ -153,7 +163,7 @@
 
 <h4>2.3 <span class="Heading">Refining</span></h4>
 
-<p>Refining refers to the process of enumerating the preimages of a difference sum and filtering out preimages that are not themselves difference sets or sums. For each size <span class="SimpleMath">k</span> we know that the only difference sum of size <span class="SimpleMath">k</span> in <span class="SimpleMath">G</span> mod <span class="SimpleMath">G</span> is <code class="code">[k]</code>. Starting with this difference sum, we successivly refine through a series of quotients of <span class="SimpleMath">G</span> to eventually reach the desired sums or sets. In the algorithm, we use <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-3</span></a>) and <code class="func">SomeRefinedDifferenceSums</code> (<a href="chap2.html#X866272667D6032BA"><span class="RefLink">2.3-5</span></a>) rather than <code class="func">AllRefinedDifferenceSets</code> (<a href="chap2.html#X78CDE421817B50EE"><span class="RefLink">2.3-2</span></a>) and <code class="func">AllRefinedDifferenceSums</code> (<a href="chap2.html#X80BF8487824FA6B1"><span class="RefLink">2.3-4</span></a>) since the former are faster and we only need at least one representative of each equivalence class since additional equivalent sums or sets will just be removed anyway.</p>
+<p>Refining refers to the process of enumerating the preimages of a difference sum and filtering out preimages that are not themselves difference sets or sums. For each size <span class="SimpleMath">k</span> we know that the only difference sum of size <span class="SimpleMath">k</span> in <span class="SimpleMath">G</span> mod <span class="SimpleMath">G</span> is <code class="code">[k]</code>. Starting with this difference sum, we successivly refine through a series of quotients of <span class="SimpleMath">G</span> to eventually reach the desired sums or sets. In the algorithm, we use <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-4</span></a>) and <code class="func">SomeRefinedDifferenceSums</code> (<a href="chap2.html#X866272667D6032BA"><span class="RefLink">2.3-8</span></a>) rather than <code class="func">AllRefinedDifferenceSets</code> (<a href="chap2.html#X78CDE421817B50EE"><span class="RefLink">2.3-2</span></a>) and <code class="func">AllRefinedDifferenceSums</code> (<a href="chap2.html#X80BF8487824FA6B1"><span class="RefLink">2.3-6</span></a>) since the former are faster and we only need at least one representative of each equivalence class since additional equivalent sums or sets will just be removed anyway.</p>
 
 <p><a id="X85A8B29085DC0CEB" name="X85A8B29085DC0CEB"></a></p>
 
@@ -200,9 +210,24 @@
   [ 5, 10, 6, 8, 9, 15 ], [ 5, 10, 6, 13, 4, 15 ], [ 5, 10, 6, 13, 9, 11 ] ]
 </pre></div>
 
+<p><a id="X8527B7D687C04A1C" name="X8527B7D687C04A1C"></a></p>
+
+<h5>2.3-3 NrAllRefinedSets</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns the number of preimages that will need to be checked during a call to <code class="func">AllRefinedDifferenceSets</code> (<a href="chap2.html#X78CDE421817B50EE"><span class="RefLink">2.3-2</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
+472
+</pre></div>
+
 <p><a id="X7E1012C07FB328B4" name="X7E1012C07FB328B4"></a></p>
 
-<h5>2.3-3 SomeRefinedDifferenceSets</h5>
+<h5>2.3-4 SomeRefinedDifferenceSets</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>Returns a list of some difference sets that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>. At least one member of each equivalence class that would appear in the set of all preimages will be returned, but all preimage difference sets may not appear. Difference sums in <var class="Arg">difsums</var> are all assumed to be the same size. Current implementation forces the choice of an identity element when possible.</p>
@@ -211,7 +236,7 @@
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RefineDifferenceSumsToSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
 [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
   [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
   [ 1, 3, 6, 13, 4, 15 ], [ 1, 3, 6, 13, 9, 11 ], [ 1, 5, 2, 6, 4, 15 ], 
@@ -222,9 +247,24 @@
   [ 1, 10, 6, 13, 11, 15 ], [ 1, 10, 8, 13, 4, 11 ], [ 1, 10, 8, 13, 9, 15 ] ] 
 </pre></div>
 
+<p><a id="X7ADBC8A6825A1FE4" name="X7ADBC8A6825A1FE4"></a></p>
+
+<h5>2.3-5 NrSomeRefinedSets</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns the number of preimages that will need to be checked during a call to <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-4</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
+300
+</pre></div>
+
 <p><a id="X80BF8487824FA6B1" name="X80BF8487824FA6B1"></a></p>
 
-<h5>2.3-4 AllRefinedDifferenceSums</h5>
+<h5>2.3-6 AllRefinedDifferenceSums</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>Returns a list of all difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N2</var> that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N1</var>. The subgroup <var class="Arg">N2</var> must be contained in <var class="Arg">N1</var>. Difference sums in <var class="Arg">difsums</var> are all assumed to be the same size.</p>
@@ -240,9 +280,25 @@
   [ 0, 1, 1, 2, 0, 1, 1, 0 ], [ 2, 1, 1, 0, 0, 1, 1, 0 ] ]
 </pre></div>
 
+<p><a id="X7D55D770828A6158" name="X7D55D770828A6158"></a></p>
+
+<h5>2.3-7 NrAllRefinedSums</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns the number of preimages that will need to be checked during a call to <code class="func">AllRefinedDifferenceSums</code> (<a href="chap2.html#X80BF8487824FA6B1"><span class="RefLink">2.3-6</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
+22
+</pre></div>
+
 <p><a id="X866272667D6032BA" name="X866272667D6032BA"></a></p>
 
-<h5>2.3-5 SomeRefinedDifferenceSums</h5>
+<h5>2.3-8 SomeRefinedDifferenceSums</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>Returns a list of some difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N2</var> that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N1</var>. At least one member of each equivalence class that would appear in the set of all preimages will be returned, but all preimage difference sums may not appear. The subgroup <var class="Arg">N2</var> must be contained in <var class="Arg">N1</var> and difference sums in <var class="Arg">difsums</var> are all assumed to be the same size. Current implementation forces a choice of nonzero identity coefficient when possible.</p>
@@ -256,6 +312,22 @@
 [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
   [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
   [ 2, 1, 1, 0, 0, 1, 1, 0 ] ]
+</pre></div>
+
+<p><a id="X82A9A80085A9F514" name="X82A9A80085A9F514"></a></p>
+
+<h5>2.3-9 NrSomeRefinedSums</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns the number of preimages that will need to be checked during a call to <code class="func">SomeRefinedDifferenceSums</code> (<a href="chap2.html#X866272667D6032BA"><span class="RefLink">2.3-8</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
+21
 </pre></div>
 
 <p><a id="X7DD5BE4E84C95B38" name="X7DD5BE4E84C95B38"></a></p>
@@ -390,6 +462,47 @@ false
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsEquivalentDifferenceSum(G, N, [2,4], [4,2]);</span>
 true
+</pre></div>
+
+<p><a id="X83340C888396D9BF" name="X83340C888396D9BF"></a></p>
+
+<h4>2.6 <span class="Heading">Loading Results</span></h4>
+
+<p>The <code class="code">data</code> directory of the <strong class="pkg">DifSets</strong> Package contains precomputed results for 1004 of the 1032 groups of order less than 100. The following two functions are the easiest way to access these precomputed lists of difference sets up to equivalence.</p>
+
+<p><a id="X7B41B3107A96949D" name="X7B41B3107A96949D"></a></p>
+
+<h5>2.6-1 CanLoadDifferenceSets</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CanLoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns true if a precomputed list of all difference sets up to equivalence can be loaded from the package library for the group <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code>, and false otherwise.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CanLoadDifferenceSets(36, 9);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CanLoadDifferenceSets(64, 267);</span>
+false
+</pre></div>
+
+<p><a id="X848925877C3C891F" name="X848925877C3C891F"></a></p>
+
+<h5>2.6-2 LoadDifferenceSets</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>Returns the precomputed list of all difference sets up to equivalence for the group <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code> stored in the package library. An error is thrown if no precomputed list is available. Note that the listed difference sets are specific to <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code>, as <strong class="pkg">GAP</strong> may label entries of other isomorphic versions of the same group differently.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadDifferenceSets(15, 1);</span>
+[ [ 1, 2, 4, 7, 8, 11, 15 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(15, 1);; H := AbelianGroup([15]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IdGroup(G) = IdGroup(H);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDifferenceSet(G, [1, 2, 4, 7, 8, 11, 15]);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDifferenceSet(H, [1, 2, 4, 7, 8, 11, 15]);</span>
+false
 </pre></div>
 
 

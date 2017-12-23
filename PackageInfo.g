@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
     PackageName := "DifSets",
     Subtitle := "an algorithm for enumerating all difference sets in a group",
-    Version := "2.0.0",
-    Date := "30/06/2017",
+    Version := "2.1.0",
+    Date := "23/12/2017",
     Persons := [ rec(
             LastName := "Peifer",
             FirstNames := "Dylan",
@@ -25,8 +25,8 @@ SetPackageInfo( rec(
         Autoload := true
         ),
     Dependencies := rec(
-        GAP := "4.5",
-        NeededOtherPackages := [ ["GAPDoc", "1.3"] ],
+        GAP := "4.8",
+        NeededOtherPackages := [ ["GAPDoc", "1.5"] ],
         SuggestedOtherPackages := [ ]
         ),
     AvailabilityTest := ReturnTrue

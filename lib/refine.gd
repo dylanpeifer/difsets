@@ -53,6 +53,20 @@ DeclareGlobalFunction( "AllRefinedDifferenceSets" );
 ##  <#GAPDoc Label="NrAllRefinedSets">
 ##  <ManSection>
 ##  <Func Name="NrAllRefinedSets" Arg="G, N, difsums"/>
+##
+##  <Description>
+##  Returns the number of preimages that will need to be checked during a
+##  call to <Ref Func="AllRefinedDifferenceSets"/> with the same arguments.
+##  This can give a rough estimate of how long the call will take to
+##  complete.
+##
+##  <Example><![CDATA[
+##  gap> G := SmallGroup(16, 5);;
+##  gap> N := NormalSubgroups(G)[5];;
+##  gap> NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);
+##  472
+##  ]]></Example>
+##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "NrAllRefinedSets" );
@@ -77,7 +91,7 @@ DeclareGlobalFunction( "NrAllRefinedSets" );
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
 ##  gap> N := NormalSubgroups(G)[5];;
-##  gap> RefineDifferenceSumsToSets(G, N, [[3,1,1,1], [2,2,2,0]]);
+##  gap> SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);
 ##  [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
 ##    [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
 ##    [ 1, 3, 6, 13, 4, 15 ], [ 1, 3, 6, 13, 9, 11 ], [ 1, 5, 2, 6, 4, 15 ], 
@@ -99,6 +113,20 @@ DeclareGlobalFunction( "SomeRefinedDifferenceSets" );
 ##  <#GAPDoc Label="NrSomeRefinedSets">
 ##  <ManSection>
 ##  <Func Name="NrSomeRefinedSets" Arg="G, N, difsums"/>
+##
+##  <Description>
+##  Returns the number of preimages that will need to be checked during a
+##  call to <Ref Func="SomeRefinedDifferenceSets"/> with the same arguments.
+##  This can give a rough estimate of how long the call will take to
+##  complete.
+##
+##  <Example><![CDATA[
+##  gap> G := SmallGroup(16, 5);;
+##  gap> N := NormalSubgroups(G)[5];;
+##  gap> NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);
+##  300
+##  ]]></Example>
+##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "NrSomeRefinedSets" );
@@ -150,6 +178,21 @@ DeclareGlobalFunction( "AllRefinedDifferenceSums" );
 ##  <#GAPDoc Label="NrAllRefinedSums">
 ##  <ManSection>
 ##  <Func Name="NrAllRefinedSums" Arg="G, N1, N2, difsums"/>
+##
+##  <Description>
+##  Returns the number of preimages that will need to be checked during a
+##  call to <Ref Func="AllRefinedDifferenceSums"/> with the same arguments.
+##  This can give a rough estimate of how long the call will take to
+##  complete.
+##
+##  <Example><![CDATA[
+##  gap> G := SmallGroup(16, 5);;
+##  gap> N1 := NormalSubgroups(G)[5];;
+##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
+##  22
+##  ]]></Example>
+##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "NrAllRefinedSums" );
@@ -194,6 +237,21 @@ DeclareGlobalFunction( "SomeRefinedDifferenceSums" );
 ##  <#GAPDoc Label="NrSomeRefinedSums">
 ##  <ManSection>
 ##  <Func Name="NrSomeRefinedSums" Arg="G, N1, N2, difsums"/>
+##
+##  <Description>
+##  Returns the number of preimages that will need to be checked during a
+##  call to <Ref Func="SomeRefinedDifferenceSums"/> with the same arguments.
+##  This can give a rough estimate of how long the call will take to
+##  complete.
+##
+##  <Example><![CDATA[
+##  gap> G := SmallGroup(16, 5);;
+##  gap> N1 := NormalSubgroups(G)[5];;
+##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
+##  21
+##  ]]></Example>
+##  </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "NrSomeRefinedSums" );

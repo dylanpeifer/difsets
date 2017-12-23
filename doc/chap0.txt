@@ -3,10 +3,10 @@
                               [1XThe [5XDifSets[105X Package[101X
   
   
-                                 Version 2.0.0
+                                 Version 2.1.0
   
   
-                                  30 June 2017
+                                23 December 2017
   
   
                                  Dylan Peifer 
@@ -71,9 +71,13 @@
     2.3 [33X[0;0YRefining[133X
       2.3-1 RefiningSeries
       2.3-2 AllRefinedDifferenceSets
-      2.3-3 SomeRefinedDifferenceSets
-      2.3-4 AllRefinedDifferenceSums
-      2.3-5 SomeRefinedDifferenceSums
+      2.3-3 NrAllRefinedSets
+      2.3-4 SomeRefinedDifferenceSets
+      2.3-5 NrSomeRefinedSets
+      2.3-6 AllRefinedDifferenceSums
+      2.3-7 NrAllRefinedSums
+      2.3-8 SomeRefinedDifferenceSums
+      2.3-9 NrSomeRefinedSums
     2.4 [33X[0;0YEquivalence[133X
       2.4-1 EquivalentFreeListOfDifferenceSets
       2.4-2 TranslateFreeListOfDifferenceSets
@@ -84,6 +88,9 @@
       2.5-2 IsDifferenceSum
       2.5-3 IsEquivalentDifferenceSet
       2.5-4 IsEquivalentDifferenceSum
+    2.6 [33X[0;0YLoading Results[133X
+      2.6-1 CanLoadDifferenceSets
+      2.6-2 LoadDifferenceSets
   3 [33X[0;0YResults[133X
     3.1 [33X[0;0YOrder 16 and 36[133X
     3.2 [33X[0;0YOrder 64 and 96[133X

@@ -12,20 +12,27 @@
 \contentsline {section}{\numberline {2.3}\leavevmode {\color {Chapter }Refining}}{7}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}\leavevmode {\color {Chapter }RefiningSeries}}{8}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}\leavevmode {\color {Chapter }AllRefinedDifferenceSets}}{8}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}\leavevmode {\color {Chapter }SomeRefinedDifferenceSets}}{8}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}\leavevmode {\color {Chapter }AllRefinedDifferenceSums}}{9}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}\leavevmode {\color {Chapter }SomeRefinedDifferenceSums}}{9}{subsection.2.3.5}
-\contentsline {section}{\numberline {2.4}\leavevmode {\color {Chapter }Equivalence}}{10}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSets}}{10}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSets}}{10}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSums}}{10}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSums}}{11}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Testing}}{11}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}\leavevmode {\color {Chapter }IsDifferenceSet}}{11}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}\leavevmode {\color {Chapter }IsDifferenceSum}}{11}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}\leavevmode {\color {Chapter }IsEquivalentDifferenceSet}}{12}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}\leavevmode {\color {Chapter }IsEquivalentDifferenceSum}}{12}{subsection.2.5.4}
-\contentsline {chapter}{\numberline {3}\leavevmode {\color {Chapter }Results}}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}\leavevmode {\color {Chapter }Order 16 and 36}}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}\leavevmode {\color {Chapter }Order 64 and 96}}{14}{section.3.2}
-\contentsline {section}{\numberline {3.3}\leavevmode {\color {Chapter }Comments}}{16}{section.3.3}
+\contentsline {subsection}{\numberline {2.3.3}\leavevmode {\color {Chapter }NrAllRefinedSets}}{8}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}\leavevmode {\color {Chapter }SomeRefinedDifferenceSets}}{9}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}\leavevmode {\color {Chapter }NrSomeRefinedSets}}{9}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}\leavevmode {\color {Chapter }AllRefinedDifferenceSums}}{9}{subsection.2.3.6}
+\contentsline {subsection}{\numberline {2.3.7}\leavevmode {\color {Chapter }NrAllRefinedSums}}{10}{subsection.2.3.7}
+\contentsline {subsection}{\numberline {2.3.8}\leavevmode {\color {Chapter }SomeRefinedDifferenceSums}}{10}{subsection.2.3.8}
+\contentsline {subsection}{\numberline {2.3.9}\leavevmode {\color {Chapter }NrSomeRefinedSums}}{10}{subsection.2.3.9}
+\contentsline {section}{\numberline {2.4}\leavevmode {\color {Chapter }Equivalence}}{11}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSets}}{11}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSets}}{11}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSums}}{12}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSums}}{12}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Testing}}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\leavevmode {\color {Chapter }IsDifferenceSet}}{12}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}\leavevmode {\color {Chapter }IsDifferenceSum}}{13}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}\leavevmode {\color {Chapter }IsEquivalentDifferenceSet}}{13}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}\leavevmode {\color {Chapter }IsEquivalentDifferenceSum}}{13}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}\leavevmode {\color {Chapter }Loading Results}}{13}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\leavevmode {\color {Chapter }CanLoadDifferenceSets}}{13}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}\leavevmode {\color {Chapter }LoadDifferenceSets}}{14}{subsection.2.6.2}
+\contentsline {chapter}{\numberline {3}\leavevmode {\color {Chapter }Results}}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}\leavevmode {\color {Chapter }Order 16 and 36}}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}\leavevmode {\color {Chapter }Order 64 and 96}}{16}{section.3.2}
+\contentsline {section}{\numberline {3.3}\leavevmode {\color {Chapter }Comments}}{18}{section.3.3}

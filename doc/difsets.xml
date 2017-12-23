@@ -9,7 +9,7 @@
 
 <TitlePage>
   <Title>The <Package>DifSets</Package> Package</Title>
-  <Version>Version 2.0.0</Version>
+  <Version>Version 2.1.0</Version>
   <Author>
     Dylan Peifer <Br/>
     <Email>djp282@cornell.edu</Email>
@@ -21,7 +21,7 @@
       Ithaca, NY 14853-4201 USA
     </Address>
   </Author>
-  <Date>30 June 2017</Date>
+  <Date>23 December 2017</Date>
   <Abstract>
     The <Package>DifSets</Package> Package implements an algorithm for enumerating all difference sets up to equivalence in an arbitrary finite group.
     The algorithm functions by finding difference sums, which are potential images of difference sets in quotient groups of the original group, and searching their preimages.
@@ -114,9 +114,13 @@
       In the algorithm, we use <Ref Func="SomeRefinedDifferenceSets"/> and <Ref Func="SomeRefinedDifferenceSums"/> rather than <Ref Func="AllRefinedDifferenceSets"/> and <Ref Func="AllRefinedDifferenceSums"/> since the former are faster and we only need at least one representative of each equivalence class since additional equivalent sums or sets will just be removed anyway.
       <#Include Label="RefiningSeries">
       <#Include Label="AllRefinedDifferenceSets">
+      <#Include Label="NrAllRefinedSets">
       <#Include Label="SomeRefinedDifferenceSets">
+      <#Include Label="NrSomeRefinedSets">
       <#Include Label="AllRefinedDifferenceSums">
+      <#Include Label="NrAllRefinedSums">
       <#Include Label="SomeRefinedDifferenceSums">
+      <#Include Label="NrSomeRefinedSums">
     </Section>
 
     <Section> <Heading>Equivalence</Heading>
@@ -139,13 +143,22 @@
       <#Include Label="IsEquivalentDifferenceSet">
       <#Include Label="IsEquivalentDifferenceSum">
     </Section>
+
+    <Section> <Heading>Loading Results</Heading>
+      The <C>data</C> directory of the <Package>DifSets</Package> Package contains precomputed results for 1004 of the 1032 groups of order less than 100.
+      The following two functions are the easiest way to access these precomputed lists of difference sets up to equivalence.
+      <#Include Label="CanLoadDifferenceSets">
+      <#Include Label="LoadDifferenceSets">
+    </Section>
   </Chapter>
 
   <Chapter> <Heading>Results</Heading>
     The <Package>DifSets</Package> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96.
-    With the exception of groups <C>[64, 267]</C> and <C>[96, 231]</C>, which have exceptionally large automorphism groups, this goal was achieved.
+    With the exception of group <C>[64, 267]</C>, which has an exceptionally large automorphism group, this goal was achieved.
+    In addition, the algorithm has successfully computed results for 1004 of the 1032 groups of order less than 100.
     Full results, which include timings, number of sets, and the sets themselves can be found in the <C>data</C> subdirectory of the package, which is organized by group order and contains a single <C>.txt</C> file for each computed group.
-    All computations were performed using &GAP; 4.8.5 on an i7-4770 with 16GB of RAM.
+    A list of all timings can also be found in the file <C>groups.csv</C> in the <C>data</C> directory.
+    Most computations were performed using &GAP; 4.8.5 on an i7-4770 with 16GB of RAM (with the exception of group <C>[96, 231]</C>, which required 48GB of RAM), while some shorter computations were performed using &GAP; 4.8.4 on an i7-3615QM with 8GB of RAM.
     Here we give a basic overview of results and comments on timings.
     Throughout this chapter we will refer to the group returned by the &GAP; function <C>SmallGroup(v, n)</C> as <C>[v, n]</C>.
 
@@ -202,8 +215,8 @@
       Difference sets in groups of order 64 also satisfy the Hadamard parameters, while difference sets in groups of order 96 satisfy the McFarland parameters.
       Since there are many groups of both orders, here we just give some examples and summaries.
       In particular, the tables below list the fastest, slowest, and median five groups of each order, sorted by time.
-      Note that the algorithm was not able to complete a search of <C>[64, 267]</C> or <C>[96, 231]</C> because their exceptionally large automorphism groups made equivalence testing in the final stage infeasible.
-      By replacing the final call to <Ref Func="EquivalentFreeListOfDifferenceSets"/> with <Ref Func="TranslateFreeListOfDifferenceSets"/> the algorithm can produce a somewhat reduced collection of sets containing at least one representative of each equivalence class for these two groups, but as this is not a full reduction these computations are not included in the results or summaries below. <P/>
+      Note that the algorithm was not able to complete a search of <C>[64, 267]</C> because the exceptionally large automorphism group made equivalence testing in the final stage infeasible.
+      By replacing the final call to <Ref Func="EquivalentFreeListOfDifferenceSets"/> with <Ref Func="TranslateFreeListOfDifferenceSets"/> the algorithm can produce a somewhat reduced collection of sets containing at least one representative of each equivalence class for this group, but as this is not a full reduction this computation is not included in the results or summaries below. <P/>
 
       Groups of order 64 are <M>p</M>-groups, and thus always have enough normal subgroups to form long refining series.
       This means the refining steps are relatively efficient for all groups in this order.
@@ -218,7 +231,7 @@
       We are helped, however, by the fact that the only valid choice of <M>k</M> is 20, which is relatively small and thus does not lead to large numbers of preimages even across large gaps in the refining series.
       Many groups in this order have no difference sets, but even for these groups computation can be slow.
       While the fastest groups contain no difference sets, many groups with no difference sets actually take much longer than other groups that do contain difference sets.
-      Overall, the mean computation time for a group of order 96 was 22838 seconds, with a median time of 10637 seconds.
+      Overall, the mean computation time for a group of order 96 was 22887 seconds, with a median time of 10661 seconds.
       This means that the total time to compute all difference sets in groups of order 96 (except <C>[96, 231]</C>) was roughly 61 days. <P/>
 
       <Table Align="ccc">
@@ -273,6 +286,13 @@
       So, in general, the algorithm seems to work well when the group has a small automorphism group and many (small) normal subgroups.
       In addition, the algorithm does better when the values of <M>k</M> that need to be checked are small, as this limits both the number of preimages to check as well as the amount of time required for checking sets and equivalences.
       It is also generally faster when the final result is a smaller number of difference sets. <P/>
+
+      There are twenty-eight groups of order less than 100 in which the algorithm was not able to complete a search.
+      Fourteen of these groups are prime order cyclic.
+      As simple groups, these groups have no normal subgroups and thus no possibility for refining, which means the algorithm must search every possible subset of size <M>k</M> to find all difference sets of size <M>k</M>.
+      Even for groups of relatively small order, such as order 31, this is infeasible, and with current implementation will overflow memory before even starting the search (one of these groups, <C>[37, 1]</C> is actually feasible to search without this implementation issue, but the others have too many sets to check).
+      The remaining groups have either too few normal subgroups, large jumps in the refining series, large possible values of <M>k</M>, or a combination of these problems.
+      The group <C>[64, 267]</C> is unique in simply having too large of an automorphism group to perform the removal of equivalent sets in the final stage. <P/>
 
       The next natural cases for exhaustive search are groups of order 100 and order 144, which give the next Hadamard parameters.
       Unfortunately, preliminary testing indicates that this algorithm is not likely to be able to compute all difference sets for these groups.
