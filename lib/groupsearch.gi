@@ -33,13 +33,36 @@ end );
 #F  PossibleDifferenceSetSizes( <G> )
 ##
 InstallGlobalFunction( PossibleDifferenceSetSizes, function (G)
-    local v, ks;
+    local v, ks, IsSquareFree, Test;
 
     v := Size(G);
     ks := List([2..Int(v/2)]); # ignore size 1 and larger of complements
 
     # counting test
     ks := Filtered(ks, k->IsInt(k*(k-1)/(v-1)));
+
+    # BRC test
+    if IsEvenInt(v) then
+        ks := Filtered(ks, k->IsSquareInt(k - k*(k-1)/(v-1)));
+    else
+        IsSquareFree := x -> Product(Set(FactorsInt(x))) = x;
+        Test := function (k)
+            local lambda, a, b, d;
+            lambda := k*(k-1)/(v-1);
+            a := k - lambda;
+            b := (-1)^((v-1)/2) * lambda;
+            if IsSquareFree(a) and IsSquareFree(b) then
+                d := GcdInt(a, b);
+                return Legendre(a, AbsInt(b)) = 1 and
+                       Legendre(b, AbsInt(a)) = 1 and
+                       Legendre(-a*b/d^2, d) = 1;
+            else
+                return true;
+            fi;
+            end;
+
+        ks := Filtered(ks, k->Test(k));
+    fi;
 
     return ks;
 end );
