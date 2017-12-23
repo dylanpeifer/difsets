@@ -1,0 +1,8 @@
+## Group: [11, 1]
+## Difference Sets: 1
+## Time:  0:00:00.027
+
+return [
+[ 1, 5, 8, 10, 11 ]
+];
+
