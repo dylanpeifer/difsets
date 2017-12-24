@@ -1,3 +1,8 @@
+Version 2.1.0: 23 Dec 2017
+* addition of loader functions to access results
+* successful computation for 1004 of the 1032 groups of order less
+  than 100, including [96, 231]
+
 Version 2.0.0: 30 Jun 2017
 * complete rewrite as a GAP package
 * rewrite of main functions for efficiency and maintainability
