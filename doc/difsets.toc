@@ -24,15 +24,17 @@
 \contentsline {subsection}{\numberline {2.4.2}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSets}}{11}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSums}}{12}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSums}}{12}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Testing}}{12}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}\leavevmode {\color {Chapter }IsDifferenceSet}}{12}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.4.5}\leavevmode {\color {Chapter }SmallestEquivalentDifferenceSet}}{12}{subsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4.6}\leavevmode {\color {Chapter }SmallestEquivalentFreeListOfDifferenceSets}}{12}{subsection.2.4.6}
+\contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Testing}}{13}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\leavevmode {\color {Chapter }IsDifferenceSet}}{13}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}\leavevmode {\color {Chapter }IsDifferenceSum}}{13}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}\leavevmode {\color {Chapter }IsEquivalentDifferenceSet}}{13}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}\leavevmode {\color {Chapter }IsEquivalentDifferenceSum}}{13}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}\leavevmode {\color {Chapter }Loading Results}}{13}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}\leavevmode {\color {Chapter }CanLoadDifferenceSets}}{13}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.5.4}\leavevmode {\color {Chapter }IsEquivalentDifferenceSum}}{14}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}\leavevmode {\color {Chapter }Loading Results}}{14}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\leavevmode {\color {Chapter }CanLoadDifferenceSets}}{14}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}\leavevmode {\color {Chapter }LoadDifferenceSets}}{14}{subsection.2.6.2}
-\contentsline {chapter}{\numberline {3}\leavevmode {\color {Chapter }Results}}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}\leavevmode {\color {Chapter }Order 16 and 36}}{15}{section.3.1}
-\contentsline {section}{\numberline {3.2}\leavevmode {\color {Chapter }Order 64 and 96}}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}\leavevmode {\color {Chapter }Comments}}{18}{section.3.3}
+\contentsline {chapter}{\numberline {3}\leavevmode {\color {Chapter }Results}}{16}{chapter.3}
+\contentsline {section}{\numberline {3.1}\leavevmode {\color {Chapter }Order 16 and 36}}{16}{section.3.1}
+\contentsline {section}{\numberline {3.2}\leavevmode {\color {Chapter }Order 64 and 96}}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}\leavevmode {\color {Chapter }Comments}}{19}{section.3.3}

@@ -83,6 +83,8 @@
       2.4-2 TranslateFreeListOfDifferenceSets
       2.4-3 EquivalentFreeListOfDifferenceSums
       2.4-4 TranslateFreeListOfDifferenceSums
+      2.4-5 SmallestEquivalentDifferenceSet
+      2.4-6 SmallestEquivalentFreeListOfDifferenceSets
     2.5 [33X[0;0YTesting[133X
       2.5-1 IsDifferenceSet
       2.5-2 IsDifferenceSum

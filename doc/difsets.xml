@@ -125,13 +125,18 @@
 
     <Section> <Heading>Equivalence</Heading>
       Since we are searching for all difference sets or sums up to equivalence, at each stage we remove excess equivalent sums or sets from our collection.
-      This is done with <Ref Func="EquivalentFreeListOfDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSums"/>.
+      This can be done with <Ref Func="EquivalentFreeListOfDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSums"/>.
       The additional functions <Ref Func="TranslateFreeListOfDifferenceSets"/> and <Ref Func="TranslateFreeListOfDifferenceSums"/> can be used to eliminate some equivalent sums or sets when the size of the automorphism group is too large to iterate through. 
       They are not, however, used in the main algorithm.
+      Alternatively, <Ref Func="SmallestEquivalentDifferenceSet"/> uses the <Code>SmallestImageSet</Code> function from the <Package>GRAPE</Package> package to produce the lexicographically minimal difference set equivalent to a given set.
+      Eliminating equivalent sets can then be done by mapping each set to its minimal representative and then simply eliminating duplicates.
+      This is done automatically by <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/>, which is used in the last stage of the main algorithm instead of <Ref Func="EquivalentFreeListOfDifferenceSets"/> since it is much faster on large automorphism groups and provides a unique minimal result at the end of the algorithm.
       <#Include Label="EquivalentFreeListOfDifferenceSets">
       <#Include Label="TranslateFreeListOfDifferenceSets">
       <#Include Label="EquivalentFreeListOfDifferenceSums">
       <#Include Label="TranslateFreeListOfDifferenceSums">
+      <#Include Label="SmallestEquivalentDifferenceSet">
+      <#Include Label="SmallestEquivalentFreeListOfDifferenceSets">
     </Section>
  
     <Section> <Heading>Testing</Heading>

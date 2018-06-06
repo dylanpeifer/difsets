@@ -19,6 +19,7 @@
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
 
+<p id="mathjaxlink" class="pcenter"></p>
 <p><a id="X7F5ED06E833C164E" name="X7F5ED06E833C164E"></a></p>
 <div class="ChapSects"><a href="chap2.html#X7F5ED06E833C164E">2 <span class="Heading">Package Contents</span></a>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7D3DC4ED855DC13C">2.1 <span class="Heading">The Main Functions</span></a>
@@ -54,6 +55,8 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8380F5D37E2D411B">2.4-2 TranslateFreeListOfDifferenceSets</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8639AB227B0CF9F3">2.4-3 EquivalentFreeListOfDifferenceSums</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7BF295758033DC3B">2.4-4 TranslateFreeListOfDifferenceSums</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X857A641A7C86EFA3">2.4-5 SmallestEquivalentDifferenceSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8741BBF4811F942A">2.4-6 SmallestEquivalentFreeListOfDifferenceSets</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7DE7E7187BE24368">2.5 <span class="Heading">Testing</span></a>
 </span>
@@ -85,7 +88,7 @@
 
 <h5>2.1-1 DifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSets</code>( <var class="Arg">G</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSets</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sets up to equivalence in the group <var class="Arg">G</var>. Only the smaller of each complementary pair of difference sets is included, and one-element difference sets are ignored.</p>
 
 
@@ -99,7 +102,7 @@
 
 <h5>2.1-2 DifferenceSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sums up to equivalence in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>. Only the smaller of each complementary pair of difference sums is included, and difference sums of size 1 are ignored.</p>
 
 
@@ -120,7 +123,7 @@
 
 <h5>2.2-1 PossibleDifferenceSetSizes</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PossibleDifferenceSetSizes</code>( <var class="Arg">G</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PossibleDifferenceSetSizes</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of the possible sizes of difference sets in group <var class="Arg">G</var>. Only the smaller of any pair of complementary sizes is returned, and the trivial size 1 is never included. Current implementation simply returns all values of k such that lambda = k(k-1)/(v-1) is an integer, where v is the order of <var class="Arg">G</var>, and the resulting parameters v, k, lambda pass the Bruck-Ryser-Chowla test.</p>
 
 
@@ -134,7 +137,7 @@
 
 <h5>2.2-2 DifferenceSetsOfSizeK</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSetsOfSizeK</code>( <var class="Arg">G</var>, <var class="Arg">k</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSetsOfSizeK</code>( <var class="Arg">G</var>, <var class="Arg">k</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sets up to equivalence in the group <var class="Arg">G</var> that have size <var class="Arg">k</var>.</p>
 
 
@@ -148,7 +151,7 @@
 
 <h5>2.2-3 DifferenceSumsOfSizeK</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSumsOfSizeK</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">k</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DifferenceSumsOfSizeK</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">k</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sums up to equivalence in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var> that have size <var class="Arg">k</var>.</p>
 
 
@@ -169,7 +172,7 @@
 
 <h5>2.3-1 RefiningSeries</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RefiningSeries</code>( <var class="Arg">G</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RefiningSeries</code>( <var class="Arg">G</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a normal series for group <var class="Arg">G</var>. Current implementation produces a chief series through a nontrivial normal subgroup of smallest possible size in <var class="Arg">G</var>.</p>
 
 
@@ -184,7 +187,7 @@
 
 <h5>2.3-2 AllRefinedDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllRefinedDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllRefinedDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sets that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>. Difference sums in <var class="Arg">difsums</var> are all assumed to be the same size.</p>
 
 
@@ -214,7 +217,7 @@
 
 <h5>2.3-3 NrAllRefinedSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns the number of preimages that will need to be checked during a call to <code class="func">AllRefinedDifferenceSets</code> (<a href="chap2.html#X78CDE421817B50EE"><span class="RefLink">2.3-2</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
 
 
@@ -229,7 +232,7 @@
 
 <h5>2.3-4 SomeRefinedDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of some difference sets that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>. At least one member of each equivalence class that would appear in the set of all preimages will be returned, but all preimage difference sets may not appear. Difference sums in <var class="Arg">difsums</var> are all assumed to be the same size. Current implementation forces the choice of an identity element when possible.</p>
 
 
@@ -251,7 +254,7 @@
 
 <h5>2.3-5 NrSomeRefinedSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSets</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns the number of preimages that will need to be checked during a call to <code class="func">SomeRefinedDifferenceSets</code> (<a href="chap2.html#X7E1012C07FB328B4"><span class="RefLink">2.3-4</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
 
 
@@ -266,7 +269,7 @@
 
 <h5>2.3-6 AllRefinedDifferenceSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AllRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of all difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N2</var> that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N1</var>. The subgroup <var class="Arg">N2</var> must be contained in <var class="Arg">N1</var>. Difference sums in <var class="Arg">difsums</var> are all assumed to be the same size.</p>
 
 
@@ -284,7 +287,7 @@
 
 <h5>2.3-7 NrAllRefinedSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrAllRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns the number of preimages that will need to be checked during a call to <code class="func">AllRefinedDifferenceSums</code> (<a href="chap2.html#X80BF8487824FA6B1"><span class="RefLink">2.3-6</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
 
 
@@ -300,7 +303,7 @@
 
 <h5>2.3-8 SomeRefinedDifferenceSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SomeRefinedDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of some difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N2</var> that are preimages of difference sums contained in the list <var class="Arg">difsums</var> of difference sums in group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N1</var>. At least one member of each equivalence class that would appear in the set of all preimages will be returned, but all preimage difference sums may not appear. The subgroup <var class="Arg">N2</var> must be contained in <var class="Arg">N1</var> and difference sums in <var class="Arg">difsums</var> are all assumed to be the same size. Current implementation forces a choice of nonzero identity coefficient when possible.</p>
 
 
@@ -318,7 +321,7 @@
 
 <h5>2.3-9 NrSomeRefinedSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NrSomeRefinedSums</code>( <var class="Arg">G</var>, <var class="Arg">N1</var>, <var class="Arg">N2</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns the number of preimages that will need to be checked during a call to <code class="func">SomeRefinedDifferenceSums</code> (<a href="chap2.html#X866272667D6032BA"><span class="RefLink">2.3-8</span></a>) with the same arguments. This can give a rough estimate of how long the call will take to complete.</p>
 
 
@@ -334,13 +337,13 @@
 
 <h4>2.4 <span class="Heading">Equivalence</span></h4>
 
-<p>Since we are searching for all difference sets or sums up to equivalence, at each stage we remove excess equivalent sums or sets from our collection. This is done with <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>) and <code class="func">EquivalentFreeListOfDifferenceSums</code> (<a href="chap2.html#X8639AB227B0CF9F3"><span class="RefLink">2.4-3</span></a>). The additional functions <code class="func">TranslateFreeListOfDifferenceSets</code> (<a href="chap2.html#X8380F5D37E2D411B"><span class="RefLink">2.4-2</span></a>) and <code class="func">TranslateFreeListOfDifferenceSums</code> (<a href="chap2.html#X7BF295758033DC3B"><span class="RefLink">2.4-4</span></a>) can be used to eliminate some equivalent sums or sets when the size of the automorphism group is too large to iterate through. They are not, however, used in the main algorithm.</p>
+<p>Since we are searching for all difference sets or sums up to equivalence, at each stage we remove excess equivalent sums or sets from our collection. This can be done with <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>) and <code class="func">EquivalentFreeListOfDifferenceSums</code> (<a href="chap2.html#X8639AB227B0CF9F3"><span class="RefLink">2.4-3</span></a>). The additional functions <code class="func">TranslateFreeListOfDifferenceSets</code> (<a href="chap2.html#X8380F5D37E2D411B"><span class="RefLink">2.4-2</span></a>) and <code class="func">TranslateFreeListOfDifferenceSums</code> (<a href="chap2.html#X7BF295758033DC3B"><span class="RefLink">2.4-4</span></a>) can be used to eliminate some equivalent sums or sets when the size of the automorphism group is too large to iterate through. They are not, however, used in the main algorithm. Alternatively, <code class="func">SmallestEquivalentDifferenceSet</code> (<a href="chap2.html#X857A641A7C86EFA3"><span class="RefLink">2.4-5</span></a>) uses the <code class="code">SmallestImageSet</code> function from the <strong class="pkg">GRAPE</strong> package to produce the lexicographically minimal difference set equivalent to a given set. Eliminating equivalent sets can then be done by mapping each set to its minimal representative and then simply eliminating duplicates. This is done automatically by <code class="func">SmallestEquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X8741BBF4811F942A"><span class="RefLink">2.4-6</span></a>), which is used in the last stage of the main algorithm instead of <code class="func">EquivalentFreeListOfDifferenceSets</code> (<a href="chap2.html#X7E4BCB8482E4AE34"><span class="RefLink">2.4-1</span></a>) since it is much faster on large automorphism groups and provides a unique minimal result at the end of the algorithm.</p>
 
 <p><a id="X7E4BCB8482E4AE34" name="X7E4BCB8482E4AE34"></a></p>
 
 <h5>2.4-1 EquivalentFreeListOfDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; EquivalentFreeListOfDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">difsets</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; EquivalentFreeListOfDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">difsets</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of inequivalent difference sets in the group <var class="Arg">G</var> that consists of one representative from each equivalence class found in the list <var class="Arg">difsets</var> of arbitrary difference sets in <var class="Arg">G</var>.</p>
 
 
@@ -355,7 +358,7 @@
 
 <h5>2.4-2 TranslateFreeListOfDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TranslateFreeListOfDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">difsets</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TranslateFreeListOfDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">difsets</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of translationally inequivalent difference sets in the group <var class="Arg">G</var> that consists of one representative from each translational equivalence class found in the list <var class="Arg">difsets</var> of arbitrary difference sets in <var class="Arg">G</var>.</p>
 
 
@@ -370,7 +373,7 @@
 
 <h5>2.4-3 EquivalentFreeListOfDifferenceSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; EquivalentFreeListOfDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; EquivalentFreeListOfDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of inequivalent difference sums in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var> that consists of one representative from each equivalence class found in the list <var class="Arg">difsums</var> of arbitrary difference sums in <var class="Arg">G</var> mod <var class="Arg">N</var>.</p>
 
 
@@ -385,7 +388,7 @@
 
 <h5>2.4-4 TranslateFreeListOfDifferenceSums</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TranslateFreeListOfDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; TranslateFreeListOfDifferenceSums</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">difsums</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a list of translationally inequivalent difference sums in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var> that consists of one representative from each translational equivalence class found in the list <var class="Arg">difsums</var> of arbitrary difference sums in <var class="Arg">G</var> mod <var class="Arg">N</var>.</p>
 
 
@@ -394,6 +397,35 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);</span>
 [ [ 4, 2 ] ]
+</pre></div>
+
+<p><a id="X857A641A7C86EFA3" name="X857A641A7C86EFA3"></a></p>
+
+<h5>2.4-5 SmallestEquivalentDifferenceSet</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SmallestEquivalentDifferenceSet</code>( <var class="Arg">G</var>, <var class="Arg">D</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the set that is lexicographically smallest among all sets that are equivalent to the difference set <var class="Arg">D</var> in the group <var class="Arg">G</var>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SmallestEquivalentDifferenceSet(G, [8,9,12,13,14,15]);</span>
+[ 1, 2, 3, 4, 8, 15 ]
+</pre></div>
+
+<p><a id="X8741BBF4811F942A" name="X8741BBF4811F942A"></a></p>
+
+<h5>2.4-6 SmallestEquivalentFreeListOfDifferenceSets</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SmallestEquivalentFreeListOfDifferenceSets</code>( <var class="Arg">G</var>, <var class="Arg">difsets</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a list containing the lexicographically smallest set for each set in the list of difference sets <var class="Arg">difsets</var> in the group <var class="Arg">G</var>. Duplicates are removed, so the returned list contains exactly one representative from each equivalence class found in <var class="Arg">difsets</var>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sets := [[8,9,12,13,14,15], [7,8,9,13,15,16], [1,7,10,11,14,15]];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SmallestEquivalentFreeListOfDifferenceSets(G, sets);</span>
+[ [ 1, 2, 3, 4, 8, 15 ] ]
 </pre></div>
 
 <p><a id="X7DE7E7187BE24368" name="X7DE7E7187BE24368"></a></p>
@@ -406,7 +438,7 @@
 
 <h5>2.5-1 IsDifferenceSet</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDifferenceSet</code>( <var class="Arg">G</var>, <var class="Arg">D</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDifferenceSet</code>( <var class="Arg">G</var>, <var class="Arg">D</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns true if the set <var class="Arg">D</var> is a difference set in the group <var class="Arg">G</var>, and false otherwise.</p>
 
 
@@ -422,7 +454,7 @@ true
 
 <h5>2.5-2 IsDifferenceSum</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDifferenceSum</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">S</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsDifferenceSum</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">S</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns true if the sum <var class="Arg">S</var> is a difference sum in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>, and false otherwise.</p>
 
 
@@ -439,7 +471,7 @@ false
 
 <h5>2.5-3 IsEquivalentDifferenceSet</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsEquivalentDifferenceSet</code>( <var class="Arg">G</var>, <var class="Arg">D1</var>, <var class="Arg">D2</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsEquivalentDifferenceSet</code>( <var class="Arg">G</var>, <var class="Arg">D1</var>, <var class="Arg">D2</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns true if sets <var class="Arg">D1</var> and <var class="Arg">D2</var> are equivalent in the group <var class="Arg">G</var>, and false otherwise.</p>
 
 
@@ -453,7 +485,7 @@ false
 
 <h5>2.5-4 IsEquivalentDifferenceSum</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsEquivalentDifferenceSum</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">S1</var>, <var class="Arg">S2</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsEquivalentDifferenceSum</code>( <var class="Arg">G</var>, <var class="Arg">N</var>, <var class="Arg">S1</var>, <var class="Arg">S2</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns true if sums <var class="Arg">S1</var> and <var class="Arg">S2</var> are equivalent in the group <var class="Arg">G</var> mod its normal subgroup <var class="Arg">N</var>, and false otherwise.</p>
 
 
@@ -474,7 +506,7 @@ true
 
 <h5>2.6-1 CanLoadDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CanLoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CanLoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns true if a precomputed list of all difference sets up to equivalence can be loaded from the package library for the group <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code>, and false otherwise.</p>
 
 
@@ -489,7 +521,7 @@ false
 
 <h5>2.6-2 LoadDifferenceSets</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LoadDifferenceSets</code>( <var class="Arg">v</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns the precomputed list of all difference sets up to equivalence for the group <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code> stored in the package library. An error is thrown if no precomputed list is available. Note that the listed difference sets are specific to <code class="code">SmallGroup(<var class="Arg">v</var>, <var class="Arg">n</var>)</code>, as <strong class="pkg">GAP</strong> may label entries of other isomorphic versions of the same group differently.</p>
 
 

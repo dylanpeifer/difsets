@@ -15,22 +15,26 @@
   [33X[0;0YWe will often abuse notation and let [22XD[122X denote both the set [22XD[122X and the element[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YD = \sum_{d \in D} d[133X [124X[133X
+  [24X[33X[0;6YD = \sum_{d \in D} d[133X
   
+  [124X
   
   [33X[0;0Yof the group ring [22XZ[G][122X. Then define[133X
   
   
-        [33X[1;6Y[24X[33X[0;0YgD = \sum_{d \in D} gd,[133X [124X[133X
+  [24X[33X[0;6YgD = \sum_{d \in D} gd,[133X
+  
+  [124X
   
   
+  [24X[33X[0;6YD^\phi = \sum_{d \in D} \phi(d),[133X
   
-        [33X[1;6Y[24X[33X[0;0YD^\phi = \sum_{d \in D} \phi(d),[133X [124X[133X
+  [124X
   
   
+  [24X[33X[0;6YD^{(-1)} = \sum_{d \in D} d^{-1},[133X
   
-        [33X[1;6Y[24X[33X[0;0YD^{(-1)} = \sum_{d \in D} d^{-1},[133X [124X[133X
-  
+  [124X
   
   [33X[0;0Ywhere  [22Xg  ∈  G[122X and [22Xϕ[122X is a homomorphism with domain [22XG[122X. Using this notation, a
   difference  set  in [22XG[122X is an element of the group ring [22XZ[G][122X with coefficients

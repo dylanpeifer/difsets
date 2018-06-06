@@ -5,7 +5,7 @@
 
   \indexspace
 
-  \item \texttt  {CanLoadDifferenceSets}, \hyperpage{13}
+  \item \texttt  {CanLoadDifferenceSets}, \hyperpage{14}
 
   \indexspace
 
@@ -21,10 +21,10 @@
 
   \indexspace
 
-  \item \texttt  {IsDifferenceSet}, \hyperpage{12}
+  \item \texttt  {IsDifferenceSet}, \hyperpage{13}
   \item \texttt  {IsDifferenceSum}, \hyperpage{13}
   \item \texttt  {IsEquivalentDifferenceSet}, \hyperpage{13}
-  \item \texttt  {IsEquivalentDifferenceSum}, \hyperpage{13}
+  \item \texttt  {IsEquivalentDifferenceSum}, \hyperpage{14}
 
   \indexspace
 
@@ -47,6 +47,9 @@
 
   \indexspace
 
+  \item \texttt  {SmallestEquivalentDifferenceSet}, \hyperpage{12}
+  \item \texttt  {Smallest}\discretionary {-}{}{}\texttt  {Equivalent}\discretionary {-}{}{}\texttt  {Free}\discretionary {-}{}{}\texttt  {List}\discretionary {-}{}{}\texttt  {Of}\discretionary {-}{}{}\texttt  {Difference}\discretionary {-}{}{}\texttt  {Sets}, 
+		\hyperpage{12}
   \item \texttt  {SomeRefinedDifferenceSets}, \hyperpage{9}
   \item \texttt  {SomeRefinedDifferenceSums}, \hyperpage{10}
 
