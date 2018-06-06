@@ -93,7 +93,7 @@ InstallGlobalFunction( DifferenceSetsOfSizeK, function (G, k)
 
     # in final stage refine to difsets and remove equivalents
     difsets := SomeRefinedDifferenceSets(G, oldN, difsums);
-    difsets := EquivalentFreeListOfDifferenceSets(G, difsets);
+    difsets := SmallestEquivalentFreeListOfDifferenceSets(G, difsets);
 
     return difsets;
 end );
