@@ -8,29 +8,50 @@ SetPackageInfo( rec(
     Subtitle := "an algorithm for enumerating all difference sets in a group",
     Version := "2.1.0",
     Date := "23/12/2017",
+    PackageWWWHome := "https://dylanpeifer.github.io/difsets",
+    SourceRepository := rec(
+        Type := "git",
+        URL := "https://github.com/dylanpeifer/difsets",
+        ),
+    IssueTrackerURL := Concatenation(~.SourceRepository.URL, "/issues"),
+    SupportEmail := "djp282@cornell.edu",
+    ArchiveURL := Concatenation(~.SourceRepository.URL,
+                                "/releases/download/v", ~.Version,
+                                "/difsets-", ~.Version),
+    ArchiveFormats := ".tar.gz",
     Persons := [ rec(
-            LastName := "Peifer",
-            FirstNames := "Dylan",
-            IsAuthor := true,
-            IsMaintainer := true,
-            Email := "djp282@cornell.edu",
-            WWWHome := "http://www.math.cornell.edu/~djp282",
-            Institution := "Cornell University"
-            )
+        LastName := "Peifer",
+        FirstNames := "Dylan",
+        IsAuthor := true,
+        IsMaintainer := true,
+        Email := "djp282@cornell.edu",
+        WWWHome := "http://www.math.cornell.edu/~djp282",
+        Institution := "Cornell University"
+        )
     ],
     Status := "other",
+    README_URL := Concatenation(~.PackageWWWHome, "/README.md"),
+    PackageInfoURL := Concatenation(~.PackageWWWHome, "/PackageInfo.g"),
+    AbstractHTML :=
+        "The <span class=\"pkgname\">DifSets</span> package is a \
+        <span class=\"pkgname\">GAP</span> package implementing an algorithm \
+        for enumerating all difference sets up to equivalence in a group.",
     PackageDoc := rec(
         BookName := "DifSets",
+        ArchiveURLSubset := ["doc"],
+        HTMLStart := "doc/chap0.html",
+        PDFFile := "doc/manual.pdf",
         SixFile := "doc/manual.six",
-        Autoload := true
+        LongTitle := "an algorithm to enumerate difference sets",
         ),
     Dependencies := rec(
-        GAP := "4.8",
-        NeededOtherPackages := [ ["GAPDoc", "1.5"],
-                                 ["GRAPE", "4.7"] ],
-        SuggestedOtherPackages := [ ]
+        GAP := "4.9",
+        NeededOtherPackages := [ ["GAPDoc", "1.5"], ["GRAPE", "4.7"] ],
+        SuggestedOtherPackages := [ ["SmallGrp", "1.3"] ],
         ),
-    AvailabilityTest := ReturnTrue
+    AvailabilityTest := ReturnTrue,
+    TestFile := "tst/testall.g",
+    Keywords := ["difference sets"],
     )
 );
 
