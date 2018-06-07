@@ -1,21 +1,23 @@
   
   [1X3 [33X[0;0YResults[133X[101X
   
-  [33X[0;0YThe  [5XDifSets[105X  Package  was  designed with the goal of finding all difference
-  sets  up  to equivalence in groups of order 64 and 96. With the exception of
-  group  [10X[64,  267][110X, which has an exceptionally large automorphism group, this
-  goal  was  achieved.  In  addition,  the algorithm has successfully computed
-  results  for  1004  of the 1032 groups of order less than 100. Full results,
-  which  include timings, number of sets, and the sets themselves can be found
-  in  the  [10Xdata[110X subdirectory of the package, which is organized by group order
-  and  contains  a  single  [10X.txt[110X  file  for each computed group. A list of all
-  timings can also be found in the file [10Xgroups.csv[110X in the [10Xdata[110X directory. Most
-  computations  were  performed using [5XGAP[105X 4.8.5 on an i7-4770 with 16GB of RAM
-  (with  the  exception of group [10X[96, 231][110X, which required 48GB of RAM), while
-  some  shorter  computations  were  performed using [5XGAP[105X 4.8.4 on an i7-3615QM
-  with  8GB  of  RAM. Here we give a basic overview of results and comments on
-  timings.  Throughout this chapter we will refer to the group returned by the
-  [5XGAP[105X function [10XSmallGroup(v, n)[110X as [10X[v, n][110X.[133X
+  [33X[0;0Y(WARNING:  These  results  are  slightly  outdated.  In particular, the most
+  recent  version  of the package has finished [64, 267]. This chapter will be
+  updated after the timings have been rerun.) The [5XDifSets[105X Package was designed
+  with  the goal of finding all difference sets up to equivalence in groups of
+  order  64  and  96.  With  the  exception  of  group [10X[64, 267][110X, which has an
+  exceptionally large automorphism group, this goal was achieved. In addition,
+  the  algorithm has successfully computed results for 1004 of the 1032 groups
+  of order less than 100. Full results, which include timings, number of sets,
+  and  the  sets  themselves  can  be  found  in  the [10Xdata[110X subdirectory of the
+  package,  which  is organized by group order and contains a single [10X.txt[110X file
+  for each computed group. A list of all timings can also be found in the file
+  [10Xgroups.csv[110X in the [10Xdata[110X directory. Most computations were performed using [5XGAP[105X
+  4.8.5 on an i7-4770 with 16GB of RAM (with the exception of group [10X[96, 231][110X,
+  which  required 48GB of RAM), while some shorter computations were performed
+  using  [5XGAP[105X  4.8.4  on  an  i7-3615QM  with  8GB of RAM. Here we give a basic
+  overview of results and comments on timings. Throughout this chapter we will
+  refer to the group returned by the [5XGAP[105X function [10XSmallGroup(v, n)[110X as [10X[v, n][110X.[133X
   
   
   [1X3.1 [33X[0;0YOrder 16 and 36[133X[101X

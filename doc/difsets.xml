@@ -158,6 +158,10 @@
   </Chapter>
 
   <Chapter> <Heading>Results</Heading>
+    (WARNING: These results are slightly outdated.
+    In particular, the most recent version of the package has finished [64, 267].
+    This chapter will be updated after the timings have been rerun.)
+    
     The <Package>DifSets</Package> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96.
     With the exception of group <C>[64, 267]</C>, which has an exceptionally large automorphism group, this goal was achieved.
     In addition, the algorithm has successfully computed results for 1004 of the 1032 groups of order less than 100.
