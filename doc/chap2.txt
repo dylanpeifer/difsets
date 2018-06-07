@@ -482,7 +482,7 @@
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XCanLoadDifferenceSets(36, 9);[127X[104X
     [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27XCanLoadDifferenceSets(64, 267);[127X[104X
+    [4X[25Xgap>[125X [27XCanLoadDifferenceSets(79, 1);[127X[104X
     [4X[28Xfalse[128X[104X
   [4X[32X[104X
   

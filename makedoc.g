@@ -13,8 +13,8 @@ files := ["../lib/equivlist.gd", "../lib/groupsearch.gd", "../lib/loader.gd",
           "../lib/precompute.gd", "../lib/refine.gd", "../lib/smallest.gd",
           "../lib/tests.gd"];;
 bookname := "DifSets";;
-MakeGAPDocDoc(path, main, files, bookname);
-CopyHTMLStyleFiles("doc");
+MakeGAPDocDoc(path, main, files, bookname, "MathJax");;
+CopyHTMLStyleFiles("doc");;
 
 #############################################################################
 ##
