@@ -29,9 +29,9 @@ after which the DifSets banner should appear on the screen.
 
 After installation, basic tests of the package can by performed by running
 
-    gap> TestPackage("DifSets");
+    gap> TestPackage("difsets");
 
-at the GAP command prompt.
+at the GAP command prompt. Note that the package name must be in lowercase.
 
 ## Documentation
 
