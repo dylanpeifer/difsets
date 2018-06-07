@@ -16,8 +16,7 @@ SetPackageInfo( rec(
     IssueTrackerURL := Concatenation(~.SourceRepository.URL, "/issues"),
     SupportEmail := "djp282@cornell.edu",
     ArchiveURL := Concatenation(~.SourceRepository.URL,
-                                "/releases/download/v", ~.Version,
-                                "/difsets-", ~.Version),
+                                "/archive/v", ~.Version),
     ArchiveFormats := ".tar.gz",
     Persons := [ rec(
         LastName := "Peifer",
