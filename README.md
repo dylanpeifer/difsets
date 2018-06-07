@@ -9,13 +9,15 @@ relatively large order (such as order 64 or order 96) can be completed.
 
 ## Requirements
 
-The package requires at least version 4.8 of [GAP][1] and version 1.5 of
-GAPDoc.
+The package requires at least version 4.9 of [GAP][1]. Additional required GAP
+packages are [GRAPE][2] 4.7 and [GAPDoc][3] 1.5. The [SmallGrp][4] package is
+also recommended. These required packages are included with a standard install
+of GAP, and will be loaded automatically by the DifSets package.
 
 ## Installation
 
 The DifSets package is not distributed with a standard installation of GAP. To
-install, first download the [archive][2] and then unpack it in the `pkg`
+install, first download the [archive][5] and then unpack it in the `pkg`
 directory of one of your GAP root directories. After installation, the package
 can be loaded at the GAP command prompt by typing
 
@@ -25,17 +27,22 @@ after which the DifSets banner should appear on the screen.
 
 ## Tests
 
-After installation, basic tests of the package can by performed by running the
-file `testall.g` in the `tst` subdirectory, which can be done by typing
+After installation, basic tests of the package can by performed by running
 
-    gap> Read("tst/testall.g");
+    gap> TestPackage("DifSets");
 
-at the GAP command prompt while in the installed `pkg/difsets` directory.
+at the GAP command prompt.
 
 ## Documentation
 
 Documentation for the package can be found in the `doc` subdirectory in html
-form as `chap0.html` and pdf form as `manual.pdf`.
+form as `chap0.html` and pdf form as `manual.pdf`. Documentation can also be
+accessed on the [package website][6] and through the standard GAP help system.
+Documentation can be recompiled by running
+
+    gap makedoc.g
+
+in this directory.
 
 ## Results
 
@@ -95,4 +102,8 @@ For questions, comments, problems, and bugs, please contact the package author,
 Dylan Peifer, at djp282@cornell.edu.
 
 [1]: https://www.gap-system.org/
-[2]: https://github.com/dylanpeifer/difsets/archive/v2.1.0.tar.gz
+[2]: http://www.maths.qmul.ac.uk/~lsoicher/grape/
+[3]: http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
+[4]: https://gap-packages.github.io/smallgrp/
+[5]: https://github.com/dylanpeifer/difsets/archive/v2.1.0.tar.gz
+[6]: https://dylanpeifer.github.io/difsets/
