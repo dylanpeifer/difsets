@@ -9,7 +9,7 @@ gap> START_TEST("DifSets Package: loader.tst");
 
 gap> CanLoadDifferenceSets(36, 9);
 true
-gap> CanLoadDifferenceSets(64, 267);
+gap> CanLoadDifferenceSets(79, 1);
 false
 
 gap> LoadDifferenceSets(15, 1);

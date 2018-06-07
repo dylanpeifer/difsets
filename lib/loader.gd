@@ -22,7 +22,7 @@
 ##  <Example><![CDATA[
 ##  gap> CanLoadDifferenceSets(36, 9);
 ##  true
-##  gap> CanLoadDifferenceSets(64, 267);
+##  gap> CanLoadDifferenceSets(79, 1);
 ##  false
 ##  ]]></Example>
 ##  </Description>
