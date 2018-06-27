@@ -48,13 +48,13 @@ DeclareGlobalFunction( "CanLoadDifferenceSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> LoadDifferenceSets(15, 1);
-##  [ [ 1, 2, 4, 7, 8, 11, 15 ] ]
+##  [ [ 1, 2, 3, 4, 8, 11, 12 ] ]
 ##  gap> G := SmallGroup(15, 1);; H := AbelianGroup([15]);;
 ##  gap> IdGroup(G) = IdGroup(H);
 ##  true
-##  gap> IsDifferenceSet(G, [1, 2, 4, 7, 8, 11, 15]);
+##  gap> IsDifferenceSet(G, [1, 2, 3, 4, 8, 11, 12]);
 ##  true
-##  gap> IsDifferenceSet(H, [1, 2, 4, 7, 8, 11, 15]);
+##  gap> IsDifferenceSet(H, [1, 2, 3, 4, 8, 11, 12]);
 ##  false
 ##  ]]></Example>
 ##  </Description>

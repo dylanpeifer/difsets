@@ -821,13 +821,13 @@ group \texttt{SmallGroup(\mbox{\texttt{\mdseries\slshape v}}, \mbox{\texttt{\mds
 available. Note that the listed difference sets are specific to \texttt{SmallGroup(\mbox{\texttt{\mdseries\slshape v}}, \mbox{\texttt{\mdseries\slshape n}})}, as \textsf{GAP} may label entries of other isomorphic versions of the same group differently. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@LoadDifferenceSets(15, 1);|
-  [ [ 1, 2, 4, 7, 8, 11, 15 ] ]
+  [ [ 1, 2, 3, 4, 8, 11, 12 ] ]
   !gapprompt@gap>| !gapinput@G := SmallGroup(15, 1);; H := AbelianGroup([15]);;|
   !gapprompt@gap>| !gapinput@IdGroup(G) = IdGroup(H);|
   true
-  !gapprompt@gap>| !gapinput@IsDifferenceSet(G, [1, 2, 4, 7, 8, 11, 15]);|
+  !gapprompt@gap>| !gapinput@IsDifferenceSet(G, [1, 2, 3, 4, 8, 11, 12]);|
   true
-  !gapprompt@gap>| !gapinput@IsDifferenceSet(H, [1, 2, 4, 7, 8, 11, 15]);|
+  !gapprompt@gap>| !gapinput@IsDifferenceSet(H, [1, 2, 3, 4, 8, 11, 12]);|
   false
 \end{Verbatim}
  }
