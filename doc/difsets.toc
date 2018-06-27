@@ -25,11 +25,11 @@
 \contentsline {subsection}{\numberline {2.4.3}\leavevmode {\color {Chapter }EquivalentFreeListOfDifferenceSums}}{12}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}\leavevmode {\color {Chapter }TranslateFreeListOfDifferenceSums}}{12}{subsection.2.4.4}
 \contentsline {subsection}{\numberline {2.4.5}\leavevmode {\color {Chapter }SmallestEquivalentDifferenceSet}}{12}{subsection.2.4.5}
-\contentsline {subsection}{\numberline {2.4.6}\leavevmode {\color {Chapter }SmallestEquivalentFreeListOfDifferenceSets}}{12}{subsection.2.4.6}
+\contentsline {subsection}{\numberline {2.4.6}\leavevmode {\color {Chapter }SmallestEquivalentFreeListOfDifferenceSets}}{13}{subsection.2.4.6}
 \contentsline {section}{\numberline {2.5}\leavevmode {\color {Chapter }Testing}}{13}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}\leavevmode {\color {Chapter }IsDifferenceSet}}{13}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}\leavevmode {\color {Chapter }IsDifferenceSum}}{13}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}\leavevmode {\color {Chapter }IsEquivalentDifferenceSet}}{13}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.3}\leavevmode {\color {Chapter }IsEquivalentDifferenceSet}}{14}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}\leavevmode {\color {Chapter }IsEquivalentDifferenceSum}}{14}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}\leavevmode {\color {Chapter }Loading Results}}{14}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}\leavevmode {\color {Chapter }CanLoadDifferenceSets}}{14}{subsection.2.6.1}

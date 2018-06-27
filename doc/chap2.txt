@@ -291,9 +291,8 @@
   This   can  be  done  with  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X)  and
   [2XEquivalentFreeListOfDifferenceSums[102X   ([14X2.4-3[114X).   The   additional   functions
   [2XTranslateFreeListOfDifferenceSets[102X                 ([14X2.4-2[114X)                and
-  [2XTranslateFreeListOfDifferenceSums[102X  ([14X2.4-4[114X)  can  be  used  to eliminate some
-  equivalent sums or sets when the size of the automorphism group is too large
-  to  iterate  through.  They  are  not,  however, used in the main algorithm.
+  [2XTranslateFreeListOfDifferenceSums[102X ([14X2.4-4[114X) can be used to eliminate translate
+  equivalent  sums  or  sets,  but  they  are  not used in the main algorithm.
   Alternatively,     [2XSmallestEquivalentDifferenceSet[102X    ([14X2.4-5[114X)    uses    the
   [10XSmallestImageSet[110X   function   from   the   [5XGRAPE[105X   package  to  produce  the
   lexicographically   minimal  difference  set  equivalent  to  a  given  set.
@@ -301,9 +300,13 @@
   minimal  representative and then simply eliminating duplicates. This is done
   automatically  by  [2XSmallestEquivalentFreeListOfDifferenceSets[102X ([14X2.4-6[114X), which
   is   used   in   the   last   stage   of   the  main  algorithm  instead  of
-  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X) since it is much faster on large
-  automorphism  groups  and provides a unique minimal result at the end of the
-  algorithm.[133X
+  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X).  While  the full algorithm with
+  [2XSmallestEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-6[114X) is roughly 20% slower on
+  average  (and  is  almost  4x  as  slow  on  a few groups of order 64), this
+  function  is used since it is much faster on large automorphism groups (such
+  as  the  automorphism group of [10XSmallGroup(64, 267)[110X, which is impossible with
+  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X))  and  provides a unique minimal
+  result at the end of the algorithm.[133X
   
   [1X2.4-1 EquivalentFreeListOfDifferenceSets[101X
   
@@ -467,7 +470,7 @@
   [1X2.6 [33X[0;0YLoading Results[133X[101X
   
   [33X[0;0YThe  [10Xdata[110X  directory of the [5XDifSets[105X Package contains precomputed results for
-  1004  of the 1032 groups of order less than 100. The following two functions
+  1006  of the 1032 groups of order less than 100. The following two functions
   are  the easiest way to access these precomputed lists of difference sets up
   to equivalence.[133X
   

@@ -52,7 +52,7 @@ a header with the ID of the group, the total number of inequivalent difference
 sets found, and the time required for the computation. For example, the group
 SmallGroup(64, 260) has 30 difference sets up to equivalence. These sets can be
 found in the file `data/groups/64/64-260.txt`. The header of this file
-indicates that the computation took 25 hours, 51 minutes, and 42.956 seconds to
+indicates that the computation took 40 hours, 5 minutes, and 38.020 seconds to
 complete. A summary of timings is also listed in the file `groups.csv` in the
 `data` directory.
 
@@ -60,7 +60,7 @@ The easiest way to access results is the `LoadDifferenceSets` function. With
 the package loaded you can, for example, type
 
     gap> LoadDifferenceSets(16, 12);
-    [ [ 1, 4, 7, 9, 10, 14 ], [ 1, 4, 6, 7, 9, 11 ] ]
+    [ [ 1, 2, 3, 4, 5, 12 ], [ 1, 2, 3, 4, 8, 15 ] ]
 
 to return a list containing representatives for the two difference sets up to
 equivalence in SmallGroup(16, 12). For details, see the documentation.

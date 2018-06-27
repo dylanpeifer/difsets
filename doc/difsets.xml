@@ -126,11 +126,11 @@
     <Section> <Heading>Equivalence</Heading>
       Since we are searching for all difference sets or sums up to equivalence, at each stage we remove excess equivalent sums or sets from our collection.
       This can be done with <Ref Func="EquivalentFreeListOfDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSums"/>.
-      The additional functions <Ref Func="TranslateFreeListOfDifferenceSets"/> and <Ref Func="TranslateFreeListOfDifferenceSums"/> can be used to eliminate some equivalent sums or sets when the size of the automorphism group is too large to iterate through. 
-      They are not, however, used in the main algorithm.
-      Alternatively, <Ref Func="SmallestEquivalentDifferenceSet"/> uses the <Code>SmallestImageSet</Code> function from the <Package>GRAPE</Package> package to produce the lexicographically minimal difference set equivalent to a given set.
+      The additional functions <Ref Func="TranslateFreeListOfDifferenceSets"/> and <Ref Func="TranslateFreeListOfDifferenceSums"/> can be used to eliminate translate equivalent sums or sets, but they are not used in the main algorithm.
+      Alternatively, <Ref Func="SmallestEquivalentDifferenceSet"/> uses the <C>SmallestImageSet</C> function from the <Package>GRAPE</Package> package to produce the lexicographically minimal difference set equivalent to a given set.
       Eliminating equivalent sets can then be done by mapping each set to its minimal representative and then simply eliminating duplicates.
-      This is done automatically by <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/>, which is used in the last stage of the main algorithm instead of <Ref Func="EquivalentFreeListOfDifferenceSets"/> since it is much faster on large automorphism groups and provides a unique minimal result at the end of the algorithm.
+      This is done automatically by <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/>, which is used in the last stage of the main algorithm instead of <Ref Func="EquivalentFreeListOfDifferenceSets"/>.
+      While the full algorithm with <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/> is roughly 20% slower on average (and is almost 4x as slow on a few groups of order 64), this function is used since it is much faster on large automorphism groups (such as the automorphism group of <C>SmallGroup(64, 267)</C>, which is impossible with <Ref Func="EquivalentFreeListOfDifferenceSets"/>) and provides a unique minimal result at the end of the algorithm.
       <#Include Label="EquivalentFreeListOfDifferenceSets">
       <#Include Label="TranslateFreeListOfDifferenceSets">
       <#Include Label="EquivalentFreeListOfDifferenceSums">
@@ -150,7 +150,7 @@
     </Section>
 
     <Section> <Heading>Loading Results</Heading>
-      The <C>data</C> directory of the <Package>DifSets</Package> Package contains precomputed results for 1004 of the 1032 groups of order less than 100.
+      The <C>data</C> directory of the <Package>DifSets</Package> Package contains precomputed results for 1006 of the 1032 groups of order less than 100.
       The following two functions are the easiest way to access these precomputed lists of difference sets up to equivalence.
       <#Include Label="CanLoadDifferenceSets">
       <#Include Label="LoadDifferenceSets">
@@ -158,16 +158,11 @@
   </Chapter>
 
   <Chapter> <Heading>Results</Heading>
-    (WARNING: These results are slightly outdated.
-    In particular, the most recent version of the package has finished [64, 267].
-    This chapter will be updated after the timings have been rerun.)
-    
-    The <Package>DifSets</Package> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96.
-    With the exception of group <C>[64, 267]</C>, which has an exceptionally large automorphism group, this goal was achieved.
-    In addition, the algorithm has successfully computed results for 1004 of the 1032 groups of order less than 100.
+    The <Package>DifSets</Package> Package was designed with the goal of finding all difference sets up to equivalence in groups of order 64 and 96, a goal which was accomplished.
+    Overall, the algorithm has successfully computed results for 1006 of the 1032 groups of order less than 100.
     Full results, which include timings, number of sets, and the sets themselves can be found in the <C>data</C> subdirectory of the package, which is organized by group order and contains a single <C>.txt</C> file for each computed group.
-    A list of all timings can also be found in the file <C>groups.csv</C> in the <C>data</C> directory.
-    Most computations were performed using &GAP; 4.8.5 on an i7-4770 with 16GB of RAM (with the exception of group <C>[96, 231]</C>, which required 48GB of RAM), while some shorter computations were performed using &GAP; 4.8.4 on an i7-3615QM with 8GB of RAM.
+    A list of all timings can also be found in the file <C>groups.csv</C> in the <C>data</C> directory, and the difference sets themselves can be loaded using the function <Ref Func="LoadDifferenceSets"/>.
+    All computations were performed using &GAP; 4.9.1 on a 4.00GHz i7-6700K using 8GB of RAM.
     Here we give a basic overview of results and comments on timings.
     Throughout this chapter we will refer to the group returned by the &GAP; function <C>SmallGroup(v, n)</C> as <C>[v, n]</C>.
 
@@ -175,133 +170,128 @@
       Difference sets in groups of order 16 and 36 form the first nontrivial examples of the Hadamard parameters, and exhaustive enumerations are already well known.
       Still, computation of these sets gives a useful benchmark and check of accuracy. <P/>
 
-      Two important timings are those for <C>[16, 14]</C> and <C>[36, 9]</C>.
-      The group <C>[16, 14]</C> is elementary abelian, and has a much larger automorphism group than other groups of order 16.
-      Since the algorithm needs to loop through the automorphism group for equivalence testing, large automorphism groups can substantially slow down computation, an effect we can already see compared to other groups of order 16.
-      The group <C>[36, 9]</C> takes several orders of magnitude longer than other groups of order 36.
+      Almost all groups in these orders take less than a second.
+      The group <C>[36, 9]</C>, however, takes several orders of magnitude longer than other groups of order 36.
       This is because <C>[36, 9]</C> does not have small normal subgroups (in particular, its smallest nontrivial normal subgroup has order 9), and refining across a large gap in sizes, expecially near the end of the algorithm, requires checking significantly more preimages. <P/>
 
       <Table Align="ccc">
         <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
         <HorLine/>
-        <Row> <Item><C>[16, 1]</C></Item> <Item>0</Item> <Item>0.056</Item> </Row>
-        <Row> <Item><C>[16, 2]</C></Item> <Item>3</Item> <Item>0.112</Item> </Row>
-        <Row> <Item><C>[16, 3]</C></Item> <Item>4</Item> <Item>0.095</Item> </Row>
-        <Row> <Item><C>[16, 4]</C></Item> <Item>3</Item> <Item>0.096</Item> </Row>
-        <Row> <Item><C>[16, 5]</C></Item> <Item>2</Item> <Item>0.114</Item> </Row>
-        <Row> <Item><C>[16, 6]</C></Item> <Item>2</Item> <Item>0.084</Item> </Row>
-        <Row> <Item><C>[16, 7]</C></Item> <Item>0</Item> <Item>0.091</Item> </Row>
-        <Row> <Item><C>[16, 8]</C></Item> <Item>2</Item> <Item>0.086</Item> </Row>
-        <Row> <Item><C>[16, 9]</C></Item> <Item>2</Item> <Item>0.092</Item> </Row>
-        <Row> <Item><C>[16, 10]</C></Item> <Item>2</Item> <Item>0.191</Item> </Row>
-        <Row> <Item><C>[16, 11]</C></Item> <Item>2</Item> <Item>0.125</Item> </Row>
-        <Row> <Item><C>[16, 12]</C></Item> <Item>2</Item> <Item>0.202</Item> </Row>
-        <Row> <Item><C>[16, 13]</C></Item> <Item>2</Item> <Item>0.107</Item> </Row>
-        <Row> <Item><C>[16, 14]</C></Item> <Item>1</Item> <Item>0.828</Item> </Row>
+        <Row> <Item><C>[16, 1]</C></Item> <Item>0</Item> <Item>0.030</Item> </Row>
+        <Row> <Item><C>[16, 2]</C></Item> <Item>3</Item> <Item>0.103</Item> </Row>
+        <Row> <Item><C>[16, 3]</C></Item> <Item>4</Item> <Item>0.100</Item> </Row>
+        <Row> <Item><C>[16, 4]</C></Item> <Item>3</Item> <Item>0.100</Item> </Row>
+        <Row> <Item><C>[16, 5]</C></Item> <Item>2</Item> <Item>0.061</Item> </Row>
+        <Row> <Item><C>[16, 6]</C></Item> <Item>2</Item> <Item>0.071</Item> </Row>
+        <Row> <Item><C>[16, 7]</C></Item> <Item>0</Item> <Item>0.072</Item> </Row>
+        <Row> <Item><C>[16, 8]</C></Item> <Item>2</Item> <Item>0.070</Item> </Row>
+        <Row> <Item><C>[16, 9]</C></Item> <Item>2</Item> <Item>0.082</Item> </Row>
+        <Row> <Item><C>[16, 10]</C></Item> <Item>2</Item> <Item>0.187</Item> </Row>
+        <Row> <Item><C>[16, 11]</C></Item> <Item>2</Item> <Item>0.121</Item> </Row>
+        <Row> <Item><C>[16, 12]</C></Item> <Item>2</Item> <Item>0.195</Item> </Row>
+        <Row> <Item><C>[16, 13]</C></Item> <Item>2</Item> <Item>0.117</Item> </Row>
+        <Row> <Item><C>[16, 14]</C></Item> <Item>1</Item> <Item>0.059</Item> </Row>
       </Table>
 
       <Table Align="ccc">
         <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
         <HorLine/>
-        <Row> <Item><C>[36, 1]</C></Item> <Item>0</Item> <Item>0.369</Item> </Row>
-        <Row> <Item><C>[36, 2]</C></Item> <Item>0</Item> <Item>0.209</Item> </Row>
-        <Row> <Item><C>[36, 3]</C></Item> <Item>0</Item> <Item>0.409</Item> </Row>
-        <Row> <Item><C>[36, 4]</C></Item> <Item>0</Item> <Item>0.372</Item> </Row>
-        <Row> <Item><C>[36, 5]</C></Item> <Item>0</Item> <Item>0.231</Item> </Row>
-        <Row> <Item><C>[36, 6]</C></Item> <Item>6</Item> <Item>0.374</Item> </Row>
-        <Row> <Item><C>[36, 7]</C></Item> <Item>1</Item> <Item>0.897</Item> </Row>
-        <Row> <Item><C>[36, 8]</C></Item> <Item>4</Item> <Item>0.346</Item> </Row>
-        <Row> <Item><C>[36, 9]</C></Item> <Item>5</Item> <Item>296.382</Item> </Row>
-        <Row> <Item><C>[36, 10]</C></Item> <Item>6</Item> <Item>0.831</Item> </Row>
-        <Row> <Item><C>[36, 11]</C></Item> <Item>3</Item> <Item>0.479</Item> </Row>
-        <Row> <Item><C>[36, 12]</C></Item> <Item>6</Item> <Item>0.369</Item> </Row>
-        <Row> <Item><C>[36, 13]</C></Item> <Item>1</Item> <Item>0.940</Item> </Row>
-        <Row> <Item><C>[36, 14]</C></Item> <Item>3</Item> <Item>0.483</Item> </Row>
+        <Row> <Item><C>[36, 1]</C></Item> <Item>0</Item> <Item>0.335</Item> </Row>
+        <Row> <Item><C>[36, 2]</C></Item> <Item>0</Item> <Item>0.201</Item> </Row>
+        <Row> <Item><C>[36, 3]</C></Item> <Item>0</Item> <Item>0.407</Item> </Row>
+        <Row> <Item><C>[36, 4]</C></Item> <Item>0</Item> <Item>0.322</Item> </Row>
+        <Row> <Item><C>[36, 5]</C></Item> <Item>0</Item> <Item>0.218</Item> </Row>
+        <Row> <Item><C>[36, 6]</C></Item> <Item>6</Item> <Item>0.412</Item> </Row>
+        <Row> <Item><C>[36, 7]</C></Item> <Item>1</Item> <Item>0.795</Item> </Row>
+        <Row> <Item><C>[36, 8]</C></Item> <Item>4</Item> <Item>0.340</Item> </Row>
+        <Row> <Item><C>[36, 9]</C></Item> <Item>5</Item> <Item>340.989</Item> </Row>
+        <Row> <Item><C>[36, 10]</C></Item> <Item>6</Item> <Item>1.137</Item> </Row>
+        <Row> <Item><C>[36, 11]</C></Item> <Item>3</Item> <Item>0.699</Item> </Row>
+        <Row> <Item><C>[36, 12]</C></Item> <Item>6</Item> <Item>0.417</Item> </Row>
+        <Row> <Item><C>[36, 13]</C></Item> <Item>1</Item> <Item>0.801</Item> </Row>
+        <Row> <Item><C>[36, 14]</C></Item> <Item>3</Item> <Item>0.434</Item> </Row>
       </Table>
     </Section>
 
     <Section> <Heading>Order 64 and 96</Heading>
       Difference sets in groups of order 64 also satisfy the Hadamard parameters, while difference sets in groups of order 96 satisfy the McFarland parameters.
       Since there are many groups of both orders, here we just give some examples and summaries.
-      In particular, the tables below list the fastest, slowest, and median five groups of each order, sorted by time.
-      Note that the algorithm was not able to complete a search of <C>[64, 267]</C> because the exceptionally large automorphism group made equivalence testing in the final stage infeasible.
-      By replacing the final call to <Ref Func="EquivalentFreeListOfDifferenceSets"/> with <Ref Func="TranslateFreeListOfDifferenceSets"/> the algorithm can produce a somewhat reduced collection of sets containing at least one representative of each equivalence class for this group, but as this is not a full reduction this computation is not included in the results or summaries below. <P/>
+      In particular, the tables below list the fastest, slowest, and median five groups of each order, sorted by time. <P/>
 
       Groups of order 64 are <M>p</M>-groups, and thus always have enough normal subgroups to form long refining series.
       This means the refining steps are relatively efficient for all groups in this order.
-      The main difference between groups is the size of the automorphism group, and, in particular, four of the five groups taking the largest amount of time are precisely the four groups with the largest automorphism groups in this order.
+      The main difference between groups is the size of the automorphism group, and, in particular, four of the five groups taking the largest amount of time are four of the five groups with the largest automorphism groups in this order.
       The additional group in the top five, <C>[64, 235]</C>, has a relatively large number of difference sets, but is otherwise unremarkable.
       In general, smaller numbers of difference sets correspond to faster times, and in fact the eight groups with no difference sets were computed the fastest, beating the next fastest groups by an order of magnitude.
-      Overall, the mean computation time for a group of order 64 was 2577 seconds, with a median time of 1246 seconds.
-      This means that the total time to compute all difference sets in groups of order 64 (except <C>[64, 267]</C>) was roughly 8 days. <P/>
+      Overall, the mean computation time for a group of order 64 was 3988.476 seconds, with a median time of 1493.175 seconds.
+      This means that the total computer time to compute all difference sets in groups of order 64 was roughly 12 days. <P/>
 
       In groups of order 96 we do not always have large numbers of normal subgroups, and, as with <C>[36, 9]</C>, this can substantially slow down computation.
       In fact, the five groups taking the longest computation time are five of the six groups with fewest normal subgroups in this order.
       We are helped, however, by the fact that the only valid choice of <M>k</M> is 20, which is relatively small and thus does not lead to large numbers of preimages even across large gaps in the refining series.
       Many groups in this order have no difference sets, but even for these groups computation can be slow.
       While the fastest groups contain no difference sets, many groups with no difference sets actually take much longer than other groups that do contain difference sets.
-      Overall, the mean computation time for a group of order 96 was 22887 seconds, with a median time of 10661 seconds.
-      This means that the total time to compute all difference sets in groups of order 96 (except <C>[96, 231]</C>) was roughly 61 days. <P/>
+      Overall, the mean computation time for a group of order 96 was 24447.991 seconds, with a median time of 11278.765 seconds.
+      This means that the total computer time to compute all difference sets in groups of order 96 was roughly 65 days. <P/>
 
       <Table Align="ccc">
         <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
         <HorLine/>
-        <Row> <Item><C>[64, 52]</C></Item> <Item>0</Item> <Item>3</Item> </Row>
-        <Row> <Item><C>[64, 54]</C></Item> <Item>0</Item> <Item>3</Item> </Row>
-        <Row> <Item><C>[64, 47]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
-        <Row> <Item><C>[64, 1]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
-        <Row> <Item><C>[64, 50]</C></Item> <Item>0</Item> <Item>4</Item> </Row>
-        <Row> <Item><C>[64, 31]</C></Item> <Item>448</Item> <Item>1180</Item> </Row>
-        <Row> <Item><C>[64, 160]</C></Item> <Item>3192</Item> <Item>1227</Item> </Row>
-        <Row> <Item><C>[64, 178]</C></Item> <Item>952</Item> <Item>1245</Item> </Row>
-        <Row> <Item><C>[64, 71]</C></Item> <Item>1678</Item> <Item>1248</Item> </Row>
-        <Row> <Item><C>[64, 221]</C></Item> <Item>1656</Item> <Item>1253</Item> </Row>
-        <Row> <Item><C>[64, 192]</C></Item> <Item>222</Item> <Item>9268</Item> </Row>
-        <Row> <Item><C>[64, 261]</C></Item> <Item>49</Item> <Item>9813</Item> </Row>
-        <Row> <Item><C>[64, 235]</C></Item> <Item>4317</Item> <Item>21849</Item> </Row>
-        <Row> <Item><C>[64, 262]</C></Item> <Item>148</Item> <Item>84479</Item> </Row>
-        <Row> <Item><C>[64, 260]</C></Item> <Item>30</Item> <Item>93103</Item> </Row>
+        <Row> <Item><C>[64, 52]</C></Item> <Item>0</Item> <Item>3.451</Item> </Row>
+        <Row> <Item><C>[64, 54]</C></Item> <Item>0</Item> <Item>3.463</Item> </Row>
+        <Row> <Item><C>[64, 47]</C></Item> <Item>0</Item> <Item>3.594</Item> </Row>
+        <Row> <Item><C>[64, 186]</C></Item> <Item>0</Item> <Item>3.940</Item> </Row>
+        <Row> <Item><C>[64, 1]</C></Item> <Item>0</Item> <Item>3.950</Item> </Row>
+        <Row> <Item><C>[64, 166]</C></Item> <Item>2312</Item> <Item>1424.692</Item> </Row>
+        <Row> <Item><C>[64, 134]</C></Item> <Item>342</Item> <Item>1439.484</Item> </Row>
+        <Row> <Item><C>[64, 135]</C></Item> <Item>540</Item> <Item>1493.175</Item> </Row>
+        <Row> <Item><C>[64, 7]</C></Item> <Item>1320</Item> <Item>1515.710</Item> </Row>
+        <Row> <Item><C>[64, 160]</C></Item> <Item>3192</Item> <Item>1518.693</Item> </Row>
+        <Row> <Item><C>[64, 192]</C></Item> <Item>222</Item> <Item>21131.394</Item> </Row>
+        <Row> <Item><C>[64, 267]</C></Item> <Item>4</Item> <Item>23662.500</Item> </Row>
+        <Row> <Item><C>[64, 235]</C></Item> <Item>4317</Item> <Item>24566.186</Item> </Row>
+        <Row> <Item><C>[64, 260]</C></Item> <Item>30</Item> <Item>144338.020</Item> </Row>
+        <Row> <Item><C>[64, 262]</C></Item> <Item>148</Item> <Item>229488.988</Item> </Row>
       </Table>
 
       <Table Align="ccc">
         <Row> <Item>Group</Item> <Item>Difference Sets</Item> <Item>Time (seconds)</Item> </Row>
         <HorLine/>
-        <Row> <Item><C>[96, 2]</C></Item> <Item>0</Item> <Item>8</Item> </Row>
-        <Row> <Item><C>[96, 59]</C></Item> <Item>0</Item> <Item>8</Item> </Row>
-        <Row> <Item><C>[96, 66]</C></Item> <Item>0</Item> <Item>27</Item> </Row>
-        <Row> <Item><C>[96, 189]</C></Item> <Item>0</Item> <Item>27</Item> </Row>
-        <Row> <Item><C>[96, 46]</C></Item> <Item>0</Item> <Item>41</Item> </Row>
-        <Row> <Item><C>[96, 98]</C></Item> <Item>24</Item> <Item>10171</Item> </Row>
-        <Row> <Item><C>[96, 143]</C></Item> <Item>12</Item> <Item>10320</Item> </Row>
-        <Row> <Item><C>[96, 89]</C></Item> <Item>0</Item> <Item>10612</Item> </Row>
-        <Row> <Item><C>[96, 102]</C></Item> <Item>0</Item> <Item>10661</Item> </Row>
-        <Row> <Item><C>[96, 104]</C></Item> <Item>0</Item> <Item>10665</Item> </Row>
-        <Row> <Item><C>[96, 64]</C></Item> <Item>14</Item> <Item>274062</Item> </Row>
-        <Row> <Item><C>[96, 227]</C></Item> <Item>42</Item> <Item>280214</Item> </Row>
-        <Row> <Item><C>[96, 72]</C></Item> <Item>2</Item> <Item>460214</Item> </Row>
-        <Row> <Item><C>[96, 70]</C></Item> <Item>28</Item> <Item>516669</Item> </Row>
-        <Row> <Item><C>[96, 71]</C></Item> <Item>8</Item> <Item>799294</Item> </Row>
+        <Row> <Item><C>[96, 2]</C></Item> <Item>0</Item> <Item>8.731</Item> </Row>
+        <Row> <Item><C>[96, 59]</C></Item> <Item>0</Item> <Item>8.791</Item> </Row>
+        <Row> <Item><C>[96, 189]</C></Item> <Item>0</Item> <Item>29.378</Item> </Row>
+        <Row> <Item><C>[96, 66]</C></Item> <Item>0</Item> <Item>29.777</Item> </Row>
+        <Row> <Item><C>[96, 46]</C></Item> <Item>0</Item> <Item>44.478</Item> </Row>
+        <Row> <Item><C>[96, 209]</C></Item> <Item>4</Item> <Item>10809.673</Item> </Row>
+        <Row> <Item><C>[96, 133]</C></Item> <Item>16</Item> <Item>11198.052</Item> </Row>
+        <Row> <Item><C>[96, 224]</C></Item> <Item>0</Item> <Item>11278.765</Item> </Row>
+        <Row> <Item><C>[96, 89]</C></Item> <Item>0</Item> <Item>11349.466</Item> </Row>
+        <Row> <Item><C>[96, 102]</C></Item> <Item>0</Item> <Item>11415.688</Item> </Row>
+        <Row> <Item><C>[96, 227]</C></Item> <Item>42</Item> <Item>308246.830</Item> </Row>
+        <Row> <Item><C>[96, 64]</C></Item> <Item>14</Item> <Item>310447.407</Item> </Row>
+        <Row> <Item><C>[96, 70]</C></Item> <Item>28</Item> <Item>514559.313</Item> </Row>
+        <Row> <Item><C>[96, 72]</C></Item> <Item>2</Item> <Item>515196.547</Item> </Row>
+        <Row> <Item><C>[96, 71]</C></Item> <Item>8</Item> <Item>871439.024</Item> </Row>
       </Table>
     </Section>
 
     <Section> <Heading>Comments</Heading>
-      Overall, the algorithm spends almost all of its time performing four operations: refining sums to sums in several stages using <Ref Func="SomeRefinedDifferenceSums"/>, refining sums to sets in the final stage using <Ref Func="SomeRefinedDifferenceSets"/>, removing equivalent difference sums in several stages using <Ref Func="EquivalentFreeListOfDifferenceSums"/>, and removing equivalent difference sets in the final stage using <Ref Func="EquivalentFreeListOfDifferenceSets"/>.
-      On typical groups of order 16 and order 36 (i.e., not <C>[16, 14]</C> or <C>[36, 9]</C>), each of these four operations takes roughly the same time. 
-      On groups of order 64, some testing indicates that one or two orders of magnitude more time are spent in the final stage, when the algorithm uses <Ref Func="SomeRefinedDifferenceSets"/> and <Ref Func="EquivalentFreeListOfDifferenceSets"/>.
+      Overall, the algorithm spends almost all of its time performing four operations: refining sums to sums in several stages using <Ref Func="SomeRefinedDifferenceSums"/>, refining sums to sets in the final stage using <Ref Func="SomeRefinedDifferenceSets"/>, removing equivalent difference sums in several stages using <Ref Func="EquivalentFreeListOfDifferenceSums"/>, and removing equivalent difference sets in the final stage using <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/>.
+      On typical groups of order 16 and order 36 (i.e., not <C>[36, 9]</C>), each of these four operations takes roughly the same time. 
+      On groups of order 64, some testing indicates that one or two orders of magnitude more time are spent in the final stage, when the algorithm uses <Ref Func="SomeRefinedDifferenceSets"/> and <Ref Func="SmallestEquivalentFreeListOfDifferenceSets"/>.
       This discrepency is likely to remain or increase for larger order groups, as the number of preimages to check increases exponentially with the number of cosets.
       For the tested groups of order 64, roughly 60% of the time in the final stage was spent refining, with the remaining 40% spent removing equivalent sets. <P/>
  
-      Large automorphism groups make removing equivalents time-consuming (since we must loop through the automorphism group) and large jumps in the size of the normal subgroups used, especially near the end of the algorithm, make refining difficult (since there are many more options for preimages that must be checked).
+      Large automorphism groups make removing equivalents time-consuming and large jumps in the size of the normal subgroups used, especially near the end of the algorithm, make refining difficult.
       So, in general, the algorithm seems to work well when the group has a small automorphism group and many (small) normal subgroups.
       In addition, the algorithm does better when the values of <M>k</M> that need to be checked are small, as this limits both the number of preimages to check as well as the amount of time required for checking sets and equivalences.
       It is also generally faster when the final result is a smaller number of difference sets. <P/>
 
-      There are twenty-eight groups of order less than 100 in which the algorithm was not able to complete a search.
+      There are twenty-six groups of order less than 100 in which the algorithm was not able to complete a search.
       Fourteen of these groups are prime order cyclic.
       As simple groups, these groups have no normal subgroups and thus no possibility for refining, which means the algorithm must search every possible subset of size <M>k</M> to find all difference sets of size <M>k</M>.
       Even for groups of relatively small order, such as order 31, this is infeasible, and with current implementation will overflow memory before even starting the search (one of these groups, <C>[37, 1]</C> is actually feasible to search without this implementation issue, but the others have too many sets to check).
-      The remaining groups have either too few normal subgroups, large jumps in the refining series, large possible values of <M>k</M>, or a combination of these problems.
-      The group <C>[64, 267]</C> is unique in simply having too large of an automorphism group to perform the removal of equivalent sets in the final stage. <P/>
+      The remaining groups have either too few normal subgroups, large jumps in the refining series, large possible values of <M>k</M>, or a combination of these problems. <P/>
 
       The next natural cases for exhaustive search are groups of order 100 and order 144, which give the next Hadamard parameters.
       Unfortunately, preliminary testing indicates that this algorithm is not likely to be able to compute all difference sets for these groups.

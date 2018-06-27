@@ -564,13 +564,13 @@ will take to complete.
 {
   Since we are searching for all difference sets or sums up to equivalence, at
 each stage we remove excess equivalent sums or sets from our collection. This
-can be done with \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) and \texttt{EquivalentFreeListOfDifferenceSums} (\ref{EquivalentFreeListOfDifferenceSums}). The additional functions \texttt{TranslateFreeListOfDifferenceSets} (\ref{TranslateFreeListOfDifferenceSets}) and \texttt{TranslateFreeListOfDifferenceSums} (\ref{TranslateFreeListOfDifferenceSums}) can be used to eliminate some equivalent sums or sets when the size of the
-automorphism group is too large to iterate through. They are not, however,
+can be done with \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) and \texttt{EquivalentFreeListOfDifferenceSums} (\ref{EquivalentFreeListOfDifferenceSums}). The additional functions \texttt{TranslateFreeListOfDifferenceSets} (\ref{TranslateFreeListOfDifferenceSets}) and \texttt{TranslateFreeListOfDifferenceSums} (\ref{TranslateFreeListOfDifferenceSums}) can be used to eliminate translate equivalent sums or sets, but they are not
 used in the main algorithm. Alternatively, \texttt{SmallestEquivalentDifferenceSet} (\ref{SmallestEquivalentDifferenceSet}) uses the \texttt{SmallestImageSet} function from the \textsf{GRAPE} package to produce the lexicographically minimal difference set equivalent to
 a given set. Eliminating equivalent sets can then be done by mapping each set
 to its minimal representative and then simply eliminating duplicates. This is
-done automatically by \texttt{SmallestEquivalentFreeListOfDifferenceSets} (\ref{SmallestEquivalentFreeListOfDifferenceSets}), which is used in the last stage of the main algorithm instead of \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) since it is much faster on large automorphism groups and provides a unique
-minimal result at the end of the algorithm. 
+done automatically by \texttt{SmallestEquivalentFreeListOfDifferenceSets} (\ref{SmallestEquivalentFreeListOfDifferenceSets}), which is used in the last stage of the main algorithm instead of \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}). While the full algorithm with \texttt{SmallestEquivalentFreeListOfDifferenceSets} (\ref{SmallestEquivalentFreeListOfDifferenceSets}) is roughly 20\% slower on average (and is almost 4x as slow on a few groups of
+order 64), this function is used since it is much faster on large automorphism
+groups (such as the automorphism group of \texttt{SmallGroup(64, 267)}, which is impossible with \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets})) and provides a unique minimal result at the end of the algorithm. 
 
 \subsection{\textcolor{Chapter }{EquivalentFreeListOfDifferenceSets}}
 \logpage{[ 2, 4, 1 ]}\nobreak
@@ -784,7 +784,7 @@ but \texttt{IsDifferenceSet} (\ref{IsDifferenceSet}) simply does the multiplicat
 \section{\textcolor{Chapter }{Loading Results}}\logpage{[ 2, 6, 0 ]}
 \hyperdef{L}{X83340C888396D9BF}{}
 {
-  The \texttt{data} directory of the \textsf{DifSets} Package contains precomputed results for 1004 of the 1032 groups of order less
+  The \texttt{data} directory of the \textsf{DifSets} Package contains precomputed results for 1006 of the 1032 groups of order less
 than 100. The following two functions are the easiest way to access these
 precomputed lists of difference sets up to equivalence. 
 
@@ -840,16 +840,13 @@ available. Note that the listed difference sets are specific to \texttt{SmallGro
 \chapter{\textcolor{Chapter }{Results}}\logpage{[ 3, 0, 0 ]}
 \hyperdef{L}{X7A92ECF9816C7E28}{}
 {
-  (WARNING: These results are slightly outdated. In particular, the most recent
-version of the package has finished [64, 267]. This chapter will be updated
-after the timings have been rerun.) The \textsf{DifSets} Package was designed with the goal of finding all difference sets up to
-equivalence in groups of order 64 and 96. With the exception of group \texttt{[64, 267]}, which has an exceptionally large automorphism group, this goal was achieved.
-In addition, the algorithm has successfully computed results for 1004 of the
-1032 groups of order less than 100. Full results, which include timings,
-number of sets, and the sets themselves can be found in the \texttt{data} subdirectory of the package, which is organized by group order and contains a
+  The \textsf{DifSets} Package was designed with the goal of finding all difference sets up to
+equivalence in groups of order 64 and 96, a goal which was accomplished.
+Overall, the algorithm has successfully computed results for 1006 of the 1032
+groups of order less than 100. Full results, which include timings, number of
+sets, and the sets themselves can be found in the \texttt{data} subdirectory of the package, which is organized by group order and contains a
 single \texttt{.txt} file for each computed group. A list of all timings can also be found in the
-file \texttt{groups.csv} in the \texttt{data} directory. Most computations were performed using \textsf{GAP} 4.8.5 on an i7-4770 with 16GB of RAM (with the exception of group \texttt{[96, 231]}, which required 48GB of RAM), while some shorter computations were performed
-using \textsf{GAP} 4.8.4 on an i7-3615QM with 8GB of RAM. Here we give a basic overview of
+file \texttt{groups.csv} in the \texttt{data} directory, and the difference sets themselves can be loaded using the function \texttt{LoadDifferenceSets} (\ref{LoadDifferenceSets}). All computations were performed using \textsf{GAP} 4.9.1 on a 4.00GHz i7-6700K using 8GB of RAM. Here we give a basic overview of
 results and comments on timings. Throughout this chapter we will refer to the
 group returned by the \textsf{GAP} function \texttt{SmallGroup(v, n)} as \texttt{[v, n]}. 
 \section{\textcolor{Chapter }{Order 16 and 36}}\logpage{[ 3, 1, 0 ]}
@@ -860,12 +857,8 @@ examples of the Hadamard parameters, and exhaustive enumerations are already
 well known. Still, computation of these sets gives a useful benchmark and
 check of accuracy. 
 
- Two important timings are those for \texttt{[16, 14]} and \texttt{[36, 9]}. The group \texttt{[16, 14]} is elementary abelian, and has a much larger automorphism group than other
-groups of order 16. Since the algorithm needs to loop through the automorphism
-group for equivalence testing, large automorphism groups can substantially
-slow down computation, an effect we can already see compared to other groups
-of order 16. The group \texttt{[36, 9]} takes several orders of magnitude longer than other groups of order 36. This
-is because \texttt{[36, 9]} does not have small normal subgroups (in particular, its smallest nontrivial
+ Almost all groups in these orders take less than a second. The group \texttt{[36, 9]}, however, takes several orders of magnitude longer than other groups of order
+36. This is because \texttt{[36, 9]} does not have small normal subgroups (in particular, its smallest nontrivial
 normal subgroup has order 9), and refining across a large gap in sizes,
 expecially near the end of the algorithm, requires checking significantly more
 preimages. 
@@ -877,46 +870,46 @@ Time (seconds)\\
 \hline
 \texttt{[16, 1]}&
 0&
-0.056\\
+0.030\\
 \texttt{[16, 2]}&
 3&
-0.112\\
+0.103\\
 \texttt{[16, 3]}&
 4&
-0.095\\
+0.100\\
 \texttt{[16, 4]}&
 3&
-0.096\\
+0.100\\
 \texttt{[16, 5]}&
 2&
-0.114\\
+0.061\\
 \texttt{[16, 6]}&
 2&
-0.084\\
+0.071\\
 \texttt{[16, 7]}&
 0&
-0.091\\
+0.072\\
 \texttt{[16, 8]}&
 2&
-0.086\\
+0.070\\
 \texttt{[16, 9]}&
 2&
-0.092\\
+0.082\\
 \texttt{[16, 10]}&
 2&
-0.191\\
+0.187\\
 \texttt{[16, 11]}&
 2&
-0.125\\
+0.121\\
 \texttt{[16, 12]}&
 2&
-0.202\\
+0.195\\
 \texttt{[16, 13]}&
 2&
-0.107\\
+0.117\\
 \texttt{[16, 14]}&
 1&
-0.828\\
+0.059\\
 \end{tabular}\\[2mm]
 \end{center}
 
@@ -927,46 +920,46 @@ Time (seconds)\\
 \hline
 \texttt{[36, 1]}&
 0&
-0.369\\
+0.335\\
 \texttt{[36, 2]}&
 0&
-0.209\\
+0.201\\
 \texttt{[36, 3]}&
 0&
-0.409\\
+0.407\\
 \texttt{[36, 4]}&
 0&
-0.372\\
+0.322\\
 \texttt{[36, 5]}&
 0&
-0.231\\
+0.218\\
 \texttt{[36, 6]}&
 6&
-0.374\\
+0.412\\
 \texttt{[36, 7]}&
 1&
-0.897\\
+0.795\\
 \texttt{[36, 8]}&
 4&
-0.346\\
+0.340\\
 \texttt{[36, 9]}&
 5&
-296.382\\
+340.989\\
 \texttt{[36, 10]}&
 6&
-0.831\\
+1.137\\
 \texttt{[36, 11]}&
 3&
-0.479\\
+0.699\\
 \texttt{[36, 12]}&
 6&
-0.369\\
+0.417\\
 \texttt{[36, 13]}&
 1&
-0.940\\
+0.801\\
 \texttt{[36, 14]}&
 3&
-0.483\\
+0.434\\
 \end{tabular}\\[2mm]
 \end{center}
 
@@ -980,25 +973,21 @@ Time (seconds)\\
 while difference sets in groups of order 96 satisfy the McFarland parameters.
 Since there are many groups of both orders, here we just give some examples
 and summaries. In particular, the tables below list the fastest, slowest, and
-median five groups of each order, sorted by time. Note that the algorithm was
-not able to complete a search of \texttt{[64, 267]} because the exceptionally large automorphism group made equivalence testing in
-the final stage infeasible. By replacing the final call to \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}) with \texttt{TranslateFreeListOfDifferenceSets} (\ref{TranslateFreeListOfDifferenceSets}) the algorithm can produce a somewhat reduced collection of sets containing at
-least one representative of each equivalence class for this group, but as this
-is not a full reduction this computation is not included in the results or
-summaries below. 
+median five groups of each order, sorted by time. 
 
  Groups of order 64 are $p$-groups, and thus always have enough normal subgroups to form long refining
 series. This means the refining steps are relatively efficient for all groups
 in this order. The main difference between groups is the size of the
 automorphism group, and, in particular, four of the five groups taking the
-largest amount of time are precisely the four groups with the largest
+largest amount of time are four of the five groups with the largest
 automorphism groups in this order. The additional group in the top five, \texttt{[64, 235]}, has a relatively large number of difference sets, but is otherwise
 unremarkable. In general, smaller numbers of difference sets correspond to
 faster times, and in fact the eight groups with no difference sets were
 computed the fastest, beating the next fastest groups by an order of
-magnitude. Overall, the mean computation time for a group of order 64 was 2577
-seconds, with a median time of 1246 seconds. This means that the total time to
-compute all difference sets in groups of order 64 (except \texttt{[64, 267]}) was roughly 8 days. 
+magnitude. Overall, the mean computation time for a group of order 64 was
+3988.476 seconds, with a median time of 1493.175 seconds. This means that the
+total computer time to compute all difference sets in groups of order 64 was
+roughly 12 days. 
 
  In groups of order 96 we do not always have large numbers of normal subgroups,
 and, as with \texttt{[36, 9]}, this can substantially slow down computation. In fact, the five groups
@@ -1010,8 +999,9 @@ order have no difference sets, but even for these groups computation can be
 slow. While the fastest groups contain no difference sets, many groups with no
 difference sets actually take much longer than other groups that do contain
 difference sets. Overall, the mean computation time for a group of order 96
-was 22887 seconds, with a median time of 10661 seconds. This means that the
-total time to compute all difference sets in groups of order 96 (except \texttt{[96, 231]}) was roughly 61 days. 
+was 24447.991 seconds, with a median time of 11278.765 seconds. This means
+that the total computer time to compute all difference sets in groups of order
+96 was roughly 65 days. 
 
  \begin{center}
 \begin{tabular}{ccc}Group&
@@ -1020,49 +1010,49 @@ Time (seconds)\\
 \hline
 \texttt{[64, 52]}&
 0&
-3\\
+3.451\\
 \texttt{[64, 54]}&
 0&
-3\\
+3.463\\
 \texttt{[64, 47]}&
 0&
-4\\
+3.594\\
+\texttt{[64, 186]}&
+0&
+3.940\\
 \texttt{[64, 1]}&
 0&
-4\\
-\texttt{[64, 50]}&
-0&
-4\\
-\texttt{[64, 31]}&
-448&
-1180\\
+3.950\\
+\texttt{[64, 166]}&
+2312&
+1424.692\\
+\texttt{[64, 134]}&
+342&
+1439.484\\
+\texttt{[64, 135]}&
+540&
+1493.175\\
+\texttt{[64, 7]}&
+1320&
+1515.710\\
 \texttt{[64, 160]}&
 3192&
-1227\\
-\texttt{[64, 178]}&
-952&
-1245\\
-\texttt{[64, 71]}&
-1678&
-1248\\
-\texttt{[64, 221]}&
-1656&
-1253\\
+1518.693\\
 \texttt{[64, 192]}&
 222&
-9268\\
-\texttt{[64, 261]}&
-49&
-9813\\
+21131.394\\
+\texttt{[64, 267]}&
+4&
+23662.500\\
 \texttt{[64, 235]}&
 4317&
-21849\\
-\texttt{[64, 262]}&
-148&
-84479\\
+24566.186\\
 \texttt{[64, 260]}&
 30&
-93103\\
+144338.020\\
+\texttt{[64, 262]}&
+148&
+229488.988\\
 \end{tabular}\\[2mm]
 \end{center}
 
@@ -1073,49 +1063,49 @@ Time (seconds)\\
 \hline
 \texttt{[96, 2]}&
 0&
-8\\
+8.731\\
 \texttt{[96, 59]}&
 0&
-8\\
-\texttt{[96, 66]}&
-0&
-27\\
+8.791\\
 \texttt{[96, 189]}&
 0&
-27\\
+29.378\\
+\texttt{[96, 66]}&
+0&
+29.777\\
 \texttt{[96, 46]}&
 0&
-41\\
-\texttt{[96, 98]}&
-24&
-10171\\
-\texttt{[96, 143]}&
-12&
-10320\\
+44.478\\
+\texttt{[96, 209]}&
+4&
+10809.673\\
+\texttt{[96, 133]}&
+16&
+11198.052\\
+\texttt{[96, 224]}&
+0&
+11278.765\\
 \texttt{[96, 89]}&
 0&
-10612\\
+11349.466\\
 \texttt{[96, 102]}&
 0&
-10661\\
-\texttt{[96, 104]}&
-0&
-10665\\
-\texttt{[96, 64]}&
-14&
-274062\\
+11415.688\\
 \texttt{[96, 227]}&
 42&
-280214\\
-\texttt{[96, 72]}&
-2&
-460214\\
+308246.830\\
+\texttt{[96, 64]}&
+14&
+310447.407\\
 \texttt{[96, 70]}&
 28&
-516669\\
+514559.313\\
+\texttt{[96, 72]}&
+2&
+515196.547\\
 \texttt{[96, 71]}&
 8&
-799294\\
+871439.024\\
 \end{tabular}\\[2mm]
 \end{center}
 
@@ -1126,35 +1116,32 @@ Time (seconds)\\
 \hyperdef{L}{X780C79EB85C32138}{}
 {
   Overall, the algorithm spends almost all of its time performing four
-operations: refining sums to sums in several stages using \texttt{SomeRefinedDifferenceSums} (\ref{SomeRefinedDifferenceSums}), refining sums to sets in the final stage using \texttt{SomeRefinedDifferenceSets} (\ref{SomeRefinedDifferenceSets}), removing equivalent difference sums in several stages using \texttt{EquivalentFreeListOfDifferenceSums} (\ref{EquivalentFreeListOfDifferenceSums}), and removing equivalent difference sets in the final stage using \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}). On typical groups of order 16 and order 36 (i.e., not \texttt{[16, 14]} or \texttt{[36, 9]}), each of these four operations takes roughly the same time. On groups of
+operations: refining sums to sums in several stages using \texttt{SomeRefinedDifferenceSums} (\ref{SomeRefinedDifferenceSums}), refining sums to sets in the final stage using \texttt{SomeRefinedDifferenceSets} (\ref{SomeRefinedDifferenceSets}), removing equivalent difference sums in several stages using \texttt{EquivalentFreeListOfDifferenceSums} (\ref{EquivalentFreeListOfDifferenceSums}), and removing equivalent difference sets in the final stage using \texttt{SmallestEquivalentFreeListOfDifferenceSets} (\ref{SmallestEquivalentFreeListOfDifferenceSets}). On typical groups of order 16 and order 36 (i.e., not \texttt{[36, 9]}), each of these four operations takes roughly the same time. On groups of
 order 64, some testing indicates that one or two orders of magnitude more time
-are spent in the final stage, when the algorithm uses \texttt{SomeRefinedDifferenceSets} (\ref{SomeRefinedDifferenceSets}) and \texttt{EquivalentFreeListOfDifferenceSets} (\ref{EquivalentFreeListOfDifferenceSets}). This discrepency is likely to remain or increase for larger order groups, as
+are spent in the final stage, when the algorithm uses \texttt{SomeRefinedDifferenceSets} (\ref{SomeRefinedDifferenceSets}) and \texttt{SmallestEquivalentFreeListOfDifferenceSets} (\ref{SmallestEquivalentFreeListOfDifferenceSets}). This discrepency is likely to remain or increase for larger order groups, as
 the number of preimages to check increases exponentially with the number of
 cosets. For the tested groups of order 64, roughly 60\% of the time in the
 final stage was spent refining, with the remaining 40\% spent removing
 equivalent sets. 
 
- Large automorphism groups make removing equivalents time-consuming (since we
-must loop through the automorphism group) and large jumps in the size of the
-normal subgroups used, especially near the end of the algorithm, make refining
-difficult (since there are many more options for preimages that must be
-checked). So, in general, the algorithm seems to work well when the group has
-a small automorphism group and many (small) normal subgroups. In addition, the
-algorithm does better when the values of $k$ that need to be checked are small, as this limits both the number of preimages
+ Large automorphism groups make removing equivalents time-consuming and large
+jumps in the size of the normal subgroups used, especially near the end of the
+algorithm, make refining difficult. So, in general, the algorithm seems to
+work well when the group has a small automorphism group and many (small)
+normal subgroups. In addition, the algorithm does better when the values of $k$ that need to be checked are small, as this limits both the number of preimages
 to check as well as the amount of time required for checking sets and
 equivalences. It is also generally faster when the final result is a smaller
 number of difference sets. 
 
- There are twenty-eight groups of order less than 100 in which the algorithm
-was not able to complete a search. Fourteen of these groups are prime order
+ There are twenty-six groups of order less than 100 in which the algorithm was
+not able to complete a search. Fourteen of these groups are prime order
 cyclic. As simple groups, these groups have no normal subgroups and thus no
 possibility for refining, which means the algorithm must search every possible
 subset of size $k$ to find all difference sets of size $k$. Even for groups of relatively small order, such as order 31, this is
 infeasible, and with current implementation will overflow memory before even
 starting the search (one of these groups, \texttt{[37, 1]} is actually feasible to search without this implementation issue, but the
 others have too many sets to check). The remaining groups have either too few
-normal subgroups, large jumps in the refining series, large possible values of $k$, or a combination of these problems. The group \texttt{[64, 267]} is unique in simply having too large of an automorphism group to perform the
-removal of equivalent sets in the final stage. 
+normal subgroups, large jumps in the refining series, large possible values of $k$, or a combination of these problems. 
 
  The next natural cases for exhaustive search are groups of order 100 and order
 144, which give the next Hadamard parameters. Unfortunately, preliminary
