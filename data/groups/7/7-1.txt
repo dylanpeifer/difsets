@@ -1,8 +1,8 @@
 ## Group: [7, 1]
 ## Difference Sets: 1
-## Time:  0:00:00.027
+## Time:  0:00:00.014
 
 return [
-[ 1, 5, 7 ]
+[ 1, 2, 4 ]
 ];
 

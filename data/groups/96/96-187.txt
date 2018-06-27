@@ -1,6 +1,6 @@
 ## Group: [96, 187]
 ## Difference Sets: 0
-## Time:  2:24:16.624
+## Time:  2:25:44.601
 
 return [
 ];

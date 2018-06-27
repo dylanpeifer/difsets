@@ -1,6 +1,6 @@
 ## Group: [40, 7]
 ## Difference Sets: 0
-## Time:  0:00:00.997
+## Time:  0:00:00.952
 
 return [
 ];
