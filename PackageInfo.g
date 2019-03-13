@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
     PackageName := "DifSets",
     Subtitle := "an algorithm for enumerating all difference sets in a group",
-    Version := "2.1.0",
-    Date := "23/12/2017",
+    Version := "2.2.0",
+    Date := "12/03/2019",
     PackageWWWHome := "https://dylanpeifer.github.io/difsets",
     SourceRepository := rec(
         Type := "git",

@@ -81,7 +81,7 @@ in group [16, 4].
 
 ## License
 
-Copyright (C) 2017 Dylan Peifer
+Copyright (C) 2017, 2019 Dylan Peifer
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -105,5 +105,5 @@ Dylan Peifer, at djp282@cornell.edu.
 [2]: http://www.maths.qmul.ac.uk/~lsoicher/grape/
 [3]: http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
 [4]: https://gap-packages.github.io/smallgrp/
-[5]: https://github.com/dylanpeifer/difsets/archive/v2.1.0.tar.gz
+[5]: https://github.com/dylanpeifer/difsets/archive/v2.2.0.tar.gz
 [6]: https://dylanpeifer.github.io/difsets/

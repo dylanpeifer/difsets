@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  27 JUN 2018 17:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 MAR 2019 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -766,7 +766,7 @@ symbol/usyr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on difsets.pdf (19 pages, 229553 bytes).
+Output written on difsets.pdf (19 pages, 229555 bytes).
 PDF statistics:
  347 PDF objects out of 1000 (max. 8388607)
  306 compressed objects within 4 object streams
