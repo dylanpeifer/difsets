@@ -16,7 +16,8 @@ of GAP, and will be loaded automatically by the DifSets package.
 
 ## Installation
 
-The DifSets package is not distributed with a standard installation of GAP. To
+As of July 2019, the DifSets package is not currently distributed with a
+standard installation of GAP, but will be included in future releases. To
 install, first download the [archive][5] and then unpack it in the `pkg`
 directory of one of your GAP root directories. After installation, the package
 can be loaded at the GAP command prompt by typing
@@ -102,8 +103,8 @@ For questions, comments, problems, and bugs, please contact the package author,
 Dylan Peifer, at djp282@cornell.edu.
 
 [1]: https://www.gap-system.org/
-[2]: http://www.maths.qmul.ac.uk/~lsoicher/grape/
+[2]: https://gap-packages.github.io/grape/
 [3]: http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
 [4]: https://gap-packages.github.io/smallgrp/
-[5]: https://github.com/dylanpeifer/difsets/archive/v2.2.0.tar.gz
+[5]: https://github.com/dylanpeifer/difsets/archive/v2.3.0.tar.gz
 [6]: https://dylanpeifer.github.io/difsets/

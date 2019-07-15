@@ -9,7 +9,7 @@
 
 <TitlePage>
   <Title>The <Package>DifSets</Package> Package</Title>
-  <Version>Version 2.2.0</Version>
+  <Version>Version 2.3.0</Version>
   <Author>
     Dylan Peifer <Br/>
     <Email>djp282@cornell.edu</Email>
@@ -21,7 +21,7 @@
       Ithaca, NY 14853-4201 USA
     </Address>
   </Author>
-  <Date>12 March 2019</Date>
+  <Date>14 July 2019</Date>
   <Abstract>
     The <Package>DifSets</Package> Package implements an algorithm for enumerating all difference sets up to equivalence in an arbitrary finite group.
     The algorithm functions by finding difference sums, which are potential images of difference sets in quotient groups of the original group, and searching their preimages.

@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
     PackageName := "DifSets",
     Subtitle := "an algorithm for enumerating all difference sets in a group",
-    Version := "2.2.0",
-    Date := "12/03/2019",
+    Version := "2.3.0",
+    Date := "14/07/2019",
     PackageWWWHome := "https://dylanpeifer.github.io/difsets",
     SourceRepository := rec(
         Type := "git",
@@ -28,7 +28,9 @@ SetPackageInfo( rec(
         Institution := "Cornell University"
         )
     ],
-    Status := "other",
+    Status := "accepted",
+    CommunicatedBy := "Alexander Hulpke (Colorado State)",
+    AcceptDate := "07/2019",
     README_URL := Concatenation(~.PackageWWWHome, "/README.md"),
     PackageInfoURL := Concatenation(~.PackageWWWHome, "/PackageInfo.g"),
     AbstractHTML :=
