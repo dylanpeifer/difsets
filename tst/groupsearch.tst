@@ -11,9 +11,8 @@ gap> LoadPackage("example", false);
 true
 
 gap> G := SmallGroup(8, 3);;
-gap> RefiningSeries(G);
-[ <pc group of size 8 with 3 generators>, Group([ f2, f3 ]), Group([ f3 ]),
-  Group([  ]) ]
+gap> List(RefiningSeries(G), N -> Size(N));
+[ 8, 4, 2, 1 ]
 
 gap> G := SmallGroup(31, 1);;
 gap> PossibleDifferenceSetSizes(G);

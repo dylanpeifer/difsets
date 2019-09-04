@@ -17,10 +17,10 @@
 \indexentry{EquivalentFreeListOfDifferenceSums@\texttt  {EquivalentFreeListOfDifferenceSums}|hyperpage}{12}
 \indexentry{TranslateFreeListOfDifferenceSums@\texttt  {TranslateFreeListOfDifferenceSums}|hyperpage}{12}
 \indexentry{SmallestEquivalentDifferenceSet@\texttt  {SmallestEquivalentDifferenceSet}|hyperpage}{12}
-\indexentry{SmallestEquivalentFreeListOfDifferenceSets@\texttt  {Smallest}\discretionary {-}{}{}\texttt  {Equivalent}\discretionary {-}{}{}\texttt  {Free}\discretionary {-}{}{}\texttt  {List}\discretionary {-}{}{}\texttt  {Of}\discretionary {-}{}{}\texttt  {Difference}\discretionary {-}{}{}\texttt  {Sets}|hyperpage}{13}
+\indexentry{SmallestEquivalentFreeListOfDifferenceSets@\texttt  {Smallest}\discretionary {-}{}{}\texttt  {Equivalent}\discretionary {-}{}{}\texttt  {Free}\discretionary {-}{}{}\texttt  {List}\discretionary {-}{}{}\texttt  {Of}\discretionary {-}{}{}\texttt  {Difference}\discretionary {-}{}{}\texttt  {Sets}|hyperpage}{12}
 \indexentry{IsDifferenceSet@\texttt  {IsDifferenceSet}|hyperpage}{13}
 \indexentry{IsDifferenceSum@\texttt  {IsDifferenceSum}|hyperpage}{13}
-\indexentry{IsEquivalentDifferenceSet@\texttt  {IsEquivalentDifferenceSet}|hyperpage}{14}
+\indexentry{IsEquivalentDifferenceSet@\texttt  {IsEquivalentDifferenceSet}|hyperpage}{13}
 \indexentry{IsEquivalentDifferenceSum@\texttt  {IsEquivalentDifferenceSum}|hyperpage}{14}
 \indexentry{CanLoadDifferenceSets@\texttt  {CanLoadDifferenceSets}|hyperpage}{14}
 \indexentry{LoadDifferenceSets@\texttt  {LoadDifferenceSets}|hyperpage}{14}

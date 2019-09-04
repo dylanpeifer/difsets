@@ -241,7 +241,7 @@ and one-element difference sets are ignored.
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 9);;|
   !gapprompt@gap>| !gapinput@DifferenceSets(G);|
-  [ [ 1, 2, 8, 10, 11, 15 ], [ 1, 2, 8, 9, 10, 11 ] ]
+  [ [ 1, 2, 3, 4, 7, 10 ], [ 1, 2, 3, 4, 8, 9 ] ]
 \end{Verbatim}
  }
 
@@ -356,9 +356,8 @@ removed anyway.
 subgroup of smallest possible size in \mbox{\texttt{\mdseries\slshape G}}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(8, 3);;|
-  !gapprompt@gap>| !gapinput@RefiningSeries(G);|
-  [ <pc group of size 8 with 3 generators>, Group([ f2, f3 ]), Group([ f3 ]), 
-    Group([  ]) ]
+  !gapprompt@gap>| !gapinput@List(RefiningSeries(G), N -> Size(N));|
+  [ 8, 4, 2, 1 ]
 \end{Verbatim}
  }
 

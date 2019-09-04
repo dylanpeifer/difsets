@@ -26,7 +26,7 @@
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 9);;[127X[104X
     [4X[25Xgap>[125X [27XDifferenceSets(G);[127X[104X
-    [4X[28X[ [ 1, 2, 8, 10, 11, 15 ], [ 1, 2, 8, 9, 10, 11 ] ][128X[104X
+    [4X[28X[ [ 1, 2, 3, 4, 7, 10 ], [ 1, 2, 3, 4, 8, 9 ] ][128X[104X
   [4X[32X[104X
   
   [1X2.1-2 DifferenceSums[101X
@@ -117,9 +117,8 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(8, 3);;[127X[104X
-    [4X[25Xgap>[125X [27XRefiningSeries(G);[127X[104X
-    [4X[28X[ <pc group of size 8 with 3 generators>, Group([ f2, f3 ]), Group([ f3 ]), [128X[104X
-    [4X[28X  Group([  ]) ][128X[104X
+    [4X[25Xgap>[125X [27XList(RefiningSeries(G), N -> Size(N));[127X[104X
+    [4X[28X[ 8, 4, 2, 1 ][128X[104X
   [4X[32X[104X
   
   [1X2.3-2 AllRefinedDifferenceSets[101X

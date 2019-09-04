@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 SEP 2019 18:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  4 SEP 2019 18:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -604,175 +604,175 @@ Underfull \hbox (badness 10000) in paragraph at lines 350--353
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--373
+Underfull \hbox (badness 10000) in paragraph at lines 369--372
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--408
+Underfull \hbox (badness 10000) in paragraph at lines 404--407
 
  []
 
 
-Underfull \hbox (badness 5403) in paragraph at lines 410--412
+Underfull \hbox (badness 5403) in paragraph at lines 409--411
 []\T1/ptm/m/n/10.95 Returns the num-ber of preim-ages that will need to be chec
 ked dur-ing a call to
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 425--428
+Underfull \hbox (badness 10000) in paragraph at lines 424--427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--458
+Underfull \hbox (badness 10000) in paragraph at lines 454--457
 
  []
 
 
-Underfull \hbox (badness 5403) in paragraph at lines 460--462
+Underfull \hbox (badness 5403) in paragraph at lines 459--461
 []\T1/ptm/m/n/10.95 Returns the num-ber of preim-ages that will need to be chec
 ked dur-ing a call to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 475--478
+Underfull \hbox (badness 10000) in paragraph at lines 474--477
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 497--500
+Underfull \hbox (badness 10000) in paragraph at lines 496--499
 
  []
 
 
-Underfull \hbox (badness 5403) in paragraph at lines 502--504
+Underfull \hbox (badness 5403) in paragraph at lines 501--503
 []\T1/ptm/m/n/10.95 Returns the num-ber of preim-ages that will need to be chec
 ked dur-ing a call to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--521
+Underfull \hbox (badness 10000) in paragraph at lines 517--520
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 543--546
+Underfull \hbox (badness 10000) in paragraph at lines 542--545
 
  []
 
 
-Underfull \hbox (badness 5403) in paragraph at lines 548--550
+Underfull \hbox (badness 5403) in paragraph at lines 547--549
 []\T1/ptm/m/n/10.95 Returns the num-ber of preim-ages that will need to be chec
 ked dur-ing a call to
  []
 
 [10]
-Underfull \hbox (badness 2181) in paragraph at lines 565--574
+Underfull \hbox (badness 2181) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 Since we are search-ing for all dif-fer-ence sets or sums up 
 to equiv-a-lence, at each stage
  []
 
 
-Underfull \hbox (badness 1924) in paragraph at lines 565--574
+Underfull \hbox (badness 1924) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 we re-move ex-cess equiv-a-lent sums or sets from our col-lec
 -tion. This can be done with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--574
+Underfull \hbox (badness 10000) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 ([][]2.4.3[][]). The ad-di-tional func-tions \T1/cmtt/m/n/10.
 95 TranslateFreeListOfDifferenceSets \T1/ptm/m/n/10.95 ([][]2.4.2[][]) and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 565--574
+Underfull \hbox (badness 10000) in paragraph at lines 564--573
 \T1/cmtt/m/n/10.95 TranslateFreeListOfDifferenceSums \T1/ptm/m/n/10.95 ([][]2.4
 .4[][]) can be used to elim-i-nate trans-late
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 565--574
+Underfull \hbox (badness 3679) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 equiv-a-lent sums or sets, but they are not used in the main 
 al-go-rithm. Al-ter-na-tively,
  []
 
 
-Underfull \hbox (badness 7888) in paragraph at lines 565--574
+Underfull \hbox (badness 7888) in paragraph at lines 564--573
 \T1/cmtt/m/n/10.95 SmallestEquivalentDifferenceSet \T1/ptm/m/n/10.95 ([][]2.4.5
 [][]) uses the \T1/cmtt/m/n/10.95 SmallestImageSet \T1/ptm/m/n/10.95 func-tion 
 from
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 565--574
+Underfull \hbox (badness 1728) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 the \T1/phv/m/n/10.95 GRAPE \T1/ptm/m/n/10.95 pack-age to pro
 -duce the lex-i-co-graph-i-cally min-i-mal dif-fer-ence set equiv-a-lent to
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 565--574
+Underfull \hbox (badness 1484) in paragraph at lines 564--573
 \T1/ptm/m/n/10.95 i-mal rep-re-sen-ta-tive and then sim-ply elim-i-nat-ing du-p
 li-cates. This is done au-to-mat-i-cally by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 578--581
+Underfull \hbox (badness 10000) in paragraph at lines 577--580
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 598--601
+Underfull \hbox (badness 10000) in paragraph at lines 597--600
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 618--621
+Underfull \hbox (badness 10000) in paragraph at lines 617--620
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 638--641
+Underfull \hbox (badness 10000) in paragraph at lines 637--640
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--661
+Underfull \hbox (badness 10000) in paragraph at lines 657--660
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 677--680
+Underfull \hbox (badness 10000) in paragraph at lines 676--679
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 708--711
+Underfull \hbox (badness 10000) in paragraph at lines 707--710
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--731
+Underfull \hbox (badness 10000) in paragraph at lines 727--730
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 749--752
+Underfull \hbox (badness 10000) in paragraph at lines 748--751
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 767--770
+Underfull \hbox (badness 10000) in paragraph at lines 766--769
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 794--797
+Underfull \hbox (badness 10000) in paragraph at lines 793--796
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 814--817
+Underfull \hbox (badness 10000) in paragraph at lines 813--816
 
  []
 
@@ -781,15 +781,15 @@ Chapter 3.
 [16
 
 ] [17] [18] [19]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1161.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1161.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1160.
  (./difsets.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1161.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1161.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1160.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1160.
 
 Package rerunfilecheck Info: File `difsets.out' has not changed.
 (rerunfilecheck)             Checksum: 509DF778EEACAA0C3C9DDB4449892988;782.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1161.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1160.
  ) 
 Here is how much of TeX's memory you used:
  7487 strings out of 493117
@@ -798,7 +798,7 @@ Here is how much of TeX's memory you used:
  10720 multiletter control sequences out of 15000+600000
  74702 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,7n,28p,761b,633s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,7n,28p,761b,647s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
@@ -816,7 +816,7 @@ symbol/usyr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us
 r/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on difsets.pdf (19 pages, 230321 bytes).
+Output written on difsets.pdf (19 pages, 230091 bytes).
 PDF statistics:
  347 PDF objects out of 1000 (max. 8388607)
  306 compressed objects within 4 object streams

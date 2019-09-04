@@ -98,7 +98,7 @@
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 9);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DifferenceSets(G);</span>
-[ [ 1, 2, 8, 10, 11, 15 ], [ 1, 2, 8, 9, 10, 11 ] ]
+[ [ 1, 2, 3, 4, 7, 10 ], [ 1, 2, 3, 4, 8, 9 ] ]
 </pre></div>
 
 <p><a id="X7B5B1D8D86014468" name="X7B5B1D8D86014468"></a></p>
@@ -181,9 +181,8 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(8, 3);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RefiningSeries(G);</span>
-[ &lt;pc group of size 8 with 3 generators&gt;, Group([ f2, f3 ]), Group([ f3 ]), 
-  Group([  ]) ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(RefiningSeries(G), N -&gt; Size(N));</span>
+[ 8, 4, 2, 1 ]
 </pre></div>
 
 <p><a id="X78CDE421817B50EE" name="X78CDE421817B50EE"></a></p>
