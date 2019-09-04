@@ -44,7 +44,7 @@ DeclareGlobalFunction( "IsDifferenceSet" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 4);;
-##  gap> N := NormalSubgroups(G)[3];;
+##  gap> N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;
 ##  gap> IsDifferenceSum(G, N, [2, 4]);
 ##  true
 ##  gap> IsDifferenceSum(G, N, [1, 1]);
@@ -91,7 +91,7 @@ DeclareGlobalFunction( "IsEquivalentDifferenceSet" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 4);;
-##  gap> N := NormalSubgroups(G)[3];;
+##  gap> N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;
 ##  gap> IsEquivalentDifferenceSum(G, N, [2,4], [4,2]);
 ##  true
 ##  ]]></Example>

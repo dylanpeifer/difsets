@@ -115,7 +115,7 @@ DeclareGlobalFunction( "DifferenceSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 8);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.3, G.4]);;
 ##  gap> DifferenceSumsOfSizeK(G, N, 1);
 ##  [ [ 1, 0, 0, 0 ] ]
 ##  ]]></Example>
@@ -140,7 +140,7 @@ DeclareGlobalFunction( "DifferenceSumsOfSizeK" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 8);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.3, G.4]);;
 ##  gap> DifferenceSums(G, N);
 ##  [ [ 3, 1, 1, 1 ], [ 2, 2, 2, 0 ] ]
 ##  ]]></Example>

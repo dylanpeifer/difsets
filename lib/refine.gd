@@ -22,7 +22,7 @@
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.2, G.4]);;
 ##  gap> AllRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);
 ##  [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
 ##    [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -62,7 +62,7 @@ DeclareGlobalFunction( "AllRefinedDifferenceSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.2, G.4]);;
 ##  gap> NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);
 ##  472
 ##  ]]></Example>
@@ -90,7 +90,7 @@ DeclareGlobalFunction( "NrAllRefinedSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.2, G.4]);;
 ##  gap> SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);
 ##  [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
 ##    [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -122,7 +122,7 @@ DeclareGlobalFunction( "SomeRefinedDifferenceSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N := NormalSubgroups(G)[5];;
+##  gap> N := Subgroup(G, [G.2, G.4]);;
 ##  gap> NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);
 ##  300
 ##  ]]></Example>
@@ -159,8 +159,8 @@ DeclareGlobalFunction( "IsDifferenceSetByTable" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N1 := NormalSubgroups(G)[5];;
-##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> N1 := Subgroup(G, [G.2, G.4]);;
+##  gap> N2 := Subgroup(G, [G.2]);;
 ##  gap> AllRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
 ##  [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
 ##    [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -187,8 +187,8 @@ DeclareGlobalFunction( "AllRefinedDifferenceSums" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N1 := NormalSubgroups(G)[5];;
-##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> N1 := Subgroup(G, [G.2, G.4]);;
+##  gap> N2 := Subgroup(G, [G.2]);;
 ##  gap> NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
 ##  22
 ##  ]]></Example>
@@ -218,8 +218,8 @@ DeclareGlobalFunction( "NrAllRefinedSums" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N1 := NormalSubgroups(G)[5];;
-##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> N1 := Subgroup(G, [G.2, G.4]);;
+##  gap> N2 := Subgroup(G, [G.2]);;
 ##  gap> SomeRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
 ##  [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
 ##    [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -246,8 +246,8 @@ DeclareGlobalFunction( "SomeRefinedDifferenceSums" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 5);;
-##  gap> N1 := NormalSubgroups(G)[5];;
-##  gap> N2 := NormalSubgroups(G)[8];;
+##  gap> N1 := Subgroup(G, [G.2, G.4]);;
+##  gap> N2 := Subgroup(G, [G.2]);;
 ##  gap> NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);
 ##  21
 ##  ]]></Example>

@@ -39,7 +39,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 8);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XDifferenceSums(G, N);[127X[104X
     [4X[28X[ [ 3, 1, 1, 1 ], [ 2, 2, 2, 0 ] ][128X[104X
   [4X[32X[104X
@@ -89,7 +89,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 8);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XDifferenceSumsOfSizeK(G, N, 1);[127X[104X
     [4X[28X[ [ 1, 0, 0, 0 ] ][128X[104X
   [4X[32X[104X
@@ -132,7 +132,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XAllRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X[ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], [128X[104X
     [4X[28X  [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], [128X[104X
@@ -162,7 +162,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XNrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X472[128X[104X
   [4X[32X[104X
@@ -181,7 +181,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XSomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X[ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], [128X[104X
     [4X[28X  [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], [128X[104X
@@ -203,7 +203,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[5];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XNrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X300[128X[104X
   [4X[32X[104X
@@ -220,8 +220,8 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN1 := NormalSubgroups(G)[5];;[127X[104X
-    [4X[25Xgap>[125X [27XN2 := NormalSubgroups(G)[8];;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
     [4X[25Xgap>[125X [27XAllRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X[ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], [128X[104X
     [4X[28X  [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], [128X[104X
@@ -238,8 +238,8 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN1 := NormalSubgroups(G)[5];;[127X[104X
-    [4X[25Xgap>[125X [27XN2 := NormalSubgroups(G)[8];;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
     [4X[25Xgap>[125X [27XNrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X22[128X[104X
   [4X[32X[104X
@@ -259,8 +259,8 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN1 := NormalSubgroups(G)[5];;[127X[104X
-    [4X[25Xgap>[125X [27XN2 := NormalSubgroups(G)[8];;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
     [4X[25Xgap>[125X [27XSomeRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X[ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], [128X[104X
     [4X[28X  [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], [128X[104X
@@ -277,8 +277,8 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
-    [4X[25Xgap>[125X [27XN1 := NormalSubgroups(G)[5];;[127X[104X
-    [4X[25Xgap>[125X [27XN2 := NormalSubgroups(G)[8];;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
     [4X[25Xgap>[125X [27XNrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
     [4X[28X21[128X[104X
   [4X[32X[104X
@@ -348,7 +348,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[3];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XEquivalentFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);[127X[104X
     [4X[28X[ [ 4, 2 ] ][128X[104X
   [4X[32X[104X
@@ -364,7 +364,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[3];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XTranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);[127X[104X
     [4X[28X[ [ 4, 2 ] ][128X[104X
   [4X[32X[104X
@@ -432,7 +432,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[3];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XIsDifferenceSum(G, N, [2, 4]);[127X[104X
     [4X[28Xtrue[128X[104X
     [4X[25Xgap>[125X [27XIsDifferenceSum(G, N, [1, 1]);[127X[104X
@@ -461,7 +461,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
-    [4X[25Xgap>[125X [27XN := NormalSubgroups(G)[3];;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
     [4X[25Xgap>[125X [27XIsEquivalentDifferenceSum(G, N, [2,4], [4,2]);[127X[104X
     [4X[28Xtrue[128X[104X
   [4X[32X[104X

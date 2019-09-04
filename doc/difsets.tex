@@ -195,7 +195,7 @@ difference sets, the sums $S_1, S_2$ are translationally equivalent if $S_1 = gS
  In the package, difference sums are stored as lists of integers that represent
 the values of the coefficients of the group ring elements, with position in
 the list given by the position of the coset in the list of elements returned
-by the \textsf{GAP} function \texttt{Elements(G/N)}. For example, the difference sum \texttt{[2, 4]} in \texttt{SmallGroup(16, 5)} mod its normal subgroup \texttt{NormalSubgroups(SmallGroup(16, 5))[2]} has coefficient 2 on the identity coset, and coefficient 4 on the nonidentity
+by the \textsf{GAP} function \texttt{Elements(G/N)}. For example, the difference sum \texttt{[2, 4]} in \texttt{G := SmallGroup(16, 5)} mod its normal subgroup \texttt{Subgroup(G, [G.2, G.3, G.4])} has coefficient 2 on the identity coset, and coefficient 4 on the nonidentity
 coset. 
 
  Difference sums can be thought of as a generalization of difference sets. More
@@ -259,7 +259,7 @@ and one-element difference sets are ignored.
 and difference sums of size 1 are ignored. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 8);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@DifferenceSums(G, N);|
   [ [ 3, 1, 1, 1 ], [ 2, 2, 2, 0 ] ]
 \end{Verbatim}
@@ -325,7 +325,7 @@ order of \mbox{\texttt{\mdseries\slshape G}}, and the resulting parameters v, k,
  Returns a list of all difference sums up to equivalence in the group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N}} that have size \mbox{\texttt{\mdseries\slshape k}}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 8);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@DifferenceSumsOfSizeK(G, N, 1);|
   [ [ 1, 0, 0, 0 ] ]
 \end{Verbatim}
@@ -376,7 +376,7 @@ subgroup of smallest possible size in \mbox{\texttt{\mdseries\slshape G}}.
 contained in the list \mbox{\texttt{\mdseries\slshape difsums}} of difference sums in group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N}}. Difference sums in \mbox{\texttt{\mdseries\slshape difsums}} are all assumed to be the same size. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.2, G.4]);;|
   !gapprompt@gap>| !gapinput@AllRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
   [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
     [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -411,7 +411,7 @@ contained in the list \mbox{\texttt{\mdseries\slshape difsums}} of difference su
 will take to complete. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.2, G.4]);;|
   !gapprompt@gap>| !gapinput@NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
   472
 \end{Verbatim}
@@ -434,7 +434,7 @@ appear. Difference sums in \mbox{\texttt{\mdseries\slshape difsums}} are all ass
 of an identity element when possible. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.2, G.4]);;|
   !gapprompt@gap>| !gapinput@SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
   [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
     [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -461,7 +461,7 @@ of an identity element when possible.
 will take to complete. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[5];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.2, G.4]);;|
   !gapprompt@gap>| !gapinput@NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);|
   300
 \end{Verbatim}
@@ -480,8 +480,8 @@ will take to complete.
  Returns a list of all difference sums in group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N2}} that are preimages of difference sums contained in the list \mbox{\texttt{\mdseries\slshape difsums}} of difference sums in group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N1}}. The subgroup \mbox{\texttt{\mdseries\slshape N2}} must be contained in \mbox{\texttt{\mdseries\slshape N1}}. Difference sums in \mbox{\texttt{\mdseries\slshape difsums}} are all assumed to be the same size. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
-  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@N1 := Subgroup(G, [G.2, G.4]);;|
+  !gapprompt@gap>| !gapinput@N2 := Subgroup(G, [G.2]);;|
   !gapprompt@gap>| !gapinput@AllRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
   [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
     [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -503,8 +503,8 @@ will take to complete.
 will take to complete. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
-  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@N1 := Subgroup(G, [G.2, G.4]);;|
+  !gapprompt@gap>| !gapinput@N2 := Subgroup(G, [G.2]);;|
   !gapprompt@gap>| !gapinput@NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
   22
 \end{Verbatim}
@@ -526,8 +526,8 @@ appear. The subgroup \mbox{\texttt{\mdseries\slshape N2}} must be contained in \
 nonzero identity coefficient when possible. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
-  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@N1 := Subgroup(G, [G.2, G.4]);;|
+  !gapprompt@gap>| !gapinput@N2 := Subgroup(G, [G.2]);;|
   !gapprompt@gap>| !gapinput@SomeRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
   [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
     [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -549,8 +549,8 @@ nonzero identity coefficient when possible.
 will take to complete. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 5);;|
-  !gapprompt@gap>| !gapinput@N1 := NormalSubgroups(G)[5];;|
-  !gapprompt@gap>| !gapinput@N2 := NormalSubgroups(G)[8];;|
+  !gapprompt@gap>| !gapinput@N1 := Subgroup(G, [G.2, G.4]);;|
+  !gapprompt@gap>| !gapinput@N2 := Subgroup(G, [G.2]);;|
   !gapprompt@gap>| !gapinput@NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);|
   21
 \end{Verbatim}
@@ -624,7 +624,7 @@ found in the list \mbox{\texttt{\mdseries\slshape difsets}} of arbitrary differe
 list \mbox{\texttt{\mdseries\slshape difsums}} of arbitrary difference sums in \mbox{\texttt{\mdseries\slshape G}} mod \mbox{\texttt{\mdseries\slshape N}}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 4);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[3];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@EquivalentFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);|
   [ [ 4, 2 ] ]
 \end{Verbatim}
@@ -644,7 +644,7 @@ list \mbox{\texttt{\mdseries\slshape difsums}} of arbitrary difference sums in \
 found in the list \mbox{\texttt{\mdseries\slshape difsums}} of arbitrary difference sums in \mbox{\texttt{\mdseries\slshape G}} mod \mbox{\texttt{\mdseries\slshape N}}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 4);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[3];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@TranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);|
   [ [ 4, 2 ] ]
 \end{Verbatim}
@@ -733,7 +733,7 @@ but \texttt{IsDifferenceSet} (\ref{IsDifferenceSet}) simply does the multiplicat
  Returns true if the sum \mbox{\texttt{\mdseries\slshape S}} is a difference sum in the group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N}}, and false otherwise. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 4);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[3];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@IsDifferenceSum(G, N, [2, 4]);|
   true
   !gapprompt@gap>| !gapinput@IsDifferenceSum(G, N, [1, 1]);|
@@ -772,7 +772,7 @@ but \texttt{IsDifferenceSet} (\ref{IsDifferenceSet}) simply does the multiplicat
  Returns true if sums \mbox{\texttt{\mdseries\slshape S1}} and \mbox{\texttt{\mdseries\slshape S2}} are equivalent in the group \mbox{\texttt{\mdseries\slshape G}} mod its normal subgroup \mbox{\texttt{\mdseries\slshape N}}, and false otherwise. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@G := SmallGroup(16, 4);;|
-  !gapprompt@gap>| !gapinput@N := NormalSubgroups(G)[3];;|
+  !gapprompt@gap>| !gapinput@N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;|
   !gapprompt@gap>| !gapinput@IsEquivalentDifferenceSum(G, N, [2,4], [4,2]);|
   true
 \end{Verbatim}

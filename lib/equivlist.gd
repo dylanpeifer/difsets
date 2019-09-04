@@ -71,7 +71,7 @@ DeclareGlobalFunction( "TranslateFreeListOfDifferenceSets" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 4);;
-##  gap> N := NormalSubgroups(G)[3];;
+##  gap> N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;
 ##  gap> EquivalentFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);
 ##  [ [ 4, 2 ] ]
 ##  ]]></Example>
@@ -97,7 +97,7 @@ DeclareGlobalFunction( "EquivalentFreeListOfDifferenceSums" );
 ##
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 4);;
-##  gap> N := NormalSubgroups(G)[3];;
+##  gap> N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;
 ##  gap> TranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);
 ##  [ [ 4, 2 ] ]
 ##  ]]></Example>

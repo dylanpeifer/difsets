@@ -70,7 +70,7 @@
       As with difference sets, the sums <M>S_1, S_2</M> are translationally equivalent if <M>S_1 = gS_2</M> for some <M>g \in G/N</M>. <P/>
 
       In the package, difference sums are stored as lists of integers that represent the values of the coefficients of the group ring elements, with position in the list given by the position of the coset in the list of elements returned by the &GAP; function <C>Elements(G/N)</C>.
-      For example, the difference sum <C>[2, 4]</C> in <C>SmallGroup(16, 5)</C> mod its normal subgroup <C>NormalSubgroups(SmallGroup(16, 5))[2]</C> has coefficient 2 on the identity coset, and coefficient 4 on the nonidentity coset. <P/>
+      For example, the difference sum <C>[2, 4]</C> in <C>G := SmallGroup(16, 5)</C> mod its normal subgroup <C>Subgroup(G, [G.2, G.3, G.4])</C> has coefficient 2 on the identity coset, and coefficient 4 on the nonidentity coset. <P/>
 
       Difference sums can be thought of as a generalization of difference sets.
       More importantly, however, difference sums can be thought of as images of difference sets in quotients of the original group.

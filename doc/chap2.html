@@ -108,7 +108,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 8);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DifferenceSums(G, N);</span>
 [ [ 3, 1, 1, 1 ], [ 2, 2, 2, 0 ] ]
 </pre></div>
@@ -157,7 +157,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 8);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DifferenceSumsOfSizeK(G, N, 1);</span>
 [ [ 1, 0, 0, 0 ] ]
 </pre></div>
@@ -193,7 +193,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.2, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AllRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
 [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
   [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -223,7 +223,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.2, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
 472
 </pre></div>
@@ -238,7 +238,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.2, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
 [ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], 
   [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], 
@@ -260,7 +260,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[5];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.2, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);</span>
 300
 </pre></div>
@@ -275,8 +275,8 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := Subgroup(G, [G.2, G.4]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := Subgroup(G, [G.2]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AllRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
 [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
   [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -293,8 +293,8 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := Subgroup(G, [G.2, G.4]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := Subgroup(G, [G.2]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
 22
 </pre></div>
@@ -309,8 +309,8 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := Subgroup(G, [G.2, G.4]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := Subgroup(G, [G.2]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SomeRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
 [ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], 
   [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], 
@@ -327,8 +327,8 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 5);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := NormalSubgroups(G)[5];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := NormalSubgroups(G)[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N1 := Subgroup(G, [G.2, G.4]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N2 := Subgroup(G, [G.2]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);</span>
 21
 </pre></div>
@@ -379,7 +379,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">EquivalentFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);</span>
 [ [ 4, 2 ] ]
 </pre></div>
@@ -394,7 +394,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);</span>
 [ [ 4, 2 ] ]
 </pre></div>
@@ -460,7 +460,7 @@ true
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDifferenceSum(G, N, [2, 4]);</span>
 true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsDifferenceSum(G, N, [1, 1]);</span>
@@ -491,7 +491,7 @@ false
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">G := SmallGroup(16, 4);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := NormalSubgroups(G)[3];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">N := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsEquivalentDifferenceSum(G, N, [2,4], [4,2]);</span>
 true
 </pre></div>
