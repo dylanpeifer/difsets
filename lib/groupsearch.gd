@@ -94,7 +94,7 @@ DeclareGlobalFunction( "DifferenceSetsOfSizeK" );
 ##  <Example><![CDATA[
 ##  gap> G := SmallGroup(16, 9);;
 ##  gap> DifferenceSets(G);
-##  [ [ 1, 2, 8, 10, 11, 15 ], [ 1, 2, 8, 9, 10, 11 ] ]
+##  [ [ 1, 2, 3, 4, 7, 10 ], [ 1, 2, 3, 4, 8, 9 ] ]
 ##  ]]></Example>
 ##  </Description>
 ##  </ManSection>
