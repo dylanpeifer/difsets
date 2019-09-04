@@ -8,6 +8,7 @@ SetPackageInfo( rec(
     Subtitle := "an algorithm for enumerating all difference sets in a group",
     Version := "2.3.0",
     Date := "14/07/2019",
+    License := "GPL-3.0-or-later",
     PackageWWWHome := "https://dylanpeifer.github.io/difsets",
     SourceRepository := rec(
         Type := "git",
