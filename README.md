@@ -1,3 +1,6 @@
+[![travis](https://travis-ci.com/dylanpeifer/difsets.svg?branch=master)](https://travis-ci.com/dylanpeifer/difsets)
+[![codecov](https://codecov.io/gh/dylanpeifer/difsets/branch/master/graph/badge.svg)](https://codecov.io/gh/dylanpeifer/difsets)
+
 # The DifSets Package
 
 The DifSets Package is a GAP package implementing an algorithm for enumerating
