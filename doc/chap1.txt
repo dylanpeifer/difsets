@@ -1,0 +1,106 @@
+  
+  [1X1 [33X[0;0YDefinitions[133X[101X
+  
+  
+  [1X1.1 [33X[0;0YDifference Sets[133X[101X
+  
+  [33X[0;0YA [22X⟨ v, k, λ ⟩[122X-difference set is a nonempty proper subset [22XD[122X of a finite group
+  [22XG[122X  such  that  [22X|G|  =  v[122X,  [22X|D| = k[122X, and each nonidentity element of [22XG[122X can be
+  written  as  [22Xd_id_j^-1[122X  for  [22Xd_i,  d_j  ∈ D[122X in exactly [22Xλ[122X different ways. The
+  standard  example  is  the  [22X⟨ 7, 3, 1⟩[122X-difference set [22X{1, 2, 4}[122X of the group
+  [22XZ/7Z[122X  under  addition.  Additionally,  it can easily be shown that every one
+  element  subset  of  a  group is a difference set, and the complement of any
+  difference set is also a difference set.[133X
+  
+  [33X[0;0YWe will often abuse notation and let [22XD[122X denote both the set [22XD[122X and the element[133X
+  
+  
+  [24X[33X[0;6YD = \sum_{d \in D} d[133X
+  
+  [124X
+  
+  [33X[0;0Yof the group ring [22XZ[G][122X. Then define[133X
+  
+  
+  [24X[33X[0;6YgD = \sum_{d \in D} gd,[133X
+  
+  [124X
+  
+  
+  [24X[33X[0;6YD^\phi = \sum_{d \in D} \phi(d),[133X
+  
+  [124X
+  
+  
+  [24X[33X[0;6YD^{(-1)} = \sum_{d \in D} d^{-1},[133X
+  
+  [124X
+  
+  [33X[0;0Ywhere  [22Xg  ∈  G[122X and [22Xϕ[122X is a homomorphism with domain [22XG[122X. Using this notation, a
+  difference  set  in [22XG[122X is an element of the group ring [22XZ[G][122X with coefficients
+  from  [22X{0,  1}[122X  such  that  [22XDD^(-1)  =  (k-λ)  + λ G[122X, where by convention the
+  isolated coefficients [22X(k-λ)[122X are assumed to be coefficients of the identity.[133X
+  
+  [33X[0;0YTwo  difference sets [22XD_1, D_2[122X are equivalent if both are in the same group [22XG[122X
+  and [22XD_1 = gD_2^ϕ[122X for some [22Xg ∈ G[122X and [22Xϕ ∈ mathrmAut(G)[122X. In other words, [22XD_1[122X is
+  equivalent  to  [22XD_2[122X  if  [22XD_1[122X  can  be  mapped  to  [22XD_2[122X  by  translation  and
+  automorphism  in the group [22XG[122X. We say [22XD_1, D_2[122X are translationally equivalent
+  if  they are equivalent solely by translation, meaning [22XD_1 = gD_2[122X for some [22Xg
+  ∈ G[122X.[133X
+  
+  [33X[0;0YIn  the  package,  difference  sets  are  stored  as  lists of integers that
+  represent  the  index  of the elements in the difference set as found in the
+  list  of all elements in the group returned by the [5XGAP[105X function [10XElements(G)[110X.
+  For  example,  the  difference set [10X[1, 3, 6, 9, 11, 13][110X in [10XSmallGroup(16, 5)[110X
+  really  consists of the first, third, sixth, ninth, eleventh, and thirteenth
+  elements  of the list returned by [10XElements(SmallGroup(16, 5))[110X. When given as
+  arguments,  difference  sets  in the package are never assumed to be sorted,
+  but many functions will return difference sets in sorted order since sorting
+  is used internally.[133X
+  
+  
+  [1X1.2 [33X[0;0YDifference Sums[133X[101X
+  
+  [33X[0;0YA [22X⟨ v, k, λ ⟩[122X-difference sum in a group [22XG[122X modulo its normal subgroup [22XN[122X is an
+  element  [22XS[122X  of  the group ring [22XZ[G/N][122X such that [22XSS^(-1) = (k - λ) + λ |N|G/N[122X
+  and  the  coefficients  of [22XS[122X have values in [22X{0, 1, dots, |N|}[122X. Note that the
+  original  [22XG[122X  and  [22XN[122X  are included in the definition, so it makes no sense to
+  talk  about  a  difference  sum  in  some  arbitrary  group [22XH[122X. The size of a
+  difference  sum  is  the  sum  of  its  coefficients,  and  by  defining the
+  complement  of  [22XS[122X  to  be  [22X|N|G/N - S[122X we can see that, similar to difference
+  sets, size one sums and complements of difference sums are always difference
+  sums.[133X
+  
+  [33X[0;0YTwo  difference sums [22XS_1, S_2[122X are equivalent if both are in the same group [22XG[122X
+  mod  its  normal  subgroup  [22XN[122X  and  [22XS_1  =  gS_2^ϕ[122X for some [22Xg ∈ G/N[122X and [22Xϕ[122X an
+  automorphism  of  [22XG/N[122X  induced  by  an  automorphism of [22XG[122X. Note that not all
+  automorphisms  of  [22XG/N[122X  are induced by automorphisms of [22XG[122X, so our definition
+  here is more restrictive than perhaps expected. As with difference sets, the
+  sums [22XS_1, S_2[122X are translationally equivalent if [22XS_1 = gS_2[122X for some [22Xg ∈ G/N[122X.[133X
+  
+  [33X[0;0YIn  the  package,  difference  sums  are  stored  as  lists of integers that
+  represent  the  values  of the coefficients of the group ring elements, with
+  position  in  the  list  given  by  the position of the coset in the list of
+  elements  returned  by  the  [5XGAP[105X  function  [10XElements(G/N)[110X.  For example, the
+  difference  sum  [10X[2,  4][110X  in  [10XG := SmallGroup(16, 5)[110X mod its normal subgroup
+  [10XSubgroup(G,  [G.2,  G.3,  G.4])[110X has coefficient 2 on the identity coset, and
+  coefficient 4 on the nonidentity coset.[133X
+  
+  [33X[0;0YDifference  sums  can  be thought of as a generalization of difference sets.
+  More  importantly,  however,  difference sums can be thought of as images of
+  difference  sets in quotients of the original group. In particular, if [22Xθ : G
+  ->  G/N[122X  is the natural projection, then for any difference set [22XD[122X in [22XZ[G][122X we
+  have  a  difference sum [22XD^θ[122X in [22XG[122X modulo its normal subgroup [22XN[122X. Additionally,
+  difference  sums  induce  other difference sums in any further quotient. The
+  fundamental  idea  of  the  algorithm in this package is that we can reverse
+  this process. Starting with [22XG[122X mod [22XG[122X, where the only difference sum of size [22Xk[122X
+  is  [10X[k][110X,  we  can  successively  refine  this  difference sum up a series of
+  quotients  of  [22XG[122X  until  reaching  [22XG[122X  itself.  In each step we enumerate all
+  preimages  of  the  difference  sums  and  remove  preimages  that  are  not
+  difference  sums themselves. In the final step we refine to difference sets.
+  Furthermore,   since   equivalent   difference  sums  will  have  equivalent
+  collections  of difference sets as preimages, in each step we remove all but
+  one  representative  of  each  equivalence  class  from our collection. This
+  method dramatically decreases the search space for an exhaustive enumeration
+  of all difference sets up to equivalence in [22XG[122X.[133X
+  

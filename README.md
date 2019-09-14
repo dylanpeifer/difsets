@@ -1,267 +1,113 @@
-# GitHubPagesForGAP
+[![travis](https://travis-ci.com/dylanpeifer/difsets.svg?branch=master)](https://travis-ci.com/dylanpeifer/difsets)
+[![codecov](https://codecov.io/gh/dylanpeifer/difsets/branch/master/graph/badge.svg)](https://codecov.io/gh/dylanpeifer/difsets)
 
-This repository can be used to quickly set up a website hosted by
-[GitHub](https://github.com/) for GAP packages using a GitHub repository.
-Specifically, this uses [GitHub pages](https://pages.github.com/)
-by adding a `gh-pages` branch to your package repository which
-contains data generated from the `PackageInfo.g` file of your package.
+# The DifSets Package
 
-## Initial setup
+The DifSets Package is a GAP package implementing an algorithm for enumerating
+all difference sets up to equivalence in a group. The algorithm functions by
+finding difference sums, which are potential images of difference sets in
+quotient groups of the original group, and searching their preimages. In this
+way, the search space can be dramatically decreased, and searches of groups of
+relatively large order (such as order 64 or order 96) can be completed.
 
-The easiest way to do this is to run the `setup.sh` shell script
-provided in the [GitHubPagesForGAP]() from within a git clone of your
-package's GitHub repository.
+## Requirements
 
-In case this does not work, or if you want to really know what's going
-on, you can also follow the manual instructions described after the fold.
+The package requires at least version 4.9 of [GAP][1]. Additional required GAP
+packages are [GRAPE][2] 4.7 and [GAPDoc][3] 1.5. The [SmallGrp][4] package is
+also recommended. These required packages are included with a standard install
+of GAP, and will be loaded automatically by the DifSets package.
 
-------
+## Installation
 
-The following instructions assume you do not already have a `gh-pages`
-branch in your repository. If you do have one, you should delete it before
-following these instructions.
+As of July 2019, the DifSets package is not currently distributed with a
+standard installation of GAP, but will be included in future releases. To
+install, first download the [archive][5] and then unpack it in the `pkg`
+directory of one of your GAP root directories. After installation, the package
+can be loaded at the GAP command prompt by typing
 
-1. Go into your clone of your package repository.
+    gap> LoadPackage("DifSets");
 
-2. Setup a `gh-pages` branch in a `gh-pages` subdirectory.
+after which the DifSets banner should appear on the screen.
 
-   Users with a recent enough git version (recommended is >= 2.7.0)
-   can do this using a "worktree", via the following commands:
+## Tests
 
-   ```sh
-   # Add a new remote pointing to the GitHubPagesForGAP repository
-   git remote add -f gh-gap https://github.com/gap-system/GitHubPagesForGAP
+After installation, basic tests of the package can by performed by running
 
-   # Create a fresh gh-pages branch from the new remote
-   git branch gh-pages gh-gap/gh-pages --no-track
+    gap> TestPackage("difsets");
 
-   # Create a new worktree and change into it
-   git worktree add gh-pages gh-pages
-   cd gh-pages
-   ```
+at the GAP command prompt. Note that the package name must be in lowercase.
 
-   Everybody else should instead do the following, with the URL
-   in the initial clone command suitably adjusted:
+## Documentation
 
-   ```sh
-   # Create a fresh clone of your repository, and change into it
-   git clone https://github.com/USERNAME/REPOSITORY gh-pages
-   cd gh-pages
+Documentation for the package can be found in the `doc` subdirectory in html
+form as `chap0.html` and pdf form as `manual.pdf`. Documentation can also be
+accessed on the [package website][6] and through the standard GAP help system.
+Documentation can be recompiled by running
 
-   # Add a new remote pointing to the GitHubPagesForGAP repository
-   git remote add gh-gap https://github.com/gap-system/GitHubPagesForGAP
-   git fetch gh-gap
+    gap makedoc.g
 
-   # Create a fresh gh-pages branch from the new remote
-   git checkout -b gh-pages gh-gap/gh-pages --no-track
-   ```
+in this directory.
 
-5. Add in copies of your `PackageInfo.g`, `README` (or `README.md`) and manual:
+## Results
 
-   ```
-   cp -f ../PackageInfo.g ../README* .
-   cp -f ../doc/*.{css,html,js,txt} doc/
-   ```
+Results for the group with ID [v, n] in the SmallGroups library are found in
+the file `v-n.txt` in the directory `data/groups/v`. At the top of each file is
+a header with the ID of the group, the total number of inequivalent difference
+sets found, and the time required for the computation. For example, the group
+SmallGroup(64, 260) has 30 difference sets up to equivalence. These sets can be
+found in the file `data/groups/64/64-260.txt`. The header of this file
+indicates that the computation took 40 hours, 5 minutes, and 38.020 seconds to
+complete. A summary of timings is also listed in the file `groups.csv` in the
+`data` directory.
 
-6. Now run the `update.g` GAP script. This extracts data from your
-   `PackageInfo.g` file and puts that data into `_data/package.yml`.
-   From this, the website template can populate the web pages with
-   some sensible default values.
+The easiest way to access results is the `LoadDifferenceSets` function. With
+the package loaded you can, for example, type
 
-   ```
-   gap update.g
-   ```
+    gap> LoadDifferenceSets(16, 12);
+    [ [ 1, 2, 3, 4, 5, 12 ], [ 1, 2, 3, 4, 8, 15 ] ]
 
-7. Commit and push everything.
+to return a list containing representatives for the two difference sets up to
+equivalence in SmallGroup(16, 12). For details, see the documentation.
 
-   ```
-   git add PackageInfo.g README* doc/ _data/package.yml
-   git commit -m "Setup gh-pages based on GitHubPagesForGAP"
-   git push --set-upstream origin gh-pages
-   ```
+The script `difsets`, also available in the `data` subdirectory, was used to
+produce the result files. Calling
 
-That's it. You can now see your new package website under
-https://USERNAME.github.io/REPOSITORY/ (of course after
-adjusting USERNAME and REPOSITORY suitably).
+    ./difsets v n
 
+will start a session of GAP, load the DifSets package, and compute the list of
+inequivalent difference sets in SmallGroup(v, n). Output is then put in the
+file `v-n.txt`. For example,
 
-## Using an existing gh-pages branch
+    ./difsets 16 4
 
-If you previously set up [GitHubPagesForGAP]() and thus already have a `gh-pages`
-branch, you may on occasion have need to make a fresh clone of your package
-repository, and then also would like to recreate the `gh-pages` directory.
+produces the file `16-4.txt` that contains all the inequivalent difference sets
+in group [16, 4].
 
-The easiest way to do this is to run the `setup.sh` shell script
-provided in the [GitHubPagesForGAP]() from within a git clone of your
-package's GitHub repository.
+## License
 
-In case this does not work, or if you want to really know what's going
-on, you can also follow the manual instructions described after the fold.
+Copyright (C) 2017, 2019 Dylan Peifer
 
-------
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Users with a recent enough git version (recommended is >= 2.7)
-can do this using a "worktree", via the following commands:
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-   ```sh
-   git branch gh-pages origin/gh-pages
-   git worktree add gh-pages gh-pages
-   ```
-
-If you are using an older version of git, you can instead use a second clone
-of your repository instead:
-
-   ```sh
-   git clone -b gh-pages https://github.com/USERNAME/REPOSITORY gh-pages
-   ```
-
-
-## Adjusting the content and layout
-
-[GitHubPagesForGAP]() tries to automatically provide good defaults for
-most packages. However, you can tweak everything about it:
-
-* To adjust the page layout, edit the files `stylesheets/styles.css`
-and `_layouts/default.html`.
-
-* To adjust the content of the front page, edit `index.md` (resp.
-  for the content of the sidebar, edit `_layouts/default.html`
-
-* You can also add additional pages, in various formats (HTML,
-Markdown, Textile, ...).
-
-For details, please consult the [Jekyll](http://jekyllrb.com/)
-manual.
-
-
-## Testing the site locally
-
-If you would like to test your site on your own machine, without
-uploading it to GitHub (where it is visible to the public), you can do
-so by installing [Jekyll](http://jekyllrb.com/), the static web site
-generator used by GitHub to power GitHub Pages.
-
-Once you have installed Jekyll as described on its homepage, you can
-test the website locally as follows:
-
-1. Go to the `gh-pages` directory we created above.
-
-2. Run jekyll (this launches a tiny web server on your machine):
-
-   ```
-   jekyll serve -w
-   ```
-
-3. Visit the URL http://localhost:4000 in a web browser.
-
-
-## Updating after you made a release
-
-Whenever you make a release of your package (and perhaps more often than
-that), you will want to update your website. The easiest way is to use
-the `release` script from the [ReleaseTools][], which performs all
-the necessary steps for you, except for the very last of actually
-publishing the package (and it can do even that for you, if you
-pass the `-p` option to it).
-
-However, you can also do it manually. The steps for doing it are quite
-similar to the above:
-
-1. Go to the `gh-pages` directory we created above.
-
-2. Add in copies of your `PackageInfo.g`, `README` (or `README.md`) and manual:
-
-   ```
-   cp -f ../PackageInfo.g ../README* .
-   cp -f ../doc/*.{css,html,js,txt} doc/
-   ```
-
-3. Now run the `update.g` GAP script.
-
-4. Commit and push the work we have just done.
-
-   ```
-   git add PackageInfo.g README* doc/ _data/package.yml
-   git commit -m "Update web pages"
-   git push
-   ```
-
-A few seconds after you have done this, your changes will be online
-under https://USERNAME.github.io/REPOSITORY/ .
-
-
-## Updating to a newer version of GitHubPagesForGAP
-
-Normally you should not have to ever do this. However, if you really want to,
-you can attempt to update to the most recent version of [GitHubPagesForGAP]() via
-the following instructions. The difficulty of such an update depends on how
-much you tweaked the site after initially cloning [GitHubPagesForGAP]().
-
-1. Go to the `gh-pages` directory we created above.
-   Make sure that there are no uncommitted changes, as they will be lost
-   when following these instructions.
-
-2. Make sure the `gh-gap` remote exists and has the correct URL. If in doubt,
-   just re-add it:
-   ```
-   git remote remove gh-gap
-   git remote add gh-gap https://github.com/gap-system/GitHubPagesForGAP
-   ```
-
-3. Attempt to merge the latest GitHubPagesForGAP.
-   ```
-   git pull gh-gap gh-pages
-   ```
-
-4. If this produced no errors and just worked, skip to the next step.
-   But it is quite likely that you will have conflicts in the file
-   `_data/package.yml`, or in your `README` or `PackageInfo.g` files.
-   These can usually be resolved by entering this:
-   ```
-   cp ../PackageInfo.g ../README* .
-   gap update.g
-   git add PackageInfo.g README* _data/package.yml
-   ```
-   If you are lucky, these were the only conflicts (check with `git status`).
-   If no merge conflicts remain, finish with this command:
-   ```
-   git commit -m "Merge gh-gap/gh-pages"
-   ```
-   If you still have merge conflicts, and don't know how to resolve them, or
-   get stuck some other way, you can abort the merge process and revert to the
-   original state by issuing this command:
-   ```
-   git merge --abort
-   ```
-
-5. You should be done now. Don't forget to push your changes if you want them
-   to become public.
-
-
-## Packages using GitHubPagesForGAP
-
-The majority of packages listed on <https://gap-packages.github.io> use
-[GitHubPagesForGAP](). If you want some specific examples, here are some:
-
-* <https://gap-packages.github.io/anupq>
-* <https://gap-packages.github.io/cvec>
-* <https://gap-packages.github.io/genss>
-* <https://gap-packages.github.io/io>
-* <https://gap-packages.github.io/NormalizInterface>
-* <https://gap-packages.github.io/nq>
-* <https://gap-packages.github.io/orb>
-* <https://gap-packages.github.io/polenta>
-* <https://gap-packages.github.io/recog>
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Contact
 
-Please submit bug reports, suggestions for improvements and patches via
-the [issue tracker](https://github.com/gap-system/GitHubPagesForGAP/issues).
+For questions, comments, problems, and bugs, please contact the package author,
+Dylan Peifer, at djp282@cornell.edu.
 
-You can also contact me directly via [email](max@quendi.de).
-
-Copyright (c) 2013-2019 Max Horn
-
-[GitHubPagesForGAP]: https://github.com/gap-system/GitHubPagesForGAP
-[ReleaseTools]: https://github.com/gap-system/ReleaseTools
+[1]: https://www.gap-system.org/
+[2]: https://gap-packages.github.io/grape/
+[3]: http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
+[4]: https://gap-packages.github.io/smallgrp/
+[5]: https://github.com/dylanpeifer/difsets/releases/download/v2.3.1/difsets-2.3.1.tar.gz
+[6]: https://dylanpeifer.github.io/difsets/

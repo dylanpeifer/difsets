@@ -1,0 +1,198 @@
+  
+  [1X3 [33X[0;0YResults[133X[101X
+  
+  [33X[0;0YThe  [5XDifSets[105X  Package  was  designed with the goal of finding all difference
+  sets  up  to  equivalence  in  groups  of  order 64 and 96, a goal which was
+  accomplished.  Overall,  the algorithm has successfully computed results for
+  1006  of the 1032 groups of order less than 100. Full results, which include
+  timings,  number  of  sets, and the sets themselves can be found in the [10Xdata[110X
+  subdirectory  of the package, which is organized by group order and contains
+  a  single  [10X.txt[110X file for each computed group. A list of all timings can also
+  be  found  in  the file [10Xgroups.csv[110X in the [10Xdata[110X directory, and the difference
+  sets themselves can be loaded using the function [2XLoadDifferenceSets[102X ([14X2.6-2[114X).
+  All  computations were performed using [5XGAP[105X 4.9.1 on a 4.00GHz i7-6700K using
+  8GB  of  RAM.  Here  we  give  a  basic  overview of results and comments on
+  timings.  Throughout this chapter we will refer to the group returned by the
+  [5XGAP[105X function [10XSmallGroup(v, n)[110X as [10X[v, n][110X.[133X
+  
+  
+  [1X3.1 [33X[0;0YOrder 16 and 36[133X[101X
+  
+  [33X[0;0YDifference  sets  in  groups  of  order  16 and 36 form the first nontrivial
+  examples of the Hadamard parameters, and exhaustive enumerations are already
+  well  known.  Still,  computation of these sets gives a useful benchmark and
+  check of accuracy.[133X
+  
+  [33X[0;0YAlmost  all  groups  in these orders take less than a second. The group [10X[36,
+  9][110X,  however,  takes several orders of magnitude longer than other groups of
+  order  36.  This is because [10X[36, 9][110X does not have small normal subgroups (in
+  particular,  its  smallest  nontrivial  normal  subgroup  has  order 9), and
+  refining  across  a  large  gap  in  sizes,  expecially  near the end of the
+  algorithm, requires checking significantly more preimages.[133X
+  
+         Group     Difference Sets   Time (seconds)   
+        ────────   ───────────────   ──────────────  
+        [10X[16, 1][110X           0              0.030        
+        [10X[16, 2][110X           3              0.103        
+        [10X[16, 3][110X           4              0.100        
+        [10X[16, 4][110X           3              0.100        
+        [10X[16, 5][110X           2              0.061        
+        [10X[16, 6][110X           2              0.071        
+        [10X[16, 7][110X           0              0.072        
+        [10X[16, 8][110X           2              0.070        
+        [10X[16, 9][110X           2              0.082        
+        [10X[16, 10][110X          2              0.187        
+        [10X[16, 11][110X          2              0.121        
+        [10X[16, 12][110X          2              0.195        
+        [10X[16, 13][110X          2              0.117        
+        [10X[16, 14][110X          1              0.059        
+  
+         Group     Difference Sets   Time (seconds)   
+        ────────   ───────────────   ──────────────  
+        [10X[36, 1][110X           0              0.335        
+        [10X[36, 2][110X           0              0.201        
+        [10X[36, 3][110X           0              0.407        
+        [10X[36, 4][110X           0              0.322        
+        [10X[36, 5][110X           0              0.218        
+        [10X[36, 6][110X           6              0.412        
+        [10X[36, 7][110X           1              0.795        
+        [10X[36, 8][110X           4              0.340        
+        [10X[36, 9][110X           5             340.989       
+        [10X[36, 10][110X          6              1.137        
+        [10X[36, 11][110X          3              0.699        
+        [10X[36, 12][110X          6              0.417        
+        [10X[36, 13][110X          1              0.801        
+        [10X[36, 14][110X          3              0.434        
+  
+  
+  [1X3.2 [33X[0;0YOrder 64 and 96[133X[101X
+  
+  [33X[0;0YDifference  sets in groups of order 64 also satisfy the Hadamard parameters,
+  while   difference  sets  in  groups  of  order  96  satisfy  the  McFarland
+  parameters.  Since  there  are many groups of both orders, here we just give
+  some  examples  and  summaries.  In  particular,  the  tables below list the
+  fastest, slowest, and median five groups of each order, sorted by time.[133X
+  
+  [33X[0;0YGroups  of  order  64  are  [22Xp[122X-groups,  and  thus  always  have enough normal
+  subgroups  to  form  long refining series. This means the refining steps are
+  relatively  efficient  for  all  groups  in  this order. The main difference
+  between  groups  is  the size of the automorphism group, and, in particular,
+  four  of  the  five groups taking the largest amount of time are four of the
+  five  groups  with  the  largest  automorphism  groups  in  this  order. The
+  additional  group  in the top five, [10X[64, 235][110X, has a relatively large number
+  of  difference  sets,  but  is  otherwise  unremarkable. In general, smaller
+  numbers of difference sets correspond to faster times, and in fact the eight
+  groups  with  no difference sets were computed the fastest, beating the next
+  fastest  groups by an order of magnitude. Overall, the mean computation time
+  for a group of order 64 was 3988.476 seconds, with a median time of 1493.175
+  seconds.  This  means that the total computer time to compute all difference
+  sets in groups of order 64 was roughly 12 days.[133X
+  
+  [33X[0;0YIn  groups  of  order  96  we  do  not  always  have large numbers of normal
+  subgroups,   and,  as  with  [10X[36,  9][110X,  this  can  substantially  slow  down
+  computation.  In  fact,  the five groups taking the longest computation time
+  are  five  of  the six groups with fewest normal subgroups in this order. We
+  are  helped,  however,  by  the  fact that the only valid choice of [22Xk[122X is 20,
+  which  is  relatively  small  and  thus  does  not  lead to large numbers of
+  preimages even across large gaps in the refining series. Many groups in this
+  order  have no difference sets, but even for these groups computation can be
+  slow.  While the fastest groups contain no difference sets, many groups with
+  no  difference  sets  actually  take  much  longer than other groups that do
+  contain  difference  sets. Overall, the mean computation time for a group of
+  order  96  was  24447.991  seconds, with a median time of 11278.765 seconds.
+  This  means  that  the total computer time to compute all difference sets in
+  groups of order 96 was roughly 65 days.[133X
+  
+          Group     Difference Sets   Time (seconds)   
+        ─────────   ───────────────   ──────────────  
+        [10X[64, 52][110X           0              3.451        
+        [10X[64, 54][110X           0              3.463        
+        [10X[64, 47][110X           0              3.594        
+        [10X[64, 186][110X          0              3.940        
+         [10X[64, 1][110X           0              3.950        
+        [10X[64, 166][110X        2312            1424.692      
+        [10X[64, 134][110X         342            1439.484      
+        [10X[64, 135][110X         540            1493.175      
+         [10X[64, 7][110X         1320            1515.710      
+        [10X[64, 160][110X        3192            1518.693      
+        [10X[64, 192][110X         222           21131.394      
+        [10X[64, 267][110X          4            23662.500      
+        [10X[64, 235][110X        4317           24566.186      
+        [10X[64, 260][110X         30            144338.020     
+        [10X[64, 262][110X         148           229488.988     
+  
+          Group     Difference Sets   Time (seconds)   
+        ─────────   ───────────────   ──────────────  
+         [10X[96, 2][110X           0              8.731        
+        [10X[96, 59][110X           0              8.791        
+        [10X[96, 189][110X          0              29.378       
+        [10X[96, 66][110X           0              29.777       
+        [10X[96, 46][110X           0              44.478       
+        [10X[96, 209][110X          4            10809.673      
+        [10X[96, 133][110X         16            11198.052      
+        [10X[96, 224][110X          0            11278.765      
+        [10X[96, 89][110X           0            11349.466      
+        [10X[96, 102][110X          0            11415.688      
+        [10X[96, 227][110X         42            308246.830     
+        [10X[96, 64][110X          14            310447.407     
+        [10X[96, 70][110X          28            514559.313     
+        [10X[96, 72][110X           2            515196.547     
+        [10X[96, 71][110X           8            871439.024     
+  
+  
+  [1X3.3 [33X[0;0YComments[133X[101X
+  
+  [33X[0;0YOverall,  the  algorithm  spends  almost  all  of  its  time performing four
+  operations:    refining    sums    to   sums   in   several   stages   using
+  [2XSomeRefinedDifferenceSums[102X  ([14X2.3-8[114X), refining sums to sets in the final stage
+  using [2XSomeRefinedDifferenceSets[102X ([14X2.3-4[114X), removing equivalent difference sums
+  in  several  stages  using  [2XEquivalentFreeListOfDifferenceSums[102X  ([14X2.4-3[114X), and
+  removing   equivalent   difference   sets   in   the   final   stage   using
+  [2XSmallestEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-6[114X).  On  typical  groups of
+  order  16  and  order  36 (i.e., not [10X[36, 9][110X), each of these four operations
+  takes  roughly  the same time. On groups of order 64, some testing indicates
+  that  one or two orders of magnitude more time are spent in the final stage,
+  when    the    algorithm    uses   [2XSomeRefinedDifferenceSets[102X   ([14X2.3-4[114X)   and
+  [2XSmallestEquivalentFreeListOfDifferenceSets[102X   ([14X2.4-6[114X).  This  discrepency  is
+  likely  to  remain  or  increase  for  larger order groups, as the number of
+  preimages  to  check  increases exponentially with the number of cosets. For
+  the  tested  groups  of order 64, roughly 60% of the time in the final stage
+  was spent refining, with the remaining 40% spent removing equivalent sets.[133X
+  
+  [33X[0;0YLarge automorphism groups make removing equivalents time-consuming and large
+  jumps  in  the size of the normal subgroups used, especially near the end of
+  the  algorithm, make refining difficult. So, in general, the algorithm seems
+  to  work well when the group has a small automorphism group and many (small)
+  normal  subgroups. In addition, the algorithm does better when the values of
+  [22Xk[122X  that  need  to  be  checked  are small, as this limits both the number of
+  preimages  to check as well as the amount of time required for checking sets
+  and  equivalences.  It  is  also generally faster when the final result is a
+  smaller number of difference sets.[133X
+  
+  [33X[0;0YThere  are  twenty-six  groups of order less than 100 in which the algorithm
+  was  not able to complete a search. Fourteen of these groups are prime order
+  cyclic.  As simple groups, these groups have no normal subgroups and thus no
+  possibility  for  refining,  which  means  the  algorithm  must search every
+  possible  subset  of  size [22Xk[122X to find all difference sets of size [22Xk[122X. Even for
+  groups  of relatively small order, such as order 31, this is infeasible, and
+  with  current  implementation  will overflow memory before even starting the
+  search  (one of these groups, [10X[37, 1][110X is actually feasible to search without
+  this  implementation issue, but the others have too many sets to check). The
+  remaining  groups  have  either too few normal subgroups, large jumps in the
+  refining  series,  large  possible  values  of  [22Xk[122X, or a combination of these
+  problems.[133X
+  
+  [33X[0;0YThe  next  natural  cases  for exhaustive search are groups of order 100 and
+  order   144,   which  give  the  next  Hadamard  parameters.  Unfortunately,
+  preliminary  testing  indicates that this algorithm is not likely to be able
+  to  compute  all  difference  sets  for these groups. For example, a typical
+  difference  sum in [10X[100, 9][110X is [10X[5, 4, 3, 3, 0, 3, 2, 3, 2, 2, 2, 2, 2, 1, 2,
+  1,  1,  2, 2, 3][110X, which has roughly [22X6 × 10^16[122X preimage sets to check. In the
+  search  for  difference  sets in [10X[36, 9][110X the single difference sum [10X[6, 3, 3,
+  3][110X, with around [22X3 × 10^7[122X preimages, takes around 300 seconds to search. Thus
+  even  if  we  could check sets in [10X[100, 9][110X as fast as in [10X[36, 9][110X, the search
+  would  take roughly 20000 years. Some testing suggests that coding pieces of
+  the algorithm in C could give one or two orders of magnitude of speedup, but
+  even  further speedup is required to make the search feasible, so some other
+  improvements, either in theory or implementation, are needed as well.[133X
+  

@@ -1,0 +1,512 @@
+  
+  [1X2 [33X[0;0YPackage Contents[133X[101X
+  
+  [33X[0;0YThe  [5XDifSets[105X  Package consists of a collection of functions implementing the
+  main  algorithm,  and  some  additional  functions  for  experimentation and
+  testing.  Several  functions  not  appearing  in this documentation are used
+  internally for certain subtasks. See the code itself for details.[133X
+  
+  
+  [1X2.1 [33X[0;0YThe Main Functions[133X[101X
+  
+  [33X[0;0YThe  purpose  of  this  package  is  to  provide a function that efficiently
+  enumerates  all  difference  sets  up  to  equivalence  in  a  given  group.
+  Similarly,  we can also enumerate all difference sums up to equivalence. The
+  following  are  these  functions.  Their components are described in further
+  sections.[133X
+  
+  [1X2.1-1 DifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XDifferenceSets[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of all difference sets up to equivalence in the group [3XG[103X. Only
+  the  smaller  of each complementary pair of difference sets is included, and
+  one-element difference sets are ignored.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 9);;[127X[104X
+    [4X[25Xgap>[125X [27XDifferenceSets(G);[127X[104X
+    [4X[28X[ [ 1, 2, 3, 4, 7, 10 ], [ 1, 2, 3, 4, 8, 9 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-2 DifferenceSums[101X
+  
+  [33X[1;0Y[29X[2XDifferenceSums[102X( [3XG[103X, [3XN[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  list of all difference sums up to equivalence in the group [3XG[103X mod
+  its  normal  subgroup  [3XN[103X.  Only  the  smaller  of each complementary pair of
+  difference sums is included, and difference sums of size 1 are ignored.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 8);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XDifferenceSums(G, N);[127X[104X
+    [4X[28X[ [ 3, 1, 1, 1 ], [ 2, 2, 2, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.2 [33X[0;0YSizes[133X[101X
+  
+  [33X[0;0YThe  first  step  of  the  algorithm  is to determine what possible sizes of
+  difference  sets  and  sums the group can contain. Each size is then handled
+  individually since different size sets or sums will never be equivalent.[133X
+  
+  [1X2.2-1 PossibleDifferenceSetSizes[101X
+  
+  [33X[1;0Y[29X[2XPossibleDifferenceSetSizes[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of the possible sizes of difference sets in group [3XG[103X. Only the
+  smaller of any pair of complementary sizes is returned, and the trivial size
+  1  is  never included. Current implementation simply returns all values of k
+  such  that  lambda  = k(k-1)/(v-1) is an integer, where v is the order of [3XG[103X,
+  and the resulting parameters v, k, lambda pass the Bruck-Ryser-Chowla test.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(31, 1);;[127X[104X
+    [4X[25Xgap>[125X [27XPossibleDifferenceSetSizes(G);[127X[104X
+    [4X[28X[ 6, 10, 15 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.2-2 DifferenceSetsOfSizeK[101X
+  
+  [33X[1;0Y[29X[2XDifferenceSetsOfSizeK[102X( [3XG[103X, [3Xk[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of all difference sets up to equivalence in the group [3XG[103X that
+  have size [3Xk[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 9);;[127X[104X
+    [4X[25Xgap>[125X [27XDifferenceSetsOfSizeK(G, 1);[127X[104X
+    [4X[28X[ [ 1 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.2-3 DifferenceSumsOfSizeK[101X
+  
+  [33X[1;0Y[29X[2XDifferenceSumsOfSizeK[102X( [3XG[103X, [3XN[103X, [3Xk[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a  list of all difference sums up to equivalence in the group [3XG[103X mod
+  its normal subgroup [3XN[103X that have size [3Xk[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 8);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XDifferenceSumsOfSizeK(G, N, 1);[127X[104X
+    [4X[28X[ [ 1, 0, 0, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.3 [33X[0;0YRefining[133X[101X
+  
+  [33X[0;0YRefining  refers to the process of enumerating the preimages of a difference
+  sum  and  filtering out preimages that are not themselves difference sets or
+  sums.  For  each  size [22Xk[122X we know that the only difference sum of size [22Xk[122X in [22XG[122X
+  mod  [22XG[122X  is  [10X[k][110X.  Starting  with  this difference sum, we successivly refine
+  through  a  series of quotients of [22XG[122X to eventually reach the desired sums or
+  sets.  In  the  algorithm,  we  use  [2XSomeRefinedDifferenceSets[102X  ([14X2.3-4[114X)  and
+  [2XSomeRefinedDifferenceSums[102X   ([14X2.3-8[114X)   rather  than  [2XAllRefinedDifferenceSets[102X
+  ([14X2.3-2[114X) and [2XAllRefinedDifferenceSums[102X ([14X2.3-6[114X) since the former are faster and
+  we  only  need  at  least one representative of each equivalence class since
+  additional equivalent sums or sets will just be removed anyway.[133X
+  
+  [1X2.3-1 RefiningSeries[101X
+  
+  [33X[1;0Y[29X[2XRefiningSeries[102X( [3XG[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a normal series for group [3XG[103X. Current implementation produces a chief
+  series through a nontrivial normal subgroup of smallest possible size in [3XG[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(8, 3);;[127X[104X
+    [4X[25Xgap>[125X [27XList(RefiningSeries(G), N -> Size(N));[127X[104X
+    [4X[28X[ 8, 4, 2, 1 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-2 AllRefinedDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XAllRefinedDifferenceSets[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of all difference sets that are preimages of difference sums
+  contained  in  the list [3Xdifsums[103X of difference sums in group [3XG[103X mod its normal
+  subgroup [3XN[103X. Difference sums in [3Xdifsums[103X are all assumed to be the same size.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XAllRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X[ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], [128X[104X
+    [4X[28X  [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], [128X[104X
+    [4X[28X  [ 1, 3, 6, 13, 4, 15 ], [ 1, 3, 6, 13, 9, 11 ], [ 1, 5, 2, 6, 4, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 2, 6, 9, 11 ], [ 1, 5, 2, 13, 4, 9 ], [ 1, 5, 2, 13, 11, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 6, 8, 4, 9 ], [ 1, 5, 6, 8, 11, 15 ], [ 1, 5, 8, 13, 4, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 8, 13, 9, 11 ], [ 1, 10, 2, 6, 4, 11 ], [ 1, 10, 2, 6, 9, 15 ], [128X[104X
+    [4X[28X  [ 1, 10, 2, 8, 4, 9 ], [ 1, 10, 2, 8, 11, 15 ], [ 1, 10, 6, 13, 4, 9 ], [128X[104X
+    [4X[28X  [ 1, 10, 6, 13, 11, 15 ], [ 1, 10, 8, 13, 4, 11 ], [ 1, 10, 8, 13, 9, 15 ], [128X[104X
+    [4X[28X  [ 3, 5, 2, 6, 4, 11 ], [ 3, 5, 2, 6, 9, 15 ], [ 3, 5, 2, 8, 4, 9 ], [128X[104X
+    [4X[28X  [ 3, 5, 2, 8, 11, 15 ], [ 3, 5, 6, 13, 4, 9 ], [ 3, 5, 6, 13, 11, 15 ], [128X[104X
+    [4X[28X  [ 3, 5, 8, 13, 4, 11 ], [ 3, 5, 8, 13, 9, 15 ], [ 3, 10, 2, 6, 4, 15 ], [128X[104X
+    [4X[28X  [ 3, 10, 2, 6, 9, 11 ], [ 3, 10, 2, 13, 4, 9 ], [ 3, 10, 2, 13, 11, 15 ], [128X[104X
+    [4X[28X  [ 3, 10, 6, 8, 4, 9 ], [ 3, 10, 6, 8, 11, 15 ], [ 3, 10, 8, 13, 4, 15 ], [128X[104X
+    [4X[28X  [ 3, 10, 8, 13, 9, 11 ], [ 5, 10, 2, 8, 4, 15 ], [ 5, 10, 2, 8, 9, 11 ], [128X[104X
+    [4X[28X  [ 5, 10, 2, 13, 4, 11 ], [ 5, 10, 2, 13, 9, 15 ], [ 5, 10, 6, 8, 4, 11 ], [128X[104X
+    [4X[28X  [ 5, 10, 6, 8, 9, 15 ], [ 5, 10, 6, 13, 4, 15 ], [ 5, 10, 6, 13, 9, 11 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-3 NrAllRefinedSets[101X
+  
+  [33X[1;0Y[29X[2XNrAllRefinedSets[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  number of preimages that will need to be checked during a call
+  to [2XAllRefinedDifferenceSets[102X ([14X2.3-2[114X) with the same arguments. This can give a
+  rough estimate of how long the call will take to complete.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XNrAllRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X472[128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-4 SomeRefinedDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XSomeRefinedDifferenceSets[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of some difference sets that are preimages of difference sums
+  contained  in  the list [3Xdifsums[103X of difference sums in group [3XG[103X mod its normal
+  subgroup  [3XN[103X. At least one member of each equivalence class that would appear
+  in  the  set  of all preimages will be returned, but all preimage difference
+  sets  may  not  appear. Difference sums in [3Xdifsums[103X are all assumed to be the
+  same  size.  Current implementation forces the choice of an identity element
+  when possible.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XSomeRefinedDifferenceSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X[ [ 1, 3, 2, 8, 4, 15 ], [ 1, 3, 2, 8, 9, 11 ], [ 1, 3, 2, 13, 4, 11 ], [128X[104X
+    [4X[28X  [ 1, 3, 2, 13, 9, 15 ], [ 1, 3, 6, 8, 4, 11 ], [ 1, 3, 6, 8, 9, 15 ], [128X[104X
+    [4X[28X  [ 1, 3, 6, 13, 4, 15 ], [ 1, 3, 6, 13, 9, 11 ], [ 1, 5, 2, 6, 4, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 2, 6, 9, 11 ], [ 1, 5, 2, 13, 4, 9 ], [ 1, 5, 2, 13, 11, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 6, 8, 4, 9 ], [ 1, 5, 6, 8, 11, 15 ], [ 1, 5, 8, 13, 4, 15 ], [128X[104X
+    [4X[28X  [ 1, 5, 8, 13, 9, 11 ], [ 1, 10, 2, 6, 4, 11 ], [ 1, 10, 2, 6, 9, 15 ], [128X[104X
+    [4X[28X  [ 1, 10, 2, 8, 4, 9 ], [ 1, 10, 2, 8, 11, 15 ], [ 1, 10, 6, 13, 4, 9 ], [128X[104X
+    [4X[28X  [ 1, 10, 6, 13, 11, 15 ], [ 1, 10, 8, 13, 4, 11 ], [ 1, 10, 8, 13, 9, 15 ] ] [128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-5 NrSomeRefinedSets[101X
+  
+  [33X[1;0Y[29X[2XNrSomeRefinedSets[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  number of preimages that will need to be checked during a call
+  to  [2XSomeRefinedDifferenceSets[102X ([14X2.3-4[114X) with the same arguments. This can give
+  a rough estimate of how long the call will take to complete.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XNrSomeRefinedSets(G, N, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X300[128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-6 AllRefinedDifferenceSums[101X
+  
+  [33X[1;0Y[29X[2XAllRefinedDifferenceSums[102X( [3XG[103X, [3XN1[103X, [3XN2[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of all difference sums in group [3XG[103X mod its normal subgroup [3XN2[103X
+  that  are  preimages  of  difference  sums  contained in the list [3Xdifsums[103X of
+  difference  sums in group [3XG[103X mod its normal subgroup [3XN1[103X. The subgroup [3XN2[103X must
+  be  contained  in  [3XN1[103X.  Difference sums in [3Xdifsums[103X are all assumed to be the
+  same size.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
+    [4X[25Xgap>[125X [27XAllRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X[ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X  [ 0, 1, 1, 2, 0, 1, 1, 0 ], [ 2, 1, 1, 0, 0, 1, 1, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-7 NrAllRefinedSums[101X
+  
+  [33X[1;0Y[29X[2XNrAllRefinedSums[102X( [3XG[103X, [3XN1[103X, [3XN2[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  number of preimages that will need to be checked during a call
+  to [2XAllRefinedDifferenceSums[102X ([14X2.3-6[114X) with the same arguments. This can give a
+  rough estimate of how long the call will take to complete.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
+    [4X[25Xgap>[125X [27XNrAllRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X22[128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-8 SomeRefinedDifferenceSums[101X
+  
+  [33X[1;0Y[29X[2XSomeRefinedDifferenceSums[102X( [3XG[103X, [3XN1[103X, [3XN2[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of some difference sums in group [3XG[103X mod its normal subgroup [3XN2[103X
+  that  are  preimages  of  difference  sums  contained in the list [3Xdifsums[103X of
+  difference  sums  in group [3XG[103X mod its normal subgroup [3XN1[103X. At least one member
+  of each equivalence class that would appear in the set of all preimages will
+  be  returned,  but all preimage difference sums may not appear. The subgroup
+  [3XN2[103X must be contained in [3XN1[103X and difference sums in [3Xdifsums[103X are all assumed to
+  be the same size. Current implementation forces a choice of nonzero identity
+  coefficient when possible.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
+    [4X[25Xgap>[125X [27XSomeRefinedDifferenceSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X[ [ 1, 1, 0, 1, 0, 1, 2, 0 ], [ 1, 1, 2, 1, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X  [ 1, 0, 1, 1, 0, 2, 1, 0 ], [ 1, 2, 1, 1, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X  [ 2, 1, 1, 0, 0, 1, 1, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.3-9 NrSomeRefinedSums[101X
+  
+  [33X[1;0Y[29X[2XNrSomeRefinedSums[102X( [3XG[103X, [3XN1[103X, [3XN2[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  number of preimages that will need to be checked during a call
+  to  [2XSomeRefinedDifferenceSums[102X ([14X2.3-8[114X) with the same arguments. This can give
+  a rough estimate of how long the call will take to complete.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 5);;[127X[104X
+    [4X[25Xgap>[125X [27XN1 := Subgroup(G, [G.2, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XN2 := Subgroup(G, [G.2]);;[127X[104X
+    [4X[25Xgap>[125X [27XNrSomeRefinedSums(G, N1, N2, [[3,1,1,1], [2,2,2,0]]);[127X[104X
+    [4X[28X21[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.4 [33X[0;0YEquivalence[133X[101X
+  
+  [33X[0;0YSince we are searching for all difference sets or sums up to equivalence, at
+  each  stage  we  remove  excess equivalent sums or sets from our collection.
+  This   can  be  done  with  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X)  and
+  [2XEquivalentFreeListOfDifferenceSums[102X   ([14X2.4-3[114X).   The   additional   functions
+  [2XTranslateFreeListOfDifferenceSets[102X                 ([14X2.4-2[114X)                and
+  [2XTranslateFreeListOfDifferenceSums[102X ([14X2.4-4[114X) can be used to eliminate translate
+  equivalent  sums  or  sets,  but  they  are  not used in the main algorithm.
+  Alternatively,     [2XSmallestEquivalentDifferenceSet[102X    ([14X2.4-5[114X)    uses    the
+  [10XSmallestImageSet[110X   function   from   the   [5XGRAPE[105X   package  to  produce  the
+  lexicographically   minimal  difference  set  equivalent  to  a  given  set.
+  Eliminating  equivalent  sets  can  then  be done by mapping each set to its
+  minimal  representative and then simply eliminating duplicates. This is done
+  automatically  by  [2XSmallestEquivalentFreeListOfDifferenceSets[102X ([14X2.4-6[114X), which
+  is   used   in   the   last   stage   of   the  main  algorithm  instead  of
+  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X).  While  the full algorithm with
+  [2XSmallestEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-6[114X) is roughly 20% slower on
+  average  (and  is  almost  4x  as  slow  on  a few groups of order 64), this
+  function  is used since it is much faster on large automorphism groups (such
+  as  the  automorphism group of [10XSmallGroup(64, 267)[110X, which is impossible with
+  [2XEquivalentFreeListOfDifferenceSets[102X  ([14X2.4-1[114X))  and  provides a unique minimal
+  result at the end of the algorithm.[133X
+  
+  [1X2.4-1 EquivalentFreeListOfDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XEquivalentFreeListOfDifferenceSets[102X( [3XG[103X, [3Xdifsets[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of inequivalent difference sets in the group [3XG[103X that consists
+  of  one representative from each equivalence class found in the list [3Xdifsets[103X
+  of arbitrary difference sets in [3XG[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27Xsets := [[8,9,12,13,14,15], [7,8,9,13,15,16], [1,7,10,11,14,15]];;[127X[104X
+    [4X[25Xgap>[125X [27XEquivalentFreeListOfDifferenceSets(G, sets);[127X[104X
+    [4X[28X[ [ 8, 9, 12, 13, 14, 15 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-2 TranslateFreeListOfDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XTranslateFreeListOfDifferenceSets[102X( [3XG[103X, [3Xdifsets[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of translationally inequivalent difference sets in the group
+  [3XG[103X  that  consists  of one representative from each translational equivalence
+  class found in the list [3Xdifsets[103X of arbitrary difference sets in [3XG[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27Xsets := [[8,9,12,13,14,15], [7,8,9,13,15,16], [1,7,10,11,14,15]];;[127X[104X
+    [4X[25Xgap>[125X [27XTranslateFreeListOfDifferenceSets(G, sets);[127X[104X
+    [4X[28X[ [ 8, 9, 12, 13, 14, 15 ], [ 7, 8, 9, 13, 15, 16 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-3 EquivalentFreeListOfDifferenceSums[101X
+  
+  [33X[1;0Y[29X[2XEquivalentFreeListOfDifferenceSums[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list of inequivalent difference sums in the group [3XG[103X mod its normal
+  subgroup  [3XN[103X  that consists of one representative from each equivalence class
+  found in the list [3Xdifsums[103X of arbitrary difference sums in [3XG[103X mod [3XN[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XEquivalentFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);[127X[104X
+    [4X[28X[ [ 4, 2 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-4 TranslateFreeListOfDifferenceSums[101X
+  
+  [33X[1;0Y[29X[2XTranslateFreeListOfDifferenceSums[102X( [3XG[103X, [3XN[103X, [3Xdifsums[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  a list of translationally inequivalent difference sums in the group
+  [3XG[103X  mod  its  normal subgroup [3XN[103X that consists of one representative from each
+  translational  equivalence  class  found  in  the  list [3Xdifsums[103X of arbitrary
+  difference sums in [3XG[103X mod [3XN[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XTranslateFreeListOfDifferenceSums(G, N, [[4,2], [2,4]]);[127X[104X
+    [4X[28X[ [ 4, 2 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-5 SmallestEquivalentDifferenceSet[101X
+  
+  [33X[1;0Y[29X[2XSmallestEquivalentDifferenceSet[102X( [3XG[103X, [3XD[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  set that is lexicographically smallest among all sets that are
+  equivalent to the difference set [3XD[103X in the group [3XG[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XSmallestEquivalentDifferenceSet(G, [8,9,12,13,14,15]);[127X[104X
+    [4X[28X[ 1, 2, 3, 4, 8, 15 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-6 SmallestEquivalentFreeListOfDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XSmallestEquivalentFreeListOfDifferenceSets[102X( [3XG[103X, [3Xdifsets[103X ) [32X function[133X
+  
+  [33X[0;0YReturns a list containing the lexicographically smallest set for each set in
+  the  list of difference sets [3Xdifsets[103X in the group [3XG[103X. Duplicates are removed,
+  so   the  returned  list  contains  exactly  one  representative  from  each
+  equivalence class found in [3Xdifsets[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27Xsets := [[8,9,12,13,14,15], [7,8,9,13,15,16], [1,7,10,11,14,15]];;[127X[104X
+    [4X[25Xgap>[125X [27XSmallestEquivalentFreeListOfDifferenceSets(G, sets);[127X[104X
+    [4X[28X[ [ 1, 2, 3, 4, 8, 15 ] ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.5 [33X[0;0YTesting[133X[101X
+  
+  [33X[0;0YThese  additional  functions  are  provided  to check work and perform other
+  experimentation.  They  are  inefficient  when used repeatedly. For example,
+  when  testing  a  large  number  of difference sets in a single group, it is
+  better  to  precompute the needed group operations and store them in a table
+  for  lookup,  but  [2XIsDifferenceSet[102X  ([14X2.5-1[114X)  simply  does the multiplication
+  directly since it is only testing one set.[133X
+  
+  [1X2.5-1 IsDifferenceSet[101X
+  
+  [33X[1;0Y[29X[2XIsDifferenceSet[102X( [3XG[103X, [3XD[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  true  if  the  set  [3XD[103X is a difference set in the group [3XG[103X, and false
+  otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSet(G, [1, 2, 3, 4, 5, 6]);[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSet(G, [1, 2, 8, 10, 11, 15]);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X2.5-2 IsDifferenceSum[101X
+  
+  [33X[1;0Y[29X[2XIsDifferenceSum[102X( [3XG[103X, [3XN[103X, [3XS[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  true if the sum [3XS[103X is a difference sum in the group [3XG[103X mod its normal
+  subgroup [3XN[103X, and false otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSum(G, N, [2, 4]);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSum(G, N, [1, 1]);[127X[104X
+    [4X[28Xfalse[128X[104X
+  [4X[32X[104X
+  
+  [1X2.5-3 IsEquivalentDifferenceSet[101X
+  
+  [33X[1;0Y[29X[2XIsEquivalentDifferenceSet[102X( [3XG[103X, [3XD1[103X, [3XD2[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  true  if  sets  [3XD1[103X  and [3XD2[103X are equivalent in the group [3XG[103X, and false
+  otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XIsEquivalentDifferenceSet(G, [1,5,8,9,10,14], [1,5,7,8,10,15]);[127X[104X
+    [4X[28Xfalse[128X[104X
+  [4X[32X[104X
+  
+  [1X2.5-4 IsEquivalentDifferenceSum[101X
+  
+  [33X[1;0Y[29X[2XIsEquivalentDifferenceSum[102X( [3XG[103X, [3XN[103X, [3XS1[103X, [3XS2[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  true if sums [3XS1[103X and [3XS2[103X are equivalent in the group [3XG[103X mod its normal
+  subgroup [3XN[103X, and false otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(16, 4);;[127X[104X
+    [4X[25Xgap>[125X [27XN := Subgroup(G, [G.1 * G.2 * G.3, G.3, G.4]);;[127X[104X
+    [4X[25Xgap>[125X [27XIsEquivalentDifferenceSum(G, N, [2,4], [4,2]);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.6 [33X[0;0YLoading Results[133X[101X
+  
+  [33X[0;0YThe  [10Xdata[110X  directory of the [5XDifSets[105X Package contains precomputed results for
+  1006  of the 1032 groups of order less than 100. The following two functions
+  are  the easiest way to access these precomputed lists of difference sets up
+  to equivalence.[133X
+  
+  [1X2.6-1 CanLoadDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XCanLoadDifferenceSets[102X( [3Xv[103X, [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  true if a precomputed list of all difference sets up to equivalence
+  can  be  loaded from the package library for the group [10XSmallGroup([3Xv[103X[10X, [3Xn[103X[10X)[110X, and
+  false otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XCanLoadDifferenceSets(36, 9);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XCanLoadDifferenceSets(79, 1);[127X[104X
+    [4X[28Xfalse[128X[104X
+  [4X[32X[104X
+  
+  [1X2.6-2 LoadDifferenceSets[101X
+  
+  [33X[1;0Y[29X[2XLoadDifferenceSets[102X( [3Xv[103X, [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  the  precomputed  list of all difference sets up to equivalence for
+  the group [10XSmallGroup([3Xv[103X[10X, [3Xn[103X[10X)[110X stored in the package library. An error is thrown
+  if  no  precomputed  list is available. Note that the listed difference sets
+  are  specific  to  [10XSmallGroup([3Xv[103X[10X,  [3Xn[103X[10X)[110X,  as  [5XGAP[105X  may  label  entries of other
+  isomorphic versions of the same group differently.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadDifferenceSets(15, 1);[127X[104X
+    [4X[28X[ [ 1, 2, 3, 4, 8, 11, 12 ] ][128X[104X
+    [4X[25Xgap>[125X [27XG := SmallGroup(15, 1);; H := AbelianGroup([15]);;[127X[104X
+    [4X[25Xgap>[125X [27XIdGroup(G) = IdGroup(H);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSet(G, [1, 2, 3, 4, 8, 11, 12]);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsDifferenceSet(H, [1, 2, 3, 4, 8, 11, 12]);[127X[104X
+    [4X[28Xfalse[128X[104X
+  [4X[32X[104X
+  
