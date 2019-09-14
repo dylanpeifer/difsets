@@ -2,19 +2,17 @@
 ##
 #W  makedoc.g                DifSets Package                     Dylan Peifer
 ##
-##  Script to build the documentation of the DifSets package. Needs GAPDoc
-##  and pdflatex.
+##  Script to build the documentation of the DifSets package. Needs AutoDoc,
+##  GAPDoc, and pdflatex.
 
-LoadPackage("GAPDoc");
+if fail = LoadPackage("AutoDoc", ">= 2016.01.21") then
+    Error("AutoDoc 2016.01.21 or newer is required");
+fi;
 
-path := Directory("doc");;
-main := "difsets.xml";;
-files := ["../lib/equivlist.gd", "../lib/groupsearch.gd", "../lib/loader.gd",
-          "../lib/precompute.gd", "../lib/refine.gd", "../lib/smallest.gd",
-          "../lib/tests.gd"];;
-bookname := "DifSets";;
-MakeGAPDocDoc(path, main, files, bookname, "MathJax");;
-CopyHTMLStyleFiles("doc");;
+AutoDoc( rec(
+    gapdoc := rec( main := "difsets.xml" ),
+    scaffold := rec( MainPage := false ),
+));
 
 #############################################################################
 ##

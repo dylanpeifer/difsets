@@ -54,6 +54,36 @@ SetPackageInfo( rec(
     AvailabilityTest := ReturnTrue,
     TestFile := "tst/testall.g",
     Keywords := ["difference sets"],
-    )
-);
+    AutoDoc := rec(
+        TitlePage := rec(
+            Copyright := """
+                Copyright &copyright; 2017, 2019 Dylan Peifer <P/>
+
+                This program is free software: you can redistribute it and/or
+                modify it under the terms of the GNU General Public License as
+                published by the Free Software Foundation, either version 3 of
+                the License, or (at your option) any later version. <P/>
+
+                This program is distributed in the hope that it will be useful,
+                but WITHOUT ANY WARRANTY; without even the implied warranty of
+                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                GNU General Public License for more details. <P/>
+
+                You should have received a copy of the GNU General Public
+                License along with this program. If not, see
+                <URL>http://www.gnu.org/licenses/</URL>.
+            """,
+            Abstract := """
+                The <Package>DifSets</Package> Package implements an algorithm
+                for enumerating all difference sets up to equivalence in an
+                arbitrary finite group. The algorithm functions by finding
+                difference sums, which are potential images of difference sets
+                in quotient groups of the original group, and searching their
+                preimages. In this way, the search space can be dramatically
+                decreased, and searches of groups of relatively large order
+                (such as order 64 or order 96) can be completed.
+            """,
+        ),
+    ),
+));
 
