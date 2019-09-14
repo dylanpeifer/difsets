@@ -1,3 +1,6 @@
+Version 2.3.1: 14 Sep 2019
+* fix tests that depended on NormalSubgroups order
+
 Version 2.3.0: 14 Jul 2019
 * release as a refereed GAP package
 

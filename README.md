@@ -109,5 +109,5 @@ Dylan Peifer, at djp282@cornell.edu.
 [2]: https://gap-packages.github.io/grape/
 [3]: http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
 [4]: https://gap-packages.github.io/smallgrp/
-[5]: https://github.com/dylanpeifer/difsets/archive/v2.3.0.tar.gz
+[5]: https://github.com/dylanpeifer/difsets/releases/download/v2.3.1/difsets-2.3.1.tar.gz
 [6]: https://dylanpeifer.github.io/difsets/
